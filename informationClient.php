@@ -56,8 +56,6 @@
     .bouton{
         padding: 10px;
 
-        margin: 30px 86px 0 0;
-
         border: 1px solid #E30414;
         border-radius: 20px;
 
@@ -68,6 +66,9 @@
         font-weight: bold;
     
         cursor: pointer;
+    }
+    .buttonNext{
+        margin: 30px 86px 0 0;
     }
     @media screen and (max-width: 800px){
         .infoClient__containerForm--formulaire{
@@ -86,12 +87,17 @@
         .bouton{
             margin: 20px auto;
         }
-}
+    }
+    @media screen and (max-width: 900px){
+        .infoClient__containerForm--formulaire{
+            padding-right: 90px;
+        }
+    }
 </style>
 
 <body>
 
-    <h1 class="infoClient__title">Informations Client</h1>
+    <h1 class="title infoClient__title">Informations Client</h1>
 
     <div class="infoClient__containerForm">
         <div class="infoClient__containerForm--formulaire">
