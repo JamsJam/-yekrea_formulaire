@@ -15,71 +15,96 @@
         font-family: sans-serif;
         
     }
-    .title{
+    .infoClient__title{
         margin: 20px 0;
         text-align: center;
     }
-    .containerForm{
+    .infoClient__containerForm{
         display: flex;
         justify-content: center;
         align-items: center;
 
     }
-    .formulaire{
+
+    .infoClient__containerForm--formulaire{
+
+        width: 800px;
+        margin: 30px 0;
+        
+        text-align: end;
+
         line-height: 50px;
-        
-        border: 1px solid red;
-        align-items: center;
-        
-        
     }
     
     input[type=text]{
-        
+
         padding: 5px;
 
         height: 25px;
-        width: 200px;
+        width: 35vw;
+        min-width: 300px;
+
+        background-color: #D9D9D9;
+        box-shadow: 1px 1px 5px grey;
 
         border: 1px solid #D9D9D9;
-        background-color: #D9D9D9;
         border-radius: 30px;
 
-        margin-right: 10px;
-        
+        margin-right: 86px;
+
     }
     .bouton{
         padding: 10px;
+
+        margin: 30px 86px 0 0;
 
         border: 1px solid #E30414;
         border-radius: 20px;
 
         background-color: #E30414;
+        box-shadow: 2px 2px 5px grey;
         
         color: white;
         font-weight: bold;
     
         cursor: pointer;
     }
-
+    @media screen and (max-width: 800px){
+        .infoClient__containerForm--formulaire{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            line-height: 35px;
+            margin: 20px 0;
+            width: 340px;
+        }
+        input[type=text]{
+            margin: auto;
+            display: inline-block;
+        }
+        .bouton{
+            margin: 20px auto;
+        }
+}
 </style>
 
 <body>
 
-    <h1 class="title">Informations Client</h1>
+    <h1 class="infoClient__title">Informations Client</h1>
 
-    <div class="containerForm">
-        <div class="formulaire">
+    <div class="infoClient__containerForm">
+        <div class="infoClient__containerForm--formulaire">
             <form action=" " method="POST">
 
                 <label for="lastName">Nom :</label>
-                <input type="text" name="nom" required><br>
+                <input id="lastName" type="text" name="nom" required><br>
 
                 <label for="Name">Prénom :</label>
-                <input type="text" name="prenom" required><br>
+                <input id=""type="text" name="prenom" required><br>
 
                 <label for="society">Société :</label>
-                <input type="text" name="prix" required><br>
+                <input type="text" name="ste" required><br>
 
                 <label for="tel">Numero de téléphone :</label>
                 <input type="text" name="tel" required><br>
@@ -88,10 +113,11 @@
                 <input type="text" name="mail" required><br>
 
                 <label for="socialMedia">Site web ou Réseaux sociaux:</label>
-                <input type="text" name="site" required><br>
+                <input type="text" name="site" required>
             </form>
-            <button class="bouton buttonNext">Etape suivante</button>
+            <button class="bouton buttonNext">Étape suivante</button>
         </div>
+        
     </div>
 </body>
 
