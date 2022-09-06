@@ -15,18 +15,18 @@
         font-family: sans-serif;
         
     }
-    .infoClient__title{
+    .client__title{
         margin: 20px 0;
         text-align: center;
     }
-    .infoClient__containerForm{
+    .client__containerForm{
         display: flex;
         justify-content: center;
         align-items: center;
 
     }
 
-    .infoClient__containerForm--formulaire{
+    .client__containerForm--formulaire{
 
         width: 800px;
         margin: 30px 0;
@@ -71,7 +71,7 @@
         margin: 30px 86px 0 0;
     }
     @media screen and (max-width: 800px){
-        .infoClient__containerForm--formulaire{
+        .client__containerForm--formulaire{
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -88,38 +88,23 @@
             margin: 20px auto;
         }
     }
-    @media screen and (max-width: 900px){
-        .infoClient__containerForm--formulaire{
-            padding-right: 90px;
-        }
-    }
+
 </style>
 
 <body>
 
-    <h1 class="title infoClient__title">Informations Client</h1>
+    <h1 class="title client__title">Client</h1>
 
-    <div class="infoClient__containerForm">
-        <div class="infoClient__containerForm--formulaire">
+    <div class="client__containerForm">
+        <div class="client__containerForm--formulaire">
             <form action=" " method="POST">
 
-                <label for="lastName">Nom :</label>
-                <input id="lastName" type="text" name="nom" required><br>
+                <label for="sty">Société :</label>
+                <input id="sty" type="text" name="society" required><br>
 
-                <label for="name">Prénom :</label>
-                <input id="name"type="text" name="prenom" required><br>
+                <label for="amail">Adresse-mail:</label>
+                <input id="amail"type="text" name="email" required><br>
 
-                <label for="society">Société :</label>
-                <input id="society"type="text" name="ste" required><br>
-
-                <label for="cell">Numero de téléphone :</label>
-                <input id="cell" type="text" name="tel" required><br>
-
-                <label for="email">Adresse-mail:</label>
-                <input id="email" type="text" name="mail" required><br>
-
-                <label for="socialMedia">Site web ou Réseaux sociaux:</label>
-                <input id="socialMedia" type="text" name="site" required>
             </form>
             <button class="bouton buttonNext">Étape suivante</button>
         </div>
