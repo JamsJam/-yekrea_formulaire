@@ -1,0 +1,127 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+fieldset{
+    border: none
+}
+fieldset legend{
+    font-size: 1.6rem;
+    font-weight: 600;
+    
+}
+
+fieldset input[type="radio"],
+fieldset input[type="checkbox"]{
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ec0101;
+    background-clip: content-box;
+    padding: 3px
+
+}
+
+fieldset input[type="radio"]{
+    border-radius: 50%;
+}
+fieldset input[type="radio"]:checked,
+fieldset input[type="checkbox"]:checked {
+    background-color: #ec0101;
+}
+label {
+    font-size: 1.1rem;
+}
+
+/*  ************************ Form Login */
+
+#formContainer {
+    width: 270px;
+    min-height: 300px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.logInput{
+    display:flex;
+    flex-direction: column;
+    
+}
+
+.logInput>input {
+    height: 30px;
+    border-radius: 25px;
+    background-color: #dadada;
+    border: none;
+    width: 170px;
+}
+
+.logInput>label {
+    font-size: 14px;
+    margin: 6px 0;
+    font-family: arial;
+}
+
+/*  ************************ fin form Login */
+
+
+
+/*  ************************  formVideo */
+
+.service__formVideo--fieldsetContainer{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.service__formVideo--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 700px;
+    /* position: absolute; */
+    left:-192px
+}
+
+.service__formVideo--etape1 fieldset{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 400px;
+}
+
+.service__formVideo--etape1 fieldset>div {
+    line-height: 35px;
+}
+
+
+
+
+
+
+.service__formVideo--etape2 input[type='text'] {
+    
+        height: 30px;
+        border-radius: 25px;
+        background-color: #dadada;
+        border: none;
+        width: 170px;
+    
+
+}
+
+.service__formVideo--formFlex2{
+    display:flex;
+    flex-direction: column;
+    
+}
+/*  ************************ fin formVideo */
+
+
