@@ -17,41 +17,25 @@ class Services
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $photo;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $service;
+    private $nom;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPhoto(): ?string
+    public function getNom(): ?string
     {
-        return $this->photo;
+        return $this->nom;
     }
 
-    public function setPhoto(?string $photo): self
+    public function setNom(string $nom): self
     {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    public function getService(): ?string
-    {
-        return $this->service;
-    }
-
-    public function setService(string $service): self
-    {
-        $this->service = $service;
+        $this->nom = $nom;
 
         return $this;
     }

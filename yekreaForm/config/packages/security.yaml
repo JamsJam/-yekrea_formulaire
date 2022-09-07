@@ -22,17 +22,31 @@ security:
                 # "app_login" is the name of the route created previously
                 login_path: app_login
                 check_path: app_login
+                # permet d'activer la protection CSRF (envois de token de verification)
+                enable_csrf: true
+            login_throttling:
+            # Permet 3 tentative de connection toutes les 20mn
+                max_attempts: 5          
+                interval: '20 minutes' 
+            logout:
+                path: app_logout
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
-
+    role_hierarchy:
+        ROLE_COMMERCIAL:  ROLE_USER
+        # ROLE_ADMIN:       ROLE_COMMERCIAL
+        ROLE_ADMIN: [ROLE_COMMERCIAL, ROLE_ALLOWED_TO_SWITCH]
+        # ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/commande, roles: ROLE_COMMERCIAL }
+        - { path: ^/client, roles: ROLE_USER }
 
 when@test:
     security:
