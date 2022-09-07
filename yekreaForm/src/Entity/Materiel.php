@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ServicesRepository;
+use App\Repository\MaterielRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ServicesRepository::class)
+ * @ORM\Entity(repositoryClass=MaterielRepository::class)
  */
-class Services
+class Materiel
 {
     /**
      * @ORM\Id
@@ -19,14 +19,18 @@ class Services
      */
     private $id;
 
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=ServicesDetail::class, mappedBy="services", orphanRemoval=true)
+     * @ORM\Column(type="float")
+     */
+    private $prix;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=ServicesDetail::class, mappedBy="materiel")
      */
     private $servicesDetails;
 
@@ -52,6 +56,18 @@ class Services
         return $this;
     }
 
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, ServicesDetail>
      */
@@ -64,7 +80,7 @@ class Services
     {
         if (!$this->servicesDetails->contains($servicesDetail)) {
             $this->servicesDetails[] = $servicesDetail;
-            $servicesDetail->setServices($this);
+            $servicesDetail->addMateriel($this);
         }
 
         return $this;
@@ -73,10 +89,7 @@ class Services
     public function removeServicesDetail(ServicesDetail $servicesDetail): self
     {
         if ($this->servicesDetails->removeElement($servicesDetail)) {
-            // set the owning side to null (unless already changed)
-            if ($servicesDetail->getServices() === $this) {
-                $servicesDetail->setServices(null);
-            }
+            $servicesDetail->removeMateriel($this);
         }
 
         return $this;

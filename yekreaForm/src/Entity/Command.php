@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,28 @@ class Command
      * @ORM\Column(type="integer", nullable=true)
      */
     private $devis;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commands")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="commands")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $client;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=ServicesDetail::class, inversedBy="commands")
+     */
+    private $servicesDetail;
+
+    public function __construct()
+    {
+        $this->servicesDetail = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +110,54 @@ class Command
     public function setDevis(int $devis): self
     {
         $this->devis = $devis;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ServicesDetail>
+     */
+    public function getServicesDetail(): Collection
+    {
+        return $this->servicesDetail;
+    }
+
+    public function addServicesDetail(ServicesDetail $servicesDetail): self
+    {
+        if (!$this->servicesDetail->contains($servicesDetail)) {
+            $this->servicesDetail[] = $servicesDetail;
+        }
+
+        return $this;
+    }
+
+    public function removeServicesDetail(ServicesDetail $servicesDetail): self
+    {
+        $this->servicesDetail->removeElement($servicesDetail);
 
         return $this;
     }

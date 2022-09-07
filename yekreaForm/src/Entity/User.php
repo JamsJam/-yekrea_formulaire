@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -44,6 +46,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Client::class, inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $client;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user")
+     */
+    private $commands;
+
+    public function __construct()
+    {
+        $this->commands = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -157,4 +175,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Command>
+     */
+    public function getCommands(): Collection
+    {
+        return $this->commands;
+    }
+
+    public function addCommand(Command $command): self
+    {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->removeElement($command)) {
+            // set the owning side to null (unless already changed)
+            if ($command->getUser() === $this) {
+                $command->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
