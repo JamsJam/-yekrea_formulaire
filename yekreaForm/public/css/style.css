@@ -37,14 +37,17 @@ html{
 .containerLogIn_block--logo{
     background-color: #E5191E;
 }
-button{
+.bouton{
     align-self: center;
     color: white !important;
     background-color: #E5191E !important;
     
 }
 img[alt="logo yekrea"]{
-    width: 400px;
+    width: 350px;
+}
+ul li{
+    text-decoration: none !important;
 }
 @media screen and (max-width: 800px){
     .containerLogIn{
@@ -61,10 +64,9 @@ img[alt="logo yekrea"]{
     }
     .containerLogIn_block--logo{
         height: 20vh;
-        min-height: 120px;        
-        
+        min-height: 120px;         
     }
     img[alt="logo yekrea"]{
-        width: 115px;
+        width: 230px;
     }
 }
