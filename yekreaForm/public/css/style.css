@@ -1,0 +1,70 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+/* ******************************************* LOG IN */
+html{
+    height: 100vh;
+}
+.bold{
+    font-weight: bold;
+}
+/* container login */
+
+.containerLogIn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+.containerLogIn_block{
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.containerLogIn_block--form{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerLogIn_block--logo{
+    background-color: #E5191E;
+}
+button{
+    align-self: center;
+    color: white !important;
+    background-color: #E5191E !important;
+    
+}
+img[alt="logo yekrea"]{
+    width: 400px;
+}
+@media screen and (max-width: 800px){
+    .containerLogIn{
+        display: flex;  
+        flex-direction: column-reverse;
+    }
+    #containerLogIn_block--form{
+        height: 60vh;
+        min-height: 400px;
+        
+    }
+    .containerLogIn_block--form{
+        width: 300px;
+    }
+    .containerLogIn_block--logo{
+        height: 20vh;
+        min-height: 120px;        
+        
+    }
+    img[alt="logo yekrea"]{
+        width: 115px;
+    }
+}
