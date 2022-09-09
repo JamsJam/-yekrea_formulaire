@@ -51,7 +51,10 @@ class CommerceUserController extends AbstractController
         $user->setPassword($hashedPassword);
         // enfin on envois notre objet en base de donner
         $userRepository->add($user, true);
-
+        
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->redirectToRoute('app_admin_client_new', [], Response::HTTP_SEE_OTHER);
+            }
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
