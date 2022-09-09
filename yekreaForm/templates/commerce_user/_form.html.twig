@@ -9,13 +9,11 @@
 
         {{form_row(form.email)}}
 
-        {% if is_granted('ROLE_ADMIN') %}
             
-            {{form_row(form.password)}}
+        {{form_row(form.password)}}
 
-            {{form_row(form.roles)}}
+        {{form_row(form.roles)}}
             
-        {% endif %}
 
         <button class="btn btn-success mb-4 mt-4">{{ button_label|default('Enregistrer') }}</button>
 

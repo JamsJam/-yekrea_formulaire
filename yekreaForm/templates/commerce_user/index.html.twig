@@ -6,7 +6,7 @@
     <div class="containerPages">
         <h1 class="title">Utilisateurs</h1>
         <button class="btn btn-success mt-4 mb-4">
-            <a href="{{ path('app_commerce_user_new') }}">Créer un nouvel utilisateur</a>
+            <a href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
         </button>
             <table class="table">
                 <thead>
@@ -32,10 +32,10 @@
                         
                         {# <td>{{ user.password }}</td> #}
                         <td>
-                            <button class="btn btn-warning"><a href="{{ path('app_commerce_user_show', {'id': user.id}) }}">Voir</a></button>
+                            <button class="btn btn-warning"><a href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a></button>
                         </td>
                         <td>
-                            <button class="btn btn-primary"><a href="{{ path('app_commerce_user_edit', {'id': user.id}) }}">Editer</a>
+                            <button class="btn btn-primary"><a href="{{ path('app_user_edit', {'id': user.id}) }}">Editer</a>
                             </button>
                             
                         </td>

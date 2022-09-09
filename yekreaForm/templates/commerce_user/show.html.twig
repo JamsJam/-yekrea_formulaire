@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="title">Utilisateur</h1>
 
-    <button class="btn btn-primary mt-4 mb-4"><a href="{{ path('app_commerce_user_index') }}">Retour</a></button>
+    <button class="btn btn-primary mt-4 mb-4"><a href="{{ path('app_user_index') }}">Retour</a></button>
 
     <div class="containerCard">
         <div class="card shadow p-3 mb-2 bg-light " style=" width: 40rem;">
@@ -18,7 +18,7 @@
                 <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
                     {{ include('commerce_user/_delete_form.html.twig') }}
                     <button class="btn btn-success">
-                        <a href="{{ path('app_commerce_user_edit', {'id': user.id}) }}" >Modifier</a>
+                        <a href="{{ path('app_user_edit', {'id': user.id}) }}" >Modifier</a>
                     </button>
                 </div>
         </div>
