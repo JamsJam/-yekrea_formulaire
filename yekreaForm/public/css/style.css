@@ -13,6 +13,12 @@ html{
     font-weight: bold;
 }
 
+/* titre pour les formulaires */
+.title{
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+}
 button a{
     color: white !important;
     text-decoration: none;
@@ -57,19 +63,18 @@ ul li{
 }
 /* ****************************************************** SERVICES */
 
-.containerServices{
+.containerPages{
     margin: 20px 30px;
 }
-.servicesTitle{
-    text-align: center;
+.containerCard{
+    display: flex;
+    justify-content: center;
 }
 
 /* créer un nouveau service */
 .btnServices{
     justify-content: flex-end;
 }
-
-
 
 
 /* ************************************************ RESPONSIVE */

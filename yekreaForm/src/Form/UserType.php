@@ -19,15 +19,27 @@ class UserType extends AbstractType
         $builder
             ->add('email',EmailType::class,[
                 'required' => false,
+                "attr"=>[
+                    "class"=> "bg-light"
+                ],
             ])
             ->add('nom',TextType::class,[
                 'required' => false,
+                "attr"=>[
+                    "class"=> "bg-light"
+                ],
                 ])
                 ->add('prenom',TextType::class,[
                     'required' => false,
+                    "attr"=>[
+                        "class"=> "bg-light"
+                    ],
                 ])
 
                 -> add('roles',ChoiceType::class, [
+                    "attr"=>[
+                        "class"=> "bg-light"
+                    ],
                     'required' => false,
                     'multiple' => true,
                     'expanded' => true,
@@ -40,6 +52,9 @@ class UserType extends AbstractType
                     ])
                     
                     ->add('password', PasswordType::class,[
+                        "attr"=>[
+                            "class"=> "bg-light"
+                        ],
                         'required' => false,
                         'empty_data' => ''
                     ]);

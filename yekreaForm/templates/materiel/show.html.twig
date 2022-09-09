@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Materiel{% endblock %}
+
+{% block body %}
+    <h1 class="title">Matériel</h1>
+
+    <button class="btn btn-primary mt-4 mb-4">
+        <a href="{{ path('app_materiel_index') }}">Retour</a>
+    </button>
+
+    <div class="containerPages">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Supprimer</th>
+                    
+                </tr>
+                <tr>
+                    <td>{{ materiel.id }}</td>
+                    <td>{{ materiel.nom }}</td>
+                    <td>{{ materiel.prix }}</td>
+                    <td>
+                    <button class="btn btn-warning"><a href="{{ path('app_materiel_edit', {'id': materiel.id}) }}">Modfier</a>
+                    </button>
+                    </td>
+                    <td>{{ include('materiel/_delete_form.html.twig') }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
