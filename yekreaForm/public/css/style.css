@@ -12,6 +12,12 @@ html{
 .bold{
     font-weight: bold;
 }
+
+button a{
+    color: white !important;
+    text-decoration: none;
+}
+
 /* container login */
 
 .containerLogIn{
@@ -49,7 +55,27 @@ img[alt="logo yekrea"]{
 ul li{
     text-decoration: none !important;
 }
+/* ****************************************************** SERVICES */
+
+.containerServices{
+    margin: 20px 30px;
+}
+.servicesTitle{
+    text-align: center;
+}
+
+/* créer un nouveau service */
+.btnServices{
+    justify-content: flex-end;
+}
+
+
+
+
+/* ************************************************ RESPONSIVE */
 @media screen and (max-width: 800px){
+
+    /***************** LOGIN */
     .containerLogIn{
         display: flex;  
         flex-direction: column-reverse;
@@ -69,4 +95,5 @@ ul li{
     img[alt="logo yekrea"]{
         width: 230px;
     }
+
 }
