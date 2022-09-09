@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services{% endblock %}
+
+{% block body %}
+    <div class="containerServices">
+        <h1 class="servicesTitle" >Services</h1>
+
+        <button type="button btnServicesgit " class="btn btn-success"> <a href="{{ path('app_services_new') }}">Créer un nouveau service</a>
+        </button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for service in services %}
+                <tr class="table-striped">
+                    <td>{{ service.id }}</td>
+                    <td>{{ service.nom }}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning"><a href="{{ path('app_services_show', {'id': service.id}) }}">Voir</a></button>
+                        <button type="button" class="btn btn-primary"><a href="{{ path('app_services_edit', {'id': service.id}) }}">Editer</a></button>
+                        
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        
+    </div>
+{% endblock %}
