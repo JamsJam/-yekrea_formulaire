@@ -20,7 +20,7 @@
 <body>
     {% block nav %}
 
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_USER') %}
         
             <header>
                 <nav class="navbar navbar-expand-lg row bg-light">
