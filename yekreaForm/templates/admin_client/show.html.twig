@@ -8,8 +8,36 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
+                <th>Nom</th>
+                <td>
+                    {% if client.user %}
+                            {{client.user.nom}}
+                        {% else %}
+                            NR
+                        {% endif %}
+                </td>
+
+            </tr>
+
+            <tr>
+                <th>Prenom</th>
+                <td>
+                    {% if client.user %}
+                        {{client.user.prenom}}
+                    {% else %}
+                        NR
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>
+                    {% if client.user %}
+                        {{client.user.email}}
+                    {% else %}
+                        NR
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Societe</th>
@@ -25,6 +53,7 @@
             </tr>
         </tbody>
     </table>
+
 
     <a href="{{ path('app_admin_client_index') }}">back to list</a>
 

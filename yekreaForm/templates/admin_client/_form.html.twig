@@ -1,4 +1,15 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+
+    {{form_row(form.societe)}}
+    
+    {{form_row(form.telephone)}}
+
+    {{form_row(form.Reseaux)}}
+    
+    {{form_row(form.user)}}
+
+
+
+    <button class="btn">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
