@@ -23,46 +23,24 @@ class UserType extends AbstractType
             ->add('nom',TextType::class,[
                 'required' => false,
                 ])
-                ->add('prenom',TextType::class,[
-                    'required' => false,
+            ->add('prenom',TextType::class,[
+                'required' => false,
+            ])
+            -> add('roles',ChoiceType::class, [
+                'required' => false,
+                'multiple' => true,
+                'expanded' => true,
+                'choices'  => [
+                    'Client'        => 'ROLE_USER',
+                    'Commercial'    => 'ROLE_COMMERCIAL',
+                    'Admin'         => 'ROLE_ADMIN',
+                ],
                 ])
-
-                -> add('roles',ChoiceType::class, [
-                    'required' => false,
-                    'multiple' => true,
-                    'expanded' => true,
-                    'empty_data' => 'ROLE_USER',
-                    'choices'  => [
-                        'Client'        => '',
-                        'Commercial'    => 'ROLE_COMMERCIAL',
-                        'Admin'         => 'ROLE_ADMIN',
-                    ],
-                    ])
-                    
-                    ->add('password', PasswordType::class,[
-                        'required' => false,
-                        'empty_data' => ''
-                    ]);
                 
-                    
-        
-                    //l'utilisateur à les droits admin
-                        // ->add('client')
-                        
-                        
-                        // // Data transformer
-                        // $builder->get('roles')
-                        //     ->addModelTransformer(new CallbackTransformer(
-        
-        //         function ($rolesArray) {
-        //              // transform the array to a string
-        //              return count($rolesArray)? $rolesArray[0]: null;
-        //         },
-        //         function ($rolesString) {
-        //              // transform the string back to an array
-        //              return [$rolesString];
-        //         }
-        // ));
+                ->add('password', PasswordType::class,[
+                    'required' => false,
+                    'empty_data' => 'default'
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
