@@ -12,12 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
- * @Route("/commerce")
+ * @Route("")
  */
 class CommerceUserController extends AbstractController
 {
     /**
-     * @Route("/admin/", name="app_commerce_user_index", methods={"GET"})
+     * @Route("admin/user/", name="app_user_index", methods={"GET"})
      */
     public function index(UserRepository $userRepository): Response
     {
@@ -27,7 +27,7 @@ class CommerceUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/new", name="app_commerce_user_new", methods={"GET", "POST"})
+     * @Route("/commerce/user/new", name="app_user_new", methods={"GET", "POST"})
      */
     public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -52,7 +52,7 @@ class CommerceUserController extends AbstractController
         // enfin on envois notre objet en base de donner
         $userRepository->add($user, true);
 
-            return $this->redirectToRoute('app_commerce_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('commerce_user/new.html.twig', [
@@ -62,7 +62,7 @@ class CommerceUserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_commerce_user_show", methods={"GET"})
+     * @Route("/commerce/user/{id}", name="app_user_show", methods={"GET"})
      */
     public function show(User $user): Response
     {
@@ -72,7 +72,7 @@ class CommerceUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}/edit", name="app_commerce_user_edit", methods={"GET", "POST"})
+     * @Route("/commerce/user/{id}/edit", name="app_user_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
@@ -87,7 +87,7 @@ class CommerceUserController extends AbstractController
 
             $userRepository->add($user, true);
 
-            return $this->redirectToRoute('app_commerce_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('commerce_user/edit.html.twig', [
@@ -97,7 +97,7 @@ class CommerceUserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_commerce_user_delete", methods={"POST"})
+     * @Route("/admin/{id}", name="app_user_delete", methods={"POST"})
      */
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
@@ -105,6 +105,6 @@ class CommerceUserController extends AbstractController
             $userRepository->remove($user, true);
         }
 
-        return $this->redirectToRoute('app_commerce_user_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 }

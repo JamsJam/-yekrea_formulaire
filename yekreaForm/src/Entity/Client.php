@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,28 +22,35 @@ class Client
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $societe;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Length(min=9,
+     *          minMessage="This value is too short. It should have 10 numbers or more")
+     * 
      */
     private $telephone;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * 
      */
     private $Reseaux;
 
-    /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="client", cascade={"persist", "remove"})
-     */
-    private $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Command::class, mappedBy="client")
      */
     private $commands;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="client", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function __construct()
     {
@@ -90,28 +98,6 @@ class Client
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setClient(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($user !== null && $user->getClient() !== $this) {
-            $user->setClient($this);
-        }
-
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Command>
      */
@@ -138,6 +124,18 @@ class Client
                 $command->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

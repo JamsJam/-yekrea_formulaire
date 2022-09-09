@@ -11,8 +11,29 @@
 
         {{ include('commerce_user/_form.html.twig') }}
     </div>
-    
+{% endblock %}
 
-    
+{% block javascripts %}
+
+    <script>
+
+        {% if not is_granted("ROLE_ADMIN") %}
+        document.querySelectorAll(".form-group")[3].style.display = "none"
+                
+            let role  = document.querySelector("#user_role")
+            role.style.display = "none"
+
+        {% else %}
+            
+        let roleUser        = document.querySelector("#user_roles_0")
+        let roleCommercial  = document.querySelector("#user_roles_1")
+        let roleAdmin       = document.querySelector("#user_roles_2")
+
+            roleAdmin.addEventListener('click',fixe_roleAdmin)
+
+            roleCommercial.addEventListener('click',fixe_roleCommercial)
+
+        {% endif %}
+    </script>
     
 {% endblock %}

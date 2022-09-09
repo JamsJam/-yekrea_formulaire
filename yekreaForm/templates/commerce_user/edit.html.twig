@@ -11,9 +11,35 @@
 
         {{ include('commerce_user/_form.html.twig', {'button_label': 'Modifier'}) }}
         
+        {% if is_granted(ROLE_ADMIN) %}
         {{ include('commerce_user/_delete_form.html.twig') }}
-
+        {% endif %}
         
     </div>
+
+{% block javascripts %}
+
+    <script>
+
+        document.querySelectorAll(".form-group")[3].style.display = "none"
+
+        {% if not is_granted("ROLE_ADMIN") %}
+                
+            let role  = document.querySelector("#user_role")
+            role.style.display = "none"
+
+
+        {% else %}
+            
+            // variable representant les checkbox des different role
+            let roleUser        = document.querySelector("#user_roles_0")
+            let roleCommercial  = document.querySelector("#user_roles_1")
+            let roleAdmin       = document.querySelector("#user_roles_2")
+
+            roleAdmin.addEventListener('click',fixe_roleAdmin)
+
+            roleCommercial.addEventListener('click',fixe_roleCommercial)
+        {% endif %}
+    </script>
     
 {% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} Dashbord Client {% endblock %}
+
+{% block h1 %}
+    <h1 style="text-align:center">Dashbord Client</h1>
+{% endblock %}
+
+{% block body %}
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Societe</th>
+                <th>Telephone</th>
+                <th>Reseaux</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                    
+
+                    <td>
+                        {% if client.user %}
+                            {{client.user.email}}
+                        {% else %}
+                            NR
+                        {% endif %}
+                    </td>
+                <td>{{ client.societe }}</td>
+                <td>0{{ client.telephone }}</td>
+                <td>{{ client.Reseaux }}</td>
+                <td>
+                    <a href="{{ path('app_admin_client_show', {'id': client.id}) }}">show</a>
+                    <a href="{{ path('app_admin_client_edit', {'id': client.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_client_new') }}">Ajouter</a>
+{% endblock %}
