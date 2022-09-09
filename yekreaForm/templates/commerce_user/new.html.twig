@@ -14,7 +14,6 @@
 
     <script>
 
-
         {% if not is_granted("ROLE_ADMIN") %}
         document.querySelectorAll(".form-group")[3].style.display = "none"
                 
@@ -24,49 +23,14 @@
 
         {% else %}
             
-            // variable representant les checkbox des different role
-            let roleUser        = document.querySelector("#user_roles_0")
-            let roleCommercial  = document.querySelector("#user_roles_1")
-            let roleAdmin       = document.querySelector("#user_roles_2")
+        let roleUser        = document.querySelector("#user_roles_0")
+        let roleCommercial  = document.querySelector("#user_roles_1")
+        let roleAdmin       = document.querySelector("#user_roles_2")
 
-            //quand je click sur la checkbox admin
-            roleAdmin.addEventListener('click',() => {
-                // si la checkbox admin n'est pas cochée
-                if (roleAdmin.checked) {
-                    //je verifie si   n'est pas coché
-                    if(!roleCommercial.checked){
-                        //je le coche
-                        roleCommercial.click()
-                    }
-                    //je verifie si user  n'est pas coché
-                    if(!roleUser.checked){
-                        //je le coche
-                        roleUser.click()
-                    }
-                    //je desactive user et Commercial
-                    roleCommercial.setAttribute('disabled','true')
-                    roleUser.setAttribute('disabled','true')
-                } else {
-                    //je reactive  Commercial
-                    roleCommercial.removeAttribute('disabled')
-                }
-            })
-            //quand je click sur la checkbox commercial
-            let clickCommercial = roleCommercial.addEventListener('click',() => {
-                // si commercial n'est pas cochée
-                if (roleCommercial.checked) {
-                    //je verifie si  user  n'est pas coché
-                    if(!roleUser.checked){
-                        //je coche
-                        roleUser.click()
-                    }
-                    //je desactive user
-                    roleUser.setAttribute('disabled','true')
-                } else {
-                    //je reactive user
-                    roleUser.removeAttribute('disabled')
-                }
-            })
+            roleAdmin.addEventListener('click',fixe_roleAdmin)
+
+            roleCommercial.addEventListener('click',fixe_roleCommercial)
+
         {% endif %}
     </script>
     
