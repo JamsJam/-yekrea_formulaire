@@ -37,7 +37,21 @@ class CommerceUserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $userRoles = $form->getData()->getRoles();
+        // ************* Gestion du mot de passe en fonction des roles
+
+        if (in_array("ROLE_COMMERCIAL", $userRoles) || in_array("ROLE_ADMIN", $userRoles) ){
+            $prenom = $user->getPrenom();
+            $nom = $user->getNom();
+            // si le nouvel user est un commercial ou un admin,alors sont mot de passe sera nomprenomYekrea
+            $passwordDefault = $nom . $prenom . 'Yekrea';
+            $user->setPassword($passwordDefault);
+        }else{
+            //sinon il sera un espace (champ mot de passe non null en BDD)
+            $user->setPassword(' ');
+        }
         
+
         // ******* Utilisation de la fonction de hachage du mot de passe 
 
         // on stock dans cette variable le mot de passe en claire entré dans le formulaire
@@ -49,10 +63,15 @@ class CommerceUserController extends AbstractController
         );
         //ensuite on assigne cette valeur comme mot de passe a notre nouvelle objet $user
         $user->setPassword($hashedPassword);
+        
+        
         // enfin on envois notre objet en base de donner
         $userRepository->add($user, true);
-        
-            if ($this->isGranted('ROLE_ADMIN')) {
+
+
+
+            //Si role different d'admin, redirection vers vers le formulaire client
+            if (!$this->isGranted('ROLE_ADMIN')) {
                 return $this->redirectToRoute('app_admin_client_new', [], Response::HTTP_SEE_OTHER);
             }
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
