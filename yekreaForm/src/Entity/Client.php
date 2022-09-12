@@ -17,6 +17,7 @@ class Client
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
      */
     private $id;
 
@@ -30,6 +31,7 @@ class Client
      * @ORM\Column(type="integer")
      * @Assert\Length(min=9,
      *          minMessage="This value is too short. It should have 10 numbers or more")
+     * @Assert\NotBlank
      * 
      */
     private $telephone;
@@ -49,6 +51,7 @@ class Client
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="client", cascade={"persist", "remove"})
+     * @Assert\NotBlank
      */
     private $user;
 

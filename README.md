@@ -17,10 +17,10 @@ qui leurs permets de recolter afin de :
 
 [Documentation](https://linktodocumentation)
 
-### Quoi
-### Pour qui
-### Quand
-### Comment
+#### Quoi
+#### Pour qui
+#### Quand
+#### Comment
 
 
 ## Lien & Reference
@@ -34,6 +34,8 @@ qui leurs permets de recolter afin de :
 **Nommer commit**
 -   https://github.com/ChrisBlassiaux/git-nommer-ses-commits
 
+**Projet precedent**
+-   https://github.com/JamsJam/yekrea_devis
 ## Features
 
 - Light/dark mode toggle
@@ -44,16 +46,21 @@ qui leurs permets de recolter afin de :
 
 ## Tech Stack
 
--   PhP => back-end
--   SQL => base de bonnée
+-   Symfony
+    -   PhP => back-end
+    -   SQL => base de bonnée
+    -   Twig => Front-end
 -   HTML => Front-end
 -   CSS  => Front-end
--   JavaScript  => Front-ent
+-   JavaScript  => Front-end
 -   Markdown => documentation
 -   Figma   => Maquetague
 -   Github  => Gestion du projet
--   trello (?)  => Gestion du projet
+-   trello  => Gestion du projet
 
+## Screenshot
+
+[Inserer_ici_screen_de_fonctionnalité_avec_explication_et_ou_rendu]
 
 ## Roadmap
 
@@ -75,7 +82,7 @@ qui leurs permets de recolter afin de :
     -   Mis en place des model de Formulaire
     -   Jeremy 
         - Fomulaire Login
-        - Fomulaire Formulaire video
+        - Formulaire video
     -   Claudia
         -   Formulaire Renseignement
         -   Formulaire Inscription
@@ -119,6 +126,9 @@ qui leurs permets de recolter afin de :
 - Creation des contraintes formulaires client et user 
 
 
+### 10/09/2022
 
+- Ajout d'un lien vers le formulaire user dans la base, 
+- Suppression du champ mot de passe dans le formulaire user et definission d'un mot de passe par defaut dans le controlleur
 
 
