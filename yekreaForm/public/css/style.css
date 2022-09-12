@@ -5,7 +5,7 @@
     font-family: sans-serif;
 }
 
-/* ******************************************* LOG IN */
+/********************************************PAGES */
 html{
     height: 100vh;
 }
@@ -17,6 +17,8 @@ button a{
     color: white !important;
     text-decoration: none;
 }
+/* ******************************************* LOG IN */
+
 
 /* container login */
 
