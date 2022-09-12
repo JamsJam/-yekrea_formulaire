@@ -3,23 +3,23 @@
 {% block title %}{{parent()}} {% endblock %}
 
 {% block body %}
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+
+    {# Page de connexion #}
+    
     <div class="login__container">
 
     <div class="containerLogIn">
         
+        {# FORMULAIRE DE CONNEXION #}
         <div id="containerLogIn_block--form" class="containerLogIn_block ">
+            
             <h2 class="bold">Se connecter</h2>
             <form class="containerLogIn_block--form" action="{{ path('app_login') }}" method="post">
 
                 {# 
                     col-md-2 = taille de l'input
-                    mx-sm- 
                     mb- = margin-bottom
                 #}
-
                 <div class="form-group mx-sm-3 mb-4">
                 
                     <label class="bold mb-3" for="username">Email:</label>
@@ -31,19 +31,45 @@
                     <label class="bold mb-3" for="password">Mot de passe:</label>
                     <input class="form-control" type="password" id="password" name="_password"/>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    
+                    <input id="checkbox" class="bold mt-3" type="checkbox" onclick="myFunction()">
+                    <label style="font-size:12px;" for="checkbox">Voir mon mot de passe</label>
                 </div>
 
                 {# If you want to control the URL the user is redirected to on success
                 <input type="hidden" name="_target_path" value="/account"/> #}
 
                 <button class="btn bouton mb-4 bold " data-toggle="button" aria-pressed="false" autocomplete="off" type="submit">Connexion</button>
+
+                {# Message d'erreur en cas de mdp incorrect #}
+                {% if error %}
+                    <div class="alert alert-danger text-center">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
             </form>
         </div>
 
+        {# Logo YEKREA #}
         <div class="containerLogIn_block containerLogIn_block--logo">
             <img class="" src="images/logoYekreaSmall.jpg" alt="logo yekrea">
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+    
 {% endblock %}
 
