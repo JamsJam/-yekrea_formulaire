@@ -30,7 +30,7 @@ class ServicesDetail
     private $prix;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime_immutable")
      */
     private $date_creation;
 
@@ -49,6 +49,11 @@ class ServicesDetail
      * @ORM\ManyToMany(targetEntity=Command::class, mappedBy="servicesDetail")
      */
     private $commands;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $prixMin;
 
     public function __construct()
     {
@@ -85,12 +90,12 @@ class ServicesDetail
         return $this;
     }
 
-    public function getDateCreation(): ?\DateTimeInterface
+    public function getDateCreation(): ?\DateTimeImmutable
     {
         return $this->date_creation;
     }
 
-    public function setDateCreation(\DateTimeInterface $date_creation): self
+    public function setDateCreation(\DateTimeImmutable $date_creation): self
     {
         $this->date_creation = $date_creation;
 
@@ -156,6 +161,18 @@ class ServicesDetail
         if ($this->commands->removeElement($command)) {
             $command->removeServicesDetail($this);
         }
+
+        return $this;
+    }
+
+    public function getPrixMin(): ?float
+    {
+        return $this->prixMin;
+    }
+
+    public function setPrixMin(?float $prixMin): self
+    {
+        $this->prixMin = $prixMin;
 
         return $this;
     }

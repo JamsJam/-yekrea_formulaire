@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ServicesDetail{% endblock %}
+
+{% block body %}
+    <h1 class="title">ServicesDetail</h1>
+
+    <a class="btn btn-primary t-4 mb-4" href="{{ path('app_admin_services_detail_index') }}">Retour</a>
+    <div class="containerPages">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ services_detail.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ services_detail.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Prix Minimum</th>
+                    <td>{{ services_detail.prixMin }}</td>
+                </tr>
+                <tr>
+                    <th>Prix Maximum</th>
+                    {% if  services_detail.prix != 0 %}
+                        
+                    <td>{{ services_detail.prix }}</td> 
+
+                    {% else %}
+                        <td>Prix personnalisé</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th>Date_creation</th>
+                    <td>{{ services_detail.dateCreation ? services_detail.dateCreation|date('d-m-Y') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
+            <a class="btn btn-success" href="{{ path('app_admin_services_detail_edit', {'id': services_detail.id}) }}">Modifier</a>
+            {{ include('admin_services_detail/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

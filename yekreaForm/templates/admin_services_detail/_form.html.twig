@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+    <div class="shadow p-3 mb-2 bg-light containerFormulaire">
+        {{ form_widget(form) }}
+        <button class="btn btn-success mt-4">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+{{ form_end(form) }}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ServicesDetail{% endblock %}
+
+{% block body %}
+<div class="containerPages">
+    <h1 class="title">Ajouter une Nouvelle Proposition</h1>
+
+    <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_admin_services_detail_index') }}">Retour</a>
+    {{ include('admin_services_detail/_form.html.twig') }}
+
+</div>
+{% endblock %}
