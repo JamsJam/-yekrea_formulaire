@@ -20,7 +20,7 @@ class Command
     private $id;
 
     /**
-     * @ORM\Column(type="date_immutable")
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $createDate;
 
@@ -40,19 +40,19 @@ class Command
     private $devis;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commands")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commands",  fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="commands")
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="commands", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ServicesDetail::class, inversedBy="commands")
+     * @ORM\ManyToMany(targetEntity=ServicesDetail::class, inversedBy="commands",  fetch="EAGER")
      */
     private $servicesDetail;
 

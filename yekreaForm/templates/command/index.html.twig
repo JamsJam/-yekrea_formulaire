@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Command index{% endblock %}
+
+{% block body %}
+    <h1>Command index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>CreateDate</th>
+                <th>NbCommande</th>
+                <th>Service</th>
+                <th>Detail</th>
+                <th>prix</th>
+                <th>ValidationDate</th>
+                <th>Devis</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for command in commands %}
+            <tr>
+            {# <pre>
+                {{ dump(command.servicesdetail.services) }}
+            </pre> #}
+                {# <td>{{ command.id }}</td> #}
+                <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
+                <td>{{ command.nbCommande }}</td>
+                {% if command.servicesdetail %}
+                        {# <pre>
+                            {{ dump(item.services.nom) }}
+                        </pre> #}
+                        <td>
+                            {% for item in command.servicesdetail %}
+                                    {{item.services.nom}} <br>
+                            {% endfor %}    
+                        </td>
+
+                        <td>
+                            {% for item in command.servicesdetail %}
+                                    {{item.nom}} <br>
+                            {% endfor %} 
+                        </td>
+
+                        <td>
+                            {% for item in command.servicesdetail %}
+                                    
+                                {% if item.prix != 0 %}
+                            
+                                    entre {{ item.prixMin }} et {{ item.prix }} <br>
+                                
+                                {% else %}
+                                    
+                                    A partir de {{ item.prixMin }} <br>
+                                {% endif %}
+                            {% endfor %} 
+                        </td>
+
+
+                    
+                {% else %}
+                    <td colspan='3'>NC </td>
+                    
+                {% endif %}
+                <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('Y-m-d') : 'en attente' }}</td>
+                <td>{{ command.devis }}</td>
+                <td>
+                    <a href="{{ path('app_command_show', {'id': command.id}) }}">show</a>
+                    <a href="{{ path('app_command_edit', {'id': command.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_command_new') }}">Create new</a>
+{% endblock %}

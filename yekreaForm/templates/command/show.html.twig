@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Command{% endblock %}
+
+{% block body %}
+    <h1>Command</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ command.id }}</td>
+            </tr>
+            <tr>
+                <th>CreateDate</th>
+                <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NbCommande</th>
+                <td>{{ command.nbCommande }}</td>
+            </tr>
+            <tr>
+                <th>ValidationDate</th>
+                <td>{{ command.validationDate ? command.validationDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Devis</th>
+                <td>{{ command.devis }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_command_index') }}">back to list</a>
+
+    <a href="{{ path('app_command_edit', {'id': command.id}) }}">edit</a>
+
+    {{ include('command/_delete_form.html.twig') }}
+{% endblock %}

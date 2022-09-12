@@ -37,7 +37,7 @@ class AdminClientController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $clientRepository->add($client, true);
 
-            return $this->redirectToRoute('app_admin_client_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_comand_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin_client/new.html.twig', [

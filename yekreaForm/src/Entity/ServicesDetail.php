@@ -35,7 +35,7 @@ class ServicesDetail
     private $date_creation;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Services::class, inversedBy="servicesDetails")
+     * @ORM\ManyToOne(targetEntity=Services::class, inversedBy="servicesDetails", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      */
     private $services;
