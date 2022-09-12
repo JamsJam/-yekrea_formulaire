@@ -130,5 +130,8 @@ qui leurs permets de recolter afin de :
 
 - Ajout d'un lien vers le formulaire user dans la base, 
 - Suppression du champ mot de passe dans le formulaire user et definission d'un mot de passe par defaut dans le controlleur
+-   Gestion des contraintes formulaire
+-   Gestion des mot de passes login invalide 
+-   Creation et mise en forme du CRUD service_details 
 
 
