@@ -21,16 +21,19 @@ qui leurs permets de recolter afin de :
 ### Pour qui
 ### Quand
 ### Comment
+
+
 ## Lien & Reference
 
 **Figma**
 -   https://www.figma.com/file/EpXhY3208QnA4qsFyVnlat/Formulaire-client-Yekrea?node-id=0%3A1
 
 **Github**
--   repository 
+-   [repository](https://github.com/JamsJam/-yekrea_formulaire) 
 
 **Nommer commit**
 -   https://github.com/ChrisBlassiaux/git-nommer-ses-commits
+
 ## Features
 
 - Light/dark mode toggle
@@ -57,7 +60,7 @@ qui leurs permets de recolter afin de :
 ### 05/09/2022
 
 -   Definition du projet
-    -   Technologie : 
+    -   Technologie : PhP
 
 -   Modelisation de la base de données
 -   Definition du design
@@ -76,4 +79,46 @@ qui leurs permets de recolter afin de :
     -   Claudia
         -   Formulaire Renseignement
         -   Formulaire Inscription
+
+### 06/09/2022
+
+- Migration du projet vers symfony 5.4.12
+- Correction de la conception de la base de donnée 
+- prise d'information supplementaire sur le pro
+- Conception de la base de donnée et creation de celle-ci avec le bundule maker de symfony
+- Creation des differentes entité
+
+### 07/09/2022
+
+- Creation de l'entité User
+- Creation de la protection et de la securité des routes
+- Creation de la page login et du controller associer
+- Creation du Crud User 
+- Creation des roles
+- Creation de la fonction du hashage mot de passe
+- Creation et mise en form de la base 
+
+### 08/09/2022
+
+- responsive page login terminé
+- Creation des relation
+- Creation du crud client
+- Creation du crud matiere
+- Creation du formulaire user et matiers
+- Privatisation des routes admin et Commercials
+- Mise en forme des premiers formulaire
+- Mise en place des premiere classes generales CSS
+
+### 09/09/2022
+
+- Implementation JS sur le formulaire user
+- Liaison des formulaire User et client
+- Creation du crud Service_details
+- Optimisation de la securité
+- pose de la barre de navigation Bootstrap
+- Creation des contraintes formulaires client et user 
+
+
+
+
 

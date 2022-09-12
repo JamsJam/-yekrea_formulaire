@@ -16,6 +16,7 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        
         $builder
             ->add('email',EmailType::class,[
                 'required' => false,
@@ -50,18 +51,24 @@ class UserType extends AbstractType
                         'Commercial'    => 'ROLE_COMMERCIAL',
                         'Admin'         => 'ROLE_ADMIN',
                     ],
-                    ])
                     
-                    ->add('password', PasswordType::class,[
-                        "attr"=>[
-                            "class"=> "bg-light"
-                        ],
-                        'required' => false,
-                        'empty_data' => ''
-                    ]);
+                ]);
+                    
+                    // ->add('password', PasswordType::class,[
+                    //     "attr"=>[
+                    //         "class"=> "bg-light"
+                    //     ],
+                    //     'required' => false,
+                    //     'empty_data' => '',
+                    //     
+                    // ]);
+
+
+
 
     }
 
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -69,3 +76,6 @@ class UserType extends AbstractType
         ]);
     }
 }
+
+
+

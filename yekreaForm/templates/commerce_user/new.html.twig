@@ -16,9 +16,8 @@
 {% block javascripts %}
 
     <script>
-
+        
         {% if not is_granted("ROLE_ADMIN") %}
-        document.querySelectorAll(".form-group")[3].style.display = "none"
                 
             let role  = document.querySelector("#user_role")
             role.style.display = "none"
