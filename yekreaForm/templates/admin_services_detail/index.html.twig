@@ -27,7 +27,7 @@
                     <td>{{ services_detail.prix }}€</td>
                     
                 {% else %}
-                    <td >A partir {{ services_detail.prixMin}}€</td>
+                    <td >A partir de {{ services_detail.prixMin}}€</td>
                     <td > Client à contacter</td>
                 {% endif %}
                 {# <td>{{ services_detail.dateCreation ? services_detail.dateCreation|date('d/m/Y') : '' }}</td> #}
@@ -38,6 +38,7 @@
                     <a class="btn btn-primary" href="{{ path('app_admin_services_detail_edit', {'id': services_detail.id}) }}">Editer</a>
                 </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="5">no records found</td>

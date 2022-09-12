@@ -63,7 +63,7 @@
                             {% if is_granted('ROLE_ADMIN')%}
                                 <li><a class="dropdown-item" href="{{ path('app_services_index')}}">Gestion des services</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="">Gestion des utilisateurs</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_user_index') }}">Gestion des utilisateurs</a></li>
                                 <li><hr class="dropdown-divider"></li>
                             {% endif %}
 
