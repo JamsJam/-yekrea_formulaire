@@ -16,55 +16,59 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        
         $builder
             ->add('email',EmailType::class,[
                 'required' => false,
+                "attr"=>[
+                    "class"=> "bg-light"
+                ],
             ])
             ->add('nom',TextType::class,[
                 'required' => false,
+                "attr"=>[
+                    "class"=> "bg-light"
+                ],
                 ])
+
                 ->add('prenom',TextType::class,[
                     'required' => false,
+                    "attr"=>[
+                        "class"=> "bg-light"
+                    ],
                 ])
 
                 -> add('roles',ChoiceType::class, [
+                    "attr"=>[
+                        "class"=> "bg-light"
+                    ],
                     'required' => false,
                     'multiple' => true,
                     'expanded' => true,
                     'empty_data' => 'ROLE_USER',
                     'choices'  => [
-                        'Client'        => '',
+                        'Client'        => 'ROLE_USER',
                         'Commercial'    => 'ROLE_COMMERCIAL',
                         'Admin'         => 'ROLE_ADMIN',
                     ],
-                    ])
                     
-                    ->add('password', PasswordType::class,[
-                        'required' => false,
-                        'empty_data' => ''
-                    ]);
-                
+                ]);
                     
-        
-                    //l'utilisateur à les droits admin
-                        // ->add('client')
-                        
-                        
-                        // // Data transformer
-                        // $builder->get('roles')
-                        //     ->addModelTransformer(new CallbackTransformer(
-        
-        //         function ($rolesArray) {
-        //              // transform the array to a string
-        //              return count($rolesArray)? $rolesArray[0]: null;
-        //         },
-        //         function ($rolesString) {
-        //              // transform the string back to an array
-        //              return [$rolesString];
-        //         }
-        // ));
+                    // ->add('password', PasswordType::class,[
+                    //     "attr"=>[
+                    //         "class"=> "bg-light"
+                    //     ],
+                    //     'required' => false,
+                    //     'empty_data' => '',
+                    //     
+                    // ]);
+
+
+
+
     }
 
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -72,3 +76,6 @@ class UserType extends AbstractType
         ]);
     }
 }
+
+
+

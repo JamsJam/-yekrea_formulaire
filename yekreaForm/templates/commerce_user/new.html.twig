@@ -3,9 +3,36 @@
 {% block title %}New User{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
 
-    {{ include('commerce_user/_form.html.twig') }}
+    <div class="containerPages">
+        <h1 class="title">Ajouter un nouvel utilisateur</h1>
 
-    <a href="{{ path('app_commerce_user_index') }}">back to list</a>
+        <button class="btn btn-primary mt-4 mb-4"><a href="{{ path('app_user_index') }}">Retour</a></button>
+
+        {{ include('commerce_user/_form.html.twig') }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        
+        {% if not is_granted("ROLE_ADMIN") %}
+                
+            let role  = document.querySelector("#user_role")
+            role.style.display = "none"
+
+        {% else %}
+            
+        let roleUser        = document.querySelector("#user_roles_0")
+        let roleCommercial  = document.querySelector("#user_roles_1")
+        let roleAdmin       = document.querySelector("#user_roles_2")
+
+            roleAdmin.addEventListener('click',fixe_roleAdmin)
+
+            roleCommercial.addEventListener('click',fixe_roleCommercial)
+
+        {% endif %}
+    </script>
+    
 {% endblock %}

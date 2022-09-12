@@ -24,10 +24,10 @@ security:
                 check_path: app_login
                 # permet d'activer la protection CSRF (envois de token de verification)
                 enable_csrf: true
-            login_throttling:
-            # Permet 3 tentative de connection toutes les 20mn
-                max_attempts: 5          
-                interval: '20 minutes' 
+            # login_throttling:
+            # Permet 3 tentative de connection toutes les 2mn
+                # max_attempts: 5          
+                # interval: '2 minutes' 
             logout:
                 path: app_logout
             # activate different ways to authenticate
@@ -37,8 +37,8 @@ security:
             # switch_user: true
     role_hierarchy:
         ROLE_COMMERCIAL:  ROLE_USER
-        # ROLE_ADMIN:       ROLE_COMMERCIAL
         ROLE_ADMIN: [ROLE_COMMERCIAL, ROLE_ALLOWED_TO_SWITCH]
+        # ROLE_ADMIN:       ROLE_COMMERCIAL
         # ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

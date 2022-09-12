@@ -47,15 +47,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $prenom;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Client::class, inversedBy="user", cascade={"persist", "remove"})
-     */
-    private $client;
 
     /**
      * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user")
      */
     private $commands;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Client::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $client;
 
     public function __construct()
     {
@@ -176,17 +177,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
 
-    public function setClient(?Client $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Command>
@@ -214,6 +205,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $command->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($client === null && $this->client !== null) {
+            $this->client->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($client !== null && $client->getUser() !== $this) {
+            $client->setUser($this);
+        }
+
+        $this->client = $client;
 
         return $this;
     }
