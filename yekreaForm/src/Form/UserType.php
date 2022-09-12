@@ -51,7 +51,7 @@ class UserType extends AbstractType
                         'Commercial'    => 'ROLE_COMMERCIAL',
                         'Admin'         => 'ROLE_ADMIN',
                     ],
-                    // 'is_granted_attribute' => 'ROLE_ADMIN',
+                    
                 ]);
                     
                     // ->add('password', PasswordType::class,[
@@ -60,7 +60,7 @@ class UserType extends AbstractType
                     //     ],
                     //     'required' => false,
                     //     'empty_data' => '',
-                    //     // 'is_granted_attribute' => 'ROLE_ADMIN',
+                    //     
                     // ]);
 
 
