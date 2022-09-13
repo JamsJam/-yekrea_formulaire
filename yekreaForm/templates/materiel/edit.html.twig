@@ -6,8 +6,7 @@
 
     <div class="containerPages">
         <h1 class="title">Modifier le matériel</h1>
-        <button class="btn btn-primary mt-4 mb-4"><a href="{{ path('app_materiel_index') }}">Retour</a></button>
-
+        <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_materiel_index') }}">Retour</a>
         
         {{ include('materiel/_form.html.twig', {'button_label': 'Modifier'}) }}
 

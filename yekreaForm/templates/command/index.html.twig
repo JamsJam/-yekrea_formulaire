@@ -5,7 +5,7 @@
 {% block body %}
 
     <div class="containerPages">
-         <h1 class="title">Historique des commandes</h1>
+        <h1 class="title">Commandes</h1>
 
         <a class="btn btn-success mb-4" href="{{ path('app_command_new') }}">
             Créer une nouvelle commande
@@ -76,6 +76,8 @@
                     <td>{{ command.devis }}</td>
                     <td>
                         <a  class="btn btn-warning" href="{{ path('app_command_show', {'id': command.id}) }}">Voir</a>
+                    </td>
+                    <td>
                         <a  class="btn btn-success" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
                     </td>
                 </tr>
