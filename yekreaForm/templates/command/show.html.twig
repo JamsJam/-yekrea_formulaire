@@ -3,7 +3,11 @@
 {% block title %}Command{% endblock %}
 
 {% block body %}
-    <h1>Command</h1>
+
+
+    <h1>Commande</h1>
+
+    <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_command_index') }}">Retour</a>
 
     <table class="table">
         <tbody>
@@ -12,15 +16,16 @@
                 <td>{{ command.id }}</td>
             </tr>
             <tr>
-                <th>CreateDate</th>
-                <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>NbCommande</th>
+                <th>Numéro de commande</th>
                 <td>{{ command.nbCommande }}</td>
             </tr>
             <tr>
-                <th>ValidationDate</th>
+                <th>date de création</th>
+                <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            
+            <tr>
+                <th>date de validation</th>
                 <td>{{ command.validationDate ? command.validationDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
@@ -30,7 +35,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_command_index') }}">back to list</a>
+    
 
     <a href="{{ path('app_command_edit', {'id': command.id}) }}">edit</a>
 

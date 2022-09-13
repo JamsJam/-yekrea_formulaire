@@ -1,4 +1,7 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="shadow p-3 mb-2 bg-light containerFormulaire containerPages">
+        {{ form_widget(form) }}
+        <button class="btn btn-success mt-4">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+    
 {{ form_end(form) }}
