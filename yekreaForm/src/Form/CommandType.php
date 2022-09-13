@@ -48,7 +48,6 @@ class CommandType extends AbstractType
                 // this is actually the default format for single_text
                 // 'format' => 'yyyy-MM-dd',
             // ])
-            ->add('devis') //nb unique
         ;
     }
 

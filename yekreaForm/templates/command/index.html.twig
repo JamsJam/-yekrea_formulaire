@@ -65,20 +65,16 @@
                                     {% endif %}
                                 {% endfor %} 
                             </td>
-
-
                         
                     {% else %}
                         <td colspan='3'>NC </td>
                         
                     {% endif %}
                     <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('Y-m-d') : 'en attente' }}</td>
-                    <td>{{ command.devis }}</td>
-                    <td>
-                        <a  class="btn btn-warning" href="{{ path('app_command_show', {'id': command.id}) }}">Voir</a>
+                        <a class="btn btn-warning text-light" href="{{ path('app_command_show', {'id': command.id}) }}">Voir</a>
                     </td>
                     <td>
-                        <a  class="btn btn-success" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
+                        <a class="btn btn-primary" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}

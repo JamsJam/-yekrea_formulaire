@@ -5,11 +5,12 @@
 {% block body %}
 
 
-    <h1>Commande</h1>
+    <h1 class="title">Commande</h1>
 
     <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_command_index') }}">Retour</a>
 
-    <table class="table">
+    <div class="containerPages">
+        <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -18,6 +19,14 @@
             <tr>
                 <th>Numéro de commande</th>
                 <td>{{ command.nbCommande }}</td>
+            </tr>
+            <tr>
+                <th>Services</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Services détail</th>
+                <td></td>
             </tr>
             <tr>
                 <th>Date de création</th>
@@ -33,11 +42,15 @@
                 <td>{{ command.devis }}</td>
             </tr>
         </tbody>
-    </table>
+        </table>
+        <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
+            <a class="btn btn-info text-light" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
+            {{ include('command/_delete_form.html.twig') }}
 
+            {# <a class="btn btn-success" href="{{ path('app_devis', {'id': command.id}) }}">Valider</a> #}
+
+        </div>
+    </div>
     
-
-    <a href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
-
-    {{ include('command/_delete_form.html.twig') }}
+    
 {% endblock %}
