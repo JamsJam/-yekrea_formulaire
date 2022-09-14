@@ -21,6 +21,7 @@
                     <th>N°commande</th>
                     <th>Commercial</th>
                     <th>Client</th>
+                    <th>Categorie</th>
                     <th>Services</th>
                     <th>Prix Min</th>
                     <th>Prix</th>
@@ -36,20 +37,50 @@
             {# BOUCLE pour afficher les données récupérer via la table commande #}
             {% for devi in devis %}
                 <tr>
+
+            {# n° du devis #}
+
                     <td>{{ devi.numDevis }}</td>
+
+            {# N° de la commande #}
                     
                     <td>{{ devi.command.nbCommande}} </td>
+
+            {# Nom du commercial #}
+
                     <td>{{ devi.command.user.nom}} </td>
+
+            {# Nom du Client #}
 
                     <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
 
                     {% if devi.command.servicesDetail %}
+
+            {# Categorie #}
+
                             <td>
-                        {% set foo = devi.serviceDetail| split(",") %}
-                        {% for items in foo %}
+                    {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                        {% set foo2 = devi.service| split(",") %}
+                    {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                        {% for items in foo2 %}
+                    {# on affiche chaque tableau contenu dans foo2 #}
                             {{items|e}}<br>
                         {% endfor %}
                             </td>
+
+            {# Service #}
+
+                            <td>
+                    {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                        {% set foo = devi.serviceDetail| split(",") %}
+                    {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                        {% for items in foo %}
+                    {# on affiche chaque tableau contenu dans foo #}
+                            {{items|e}}<br>
+                        {% endfor %}
+                            </td>
+
+            {# PrixMin #}
 
                             <td>
                         {% for item in devi.command.servicesDetail  %}
@@ -61,6 +92,8 @@
                         {% endfor %}
                             </td>
 
+            {# PrixMax #}
+
                             <td>
                         {% for item in devi.command.servicesDetail  %}
                             
@@ -71,6 +104,8 @@
                         {% endfor %}
                             </td>
                             
+            {# Date de validation #}
+
                         {% if devi.command.validationDate %}
                             
                             {# date('d/m/y') => format de la date #}
