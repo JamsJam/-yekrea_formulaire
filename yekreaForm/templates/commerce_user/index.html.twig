@@ -4,7 +4,9 @@
 
 {% block body %}
     <div class="containerPages">
+    
         <h1 class="title">Utilisateurs</h1>
+
         <a class="btn btn-success mt-4 mb-4" href="{{ path('app_user_new') }}">
             Créer un nouvel utilisateur
         </a>
@@ -32,10 +34,10 @@
                         
                         {# <td>{{ user.password }}</td> #}
                         <td>
-                            <button class="btn btn-warning"><a href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a></button>
+                            <a class="btn btn-warning text-light" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
                         </td>
                         <td>
-                            <button class="btn btn-primary"><a href="{{ path('app_user_edit', {'id': user.id}) }}">Editer</a>
+                            <button class="btn btn-primary"><a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                             </button>
                             
                         </td>

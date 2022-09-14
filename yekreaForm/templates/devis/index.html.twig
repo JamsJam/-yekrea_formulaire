@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Devis index{% endblock %}
+{% block title %}Index devis{% endblock %}
+
+{# Page pour afficher tous les devis #}
 
 {% block body %}
+
     <div class="containerPages">
 
         <h1 class="title" >Devis</h1>
 
+        {# BOUTON pour CREER un nouveau devis via la :/devis/new.html.twig #}
         <a class="btn btn-success mb-4" href="{{ path('app_devis_new') }}">Créer un nouveau devis</a>
 
         <table class="table table-striped">
@@ -18,14 +22,19 @@
                     <th>Client</th>
                     <th>Categorie</th>
                     <th>Services</th>
-                    <th>Prix Min</th>
+                    <th>Prix Minimum</th>
                     <th>Prix</th>
                     <th>Date de validation de la commande</th>
+
                     <th>Voir</th>
                     <th>Modifier</th>
                 </tr>
             </thead>
+
+
             <tbody>
+
+            {# BOUCLE pour afficher les données récupérer via la table commande #}
             {% for devi in devis %}
                 <tr>
 
@@ -44,7 +53,6 @@
             {# Nom du Client #}
 
                     <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
-
 
                     {% if devi.command.servicesDetail %}
 
@@ -99,11 +107,13 @@
             {# Date de validation #}
 
                         {% if devi.command.validationDate %}
-
+                            
+                            {# date('d/m/y') => format de la date #}
                             <td>{{ devi.command.validationDate|date('d/m/y')}} </td>
 
                         {% endif %}
                     {% else %}
+                    {# Si aucunes données n'est retrouvé dans services détails on aura cet affichage #}
                         <td>Pas de donnée</td>
                         <td>Pas de donnée</td>
                         <td>Pas de donnée</td>
@@ -111,15 +121,18 @@
                         
                     {% endif %}
                     <td>
+                        {# BOUTON qui permet de VOIR le devis sélectionner (:/devis/show.html.twig) #}
                         <a class="btn btn-warning text-light" href="{{ path('app_devis_show', {'id': devi.id}) }}">Voir</a>
                     </td>
                     <td>
+                        {# BOUTON qui permet de MODIFIER le devis sélectionner (:/devis/edit.html.twig) #}
                         <a class="btn btn-primary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
+                {# permet l'affichage "pas de donnée" si les informations du tableau ne sont pas trouvé#}
                 <tr>
-                    <td colspan="3">no records found</td>
+                    <td colspan="3">Pas de donnée</td>
                 </tr>
             {% endfor %}
             </tbody>
