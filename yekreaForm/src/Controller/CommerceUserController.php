@@ -75,7 +75,7 @@ class CommerceUserController extends AbstractController
 
             //Si role different d'admin, redirection vers vers le formulaire client
             if (in_array("ROLE_USER", $userRoles) ){
-                return $this->redirectToRoute('app_admin_client_new', ['Id'=> $userId], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_admin_client_new', ['id'=> $userId], Response::HTTP_SEE_OTHER);
             }
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }

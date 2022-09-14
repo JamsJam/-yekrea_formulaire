@@ -16,7 +16,19 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 class ClientType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
+
     {
+        // Si on arrive sur le forme sans passer par le form User, 
+        //alors la variable GET 'User 'n'existe pas, 
+        //donc on affiche le champ de 'User' 
+
+        if(!isset($_GET['id'])){
+            $builder
+                ->add('user',EntityType::class,[
+                    'class' => user::class,
+                    'choice_label' => 'email'
+                ]);
+        }
         $builder
             ->add('societe',TextType::class,[
                 'required' => false

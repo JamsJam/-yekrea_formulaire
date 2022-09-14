@@ -42,28 +42,17 @@ class CommandController extends AbstractController
         $form = $this->createForm(CommandType::class, $command);
         $form->handleRequest($request);
         
-        
-
-
-        $numeroCommande = time();
+        $numeroCommande = time()-100000;
         $command->setNbCommande($numeroCommande);
+        //je set le champ User avec l'user actuellement connecté
+        $command->setUser($this->getUser());
+
+        //si requette get client...
         if($request->query->get('client') ){
-
+            //...je recupere le client associer a l'user..
             $clientId = $clientRepository-> findOneBy(['id'=>$request->query->get('client')]);
-            
-            
             $command->setClient($clientId);
-            $command->setUser($this->getUser());
         }
-        // else{
-        //     $form2 = $this->createFormBuilder($command)
-        //     ->add('client', Entity::class,[
-        //                     Client::class,
-        //                     'requiered' => false
-        //     ])
-        //     ->getForm();
-        // }
-
         if ($form->isSubmitted() && $form->isValid()) {
             
 
