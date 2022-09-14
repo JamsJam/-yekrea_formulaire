@@ -53,7 +53,7 @@ class Command
     private $servicesDetail;
 
     /**
-     * @ORM\OneToOne(targetEntity=Devis::class, mappedBy="command", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Devis::class, mappedBy="command", cascade={"persist", "remove"},  fetch="EAGER")
      */
     private $devis;
 
