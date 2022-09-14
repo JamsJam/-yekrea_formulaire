@@ -27,11 +27,7 @@ class ClientType extends AbstractType
             ->add('Reseaux',TextareaType::class,[
                 'required' => false
             ])
-            ->add('user',EntityType::class,[
-                'class'         =>  User::class,
-                'required'      =>  false,
-                'choice_label'  =>  'email'
-            ])
+
         ;
     }
 

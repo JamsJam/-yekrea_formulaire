@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Client;
 use App\Form\ClientType;
+use App\Repository\UserRepository;
 use App\Repository\ClientRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/client")
@@ -28,16 +30,35 @@ class AdminClientController extends AbstractController
     /**
      * @Route("/new", name="app_admin_client_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, ClientRepository $clientRepository): Response
+    public function new(Request $request, ClientRepository $clientRepository, UserRepository $userRepository): Response
     {
+        // Je cree mon nouvel objet client
         $client = new Client();
+        //creation du formulaire
         $form = $this->createForm(ClientType::class, $client);
+        //Methode POST
         $form->handleRequest($request);
 
+        // Recuperation de l'ID de mon user via l'URL  et recuperation en BDD de du User 
+        $userID = $userRepository->findOneBy(['id'=>$request->query->get('Id')]);
+        
+        
+        
+        
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            //Assignation du champ User avec l'objet UserID
+            $client->setUser($userID) ;
+            //Envoie en BDD de client
             $clientRepository->add($client, true);
+            //Recuperation de l'ID du client
+            $clientId = $client->getId();
 
-            return $this->redirectToRoute('app_comand_new', [], Response::HTTP_SEE_OTHER);
+            // Redirection vers commande/new avec l'id du client dans l'URL
+            return $this->redirectToRoute('app_command_new', [
+                'client' => $clientId,
+                
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin_client/new.html.twig', [
@@ -87,4 +108,6 @@ class AdminClientController extends AbstractController
 
         return $this->redirectToRoute('app_admin_client_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }

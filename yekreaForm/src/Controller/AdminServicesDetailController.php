@@ -30,15 +30,19 @@ class AdminServicesDetailController extends AbstractController
      */
     public function new(Request $request, ServicesDetailRepository $servicesDetailRepository): Response
     {
+        // nouveau service
         $servicesDetail = new ServicesDetail();
+        //creation du form
         $form = $this->createForm(ServicesDetailType::class, $servicesDetail);
+        //definition de la methode ( $request = methode POST)
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-
+            //definition de la date de creation
             $servicesDetail->setDateCreation(new \DateTimeImmutable("now"));
+            //Ajout du service a la base de donnée
             $servicesDetailRepository->add($servicesDetail, true);
-
+            // redirection vers l'index des service
             return $this->redirectToRoute('app_admin_services_detail_index', [], Response::HTTP_SEE_OTHER);
         }
 

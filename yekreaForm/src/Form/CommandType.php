@@ -20,20 +20,10 @@ class CommandType extends AbstractType
     {
         $builder
             // ->add('createDate') // in controller
-            ->add('nbCommande') //nb unique + id commande
+            // ->add('nbCommande') //nb unique + id commande
 
-            ->add('user',EntityType::class,[
-                'class' => User::class,
-                'choice_label' => 'email',
-                'required' => false
-                // 'choice_value' => 
-            ])
-            ->add('client',EntityType::class,[
-                'class' => Client::class,
-                'choice_label' => 'societe',
-                'required' => false
+            
 
-            ])
             ->add('servicesDetail',EntityType::class,[
                 'class' => ServicesDetail::class,
                 'choice_label' => 'nom',

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220913185955 extends AbstractMigration
+final class Version20220914022339 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,13 +20,15 @@ final class Version20220913185955 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE devis (id INT AUTO_INCREMENT NOT NULL, num_devis INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE devis (id INT AUTO_INCREMENT NOT NULL, command_id INT NOT NULL, num_devis INT NOT NULL, UNIQUE INDEX UNIQ_8B27C52B33E1689A (command_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE devis ADD CONSTRAINT FK_8B27C52B33E1689A FOREIGN KEY (command_id) REFERENCES command (id)');
         $this->addSql('ALTER TABLE command DROP devis');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE devis DROP FOREIGN KEY FK_8B27C52B33E1689A');
         $this->addSql('DROP TABLE devis');
         $this->addSql('ALTER TABLE command ADD devis INT DEFAULT NULL');
     }
