@@ -3,7 +3,9 @@
 {% block title %}Devis{% endblock %}
 
 {% block body %}
-    <h1>Devis</h1>
+    <h1 class="title" >Devis</h1>
+
+    <a class="btn btn-primary" href="{{ path('app_devis_index') }}">Retour</a>
 
     <table class="table">
         <tbody>
@@ -18,9 +20,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_devis_index') }}">back to list</a>
+    <a class="btn btn-success" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
 
-    <a href="{{ path('app_devis_edit', {'id': devi.id}) }}">edit</a>
-
+    {# formulaire pour supprimer le devis #}
     {{ include('devis/_delete_form.html.twig') }}
 {% endblock %}

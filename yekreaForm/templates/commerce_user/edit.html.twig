@@ -5,17 +5,19 @@
 {% block body %}
 
     <div class="containerPages">
+
         <h1 class="title">Modifier l'utilisateur</h1>
 
         <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_user_index') }}">Retour</a>
 
         {{ include('commerce_user/_form.html.twig', {'button_label': 'Modifier'}) }}
         
-        {% if is_granted(ROLE_ADMIN) %}
-        {{ include('commerce_user/_delete_form.html.twig') }}
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ include('commerce_user/_delete_form.html.twig') }}
         {% endif %}
         
     </div>
+{% endblock %}
 
 {% block javascripts %}
 

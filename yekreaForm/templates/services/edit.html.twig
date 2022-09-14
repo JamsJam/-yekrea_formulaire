@@ -2,16 +2,19 @@
 
 {% block title %}Modifier les services{% endblock %}
 
+{# PAGE pour MODIFIER les SERVICES #}
+
 {% block body %}
     <h1 class="title">Modifier les services</h1>
 
-    <button class="btn btn-primary mt-4 mb-4">
-        <a href="{{ path('app_services_index') }}">Retour</a>
-    </button>
+    {# BOUTON pour RETOURNER sur la PAGE INDEX #}
+    <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_services_index') }}">Retour</a>
 
     <div class="containerPages">
+        {# FORMULAIRE pour MODIFER le SERVICE #}
         {{ include('services/_form.html.twig', {'button_label': 'Modifier'}) }}
 
+        {# FORMULAIRE pour SUPPRIMER le SERVICE #}
         {{ include('services/_delete_form.html.twig') }}
     </div>
 {% endblock %}

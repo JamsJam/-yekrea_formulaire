@@ -2,9 +2,12 @@
 
 {% block title %}Materiel{% endblock %}
 
+{# PAGE POUR AFFICHER LE MATERIEL SELECTIONNER #}
+
 {% block body %}
     <h1 class="title">Matériel</h1>
 
+    {# BOUTON pour RETOURNER sur la PAGE INDEX #}
     <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_materiel_index') }}">Retour</a>
 
     <div class="containerPages">
@@ -23,9 +26,11 @@
                     <td>{{ materiel.nom }}</td>
                     <td>{{ materiel.prix }}</td>
                     <td>
-                    <a  class="btn btn-warning" href="{{ path('app_materiel_edit', {'id': materiel.id}) }}">Modfier</a>
-                    
+                        {# BOUTON pour MODIFIER le MATERIEL #}
+                        <a  class="btn btn-warning" href="{{ path('app_materiel_edit', {'id': materiel.id}) }}">Modfier</a>
                     </td>
+                        
+                    {# BOUTON pour SUPPRIMER le SERVICE #}
                     <td>{{ include('materiel/_delete_form.html.twig') }}</td>
                 </tr>
             </tbody>
