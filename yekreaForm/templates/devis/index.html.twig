@@ -34,21 +34,38 @@
 
                     <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
 
-                    {# <pre>
-                        {{ dump(devi.command.client) }}
-                    </pre> #}
                     
+                    <pre>
+                        {{ dump(devi) }}
+                    </pre>
                     {% if devi.command.servicesDetail %}
-                        {% for item in devi.command.servicesDetail  %}
-                            <td>{{ item.nom}} </td>
-                            <td>{{item.prixMin}} </td>
-                            <td>{{item.prix}} </td>
-                        {% else %}
-                            <td>Pas de donnée</td>
-                            <td>Pas de donnée</td>
-                            <td>Pas de donnée</td>
+                            <td>
+                        {% set foo = devi.serviceDetail| split(",") %}
+                        {% for items in foo %}
+                            {{items|e}}<br>
                         {% endfor %}
+                            </td>
 
+                            <td>
+                        {% for item in devi.command.servicesDetail  %}
+                            
+                            {{ item.prixMin}} <br>
+                        {% else %}
+                            
+                            Pas de donnée
+                        {% endfor %}
+                            </td>
+
+                            <td>
+                        {% for item in devi.command.servicesDetail  %}
+                            
+                            {{ item.prix}} <br>
+                        {% else %}
+                            
+                            Pas de donnée
+                        {% endfor %}
+                            </td>
+                            
                         {% if devi.command.validationDate %}
 
                             <td>{{ devi.command.validationDate|date('d/m/y')}} </td>

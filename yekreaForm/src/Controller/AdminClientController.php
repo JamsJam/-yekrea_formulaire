@@ -50,18 +50,17 @@ class AdminClientController extends AbstractController
                 // Recuperation de l'ID de mon user via l'URL  et recuperation en BDD de du User 
             $userID = $userRepository->findOneBy(['id'=>$request->query->get('id')]);
             //Recuperation de l'ID du client
-            $clientId = $client->getId();
             //Assignation du champ User avec l'objet UserID
             $client->setUser($userID) ;
-            }
+        }
+         $clientRepository->add($client, true);
+            $clientId = $client->getId();
             
             //Envoie en BDD de client
-            $clientRepository->add($client, true);
-
+            
             // Redirection vers commande/new avec l'id du client dans l'URL
             return $this->redirectToRoute('app_command_new', [
-                'client' => $clientId,
-                
+                'client' => $clientId
             ], Response::HTTP_SEE_OTHER);
         }
 
