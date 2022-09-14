@@ -23,7 +23,7 @@ class Devis
     private $numDevis;
 
     /**
-     * @ORM\OneToOne(targetEntity=Command::class, inversedBy="devis", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Command::class, inversedBy="devis", cascade={"persist", "remove"}, fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      */
     private $command;

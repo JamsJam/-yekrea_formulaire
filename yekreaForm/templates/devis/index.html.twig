@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis index{% endblock %}
+
+{% block body %}
+    <div class="containerPages">
+
+        <h1 class="title" >Devis</h1>
+
+        <a class="btn btn-success mb-4" href="{{ path('app_devis_new') }}">Créer un nouveau devis</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Numéro de devis</th>
+                    <th>Numéro de commande</th>
+                    <th>Commercial</th>
+                    <th>Client</th>
+                    <th>Services</th>
+                    <th>Prix Min</th>
+                    <th>Prix</th>
+                    <th>Date de validation de la commande</th>
+                    <th>Voir</th>
+                    <th>Modifier</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for devi in devis %}
+                <tr>
+                    <td>{{ devi.numDevis }}</td>
+                    
+                    <td>{{ devi.command.nbCommande}} </td>
+                    <td>{{ devi.command.user.nom}} </td>
+
+                    <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
+
+                    {# <pre>
+                        {{ dump(devi.command.client) }}
+                    </pre> #}
+                    
+                    {% if devi.command.servicesDetail %}
+                        {% for item in devi.command.servicesDetail  %}
+                            <td>{{ item.nom}} </td>
+                            <td>{{item.prixMin}} </td>
+                            <td>{{item.prix}} </td>
+                        {% else %}
+                            <td>Pas de donnée</td>
+                            <td>Pas de donnée</td>
+                            <td>Pas de donnée</td>
+                        {% endfor %}
+
+                        {% if devi.command.validationDate %}
+
+                            <td>{{ devi.command.validationDate|date('d/m/y')}} </td>
+
+                        {% endif %}
+                    {% else %}
+                        <td>Pas de donnée</td>
+                        <td>Pas de donnée</td>
+                        <td>Pas de donnée</td>
+                        <td>Pas de donnée</td>
+                        
+                    {% endif %}
+                    <td>
+                        <a class="btn btn-warning text-light" href="{{ path('app_devis_show', {'id': devi.id}) }}">Voir</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+{% endblock %}
