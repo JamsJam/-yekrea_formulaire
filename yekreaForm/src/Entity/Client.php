@@ -51,7 +51,7 @@ class Client
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="client", cascade={"persist", "remove"})
-     * @Assert\NotBlank
+     * 
      */
     private $user;
 

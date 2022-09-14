@@ -38,6 +38,8 @@ class CommerceUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $userRoles = $form->getData()->getRoles();
+            $userEmail = $form->getData()->getEmail();
+            
         // ************* Gestion du mot de passe en fonction des roles
 
         if (in_array("ROLE_COMMERCIAL", $userRoles) || in_array("ROLE_ADMIN", $userRoles) ){
@@ -67,12 +69,13 @@ class CommerceUserController extends AbstractController
         
         // enfin on envois notre objet en base de donner
         $userRepository->add($user, true);
+        $userId = $user->getId();
 
 
 
             //Si role different d'admin, redirection vers vers le formulaire client
-            if (!$this->isGranted('ROLE_ADMIN')) {
-                return $this->redirectToRoute('app_admin_client_new', [], Response::HTTP_SEE_OTHER);
+            if (in_array("ROLE_USER", $userRoles) ){
+                return $this->redirectToRoute('app_admin_client_new', ['Id'=> $userId], Response::HTTP_SEE_OTHER);
             }
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }

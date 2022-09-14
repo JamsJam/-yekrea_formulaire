@@ -15,7 +15,6 @@
                 <th>Detail</th>
                 <th>prix</th>
                 <th>ValidationDate</th>
-                <th>Devis</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -65,7 +64,6 @@
                     
                 {% endif %}
                 <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('Y-m-d') : 'en attente' }}</td>
-                <td>{{ command.devis }}</td>
                 <td>
                     <a href="{{ path('app_command_show', {'id': command.id}) }}">show</a>
                     <a href="{{ path('app_command_edit', {'id': command.id}) }}">edit</a>

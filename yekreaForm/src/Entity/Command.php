@@ -34,10 +34,6 @@ class Command
      */
     private $validationDate;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $devis;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commands",  fetch="EAGER")
@@ -102,17 +98,6 @@ class Command
         return $this;
     }
 
-    public function getDevis(): ?int
-    {
-        return $this->devis;
-    }
-
-    public function setDevis(int $devis): self
-    {
-        $this->devis = $devis;
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {

@@ -21,11 +21,23 @@
             </tr>
             <tr>
                 <th>ValidationDate</th>
-                <td>{{ command.validationDate ? command.validationDate|date('Y-m-d') : '' }}</td>
+                <td>{{ command.validationDate ? command.validationDate|date('Y-m-d') : 'En attente' }}</td>
             </tr>
             <tr>
-                <th>Devis</th>
-                <td>{{ command.devis }}</td>
+                <th>Prestataire</th>
+                <td>{{ command.user ? command.user.nom ~ ' ' ~ command.user.prenom : '' }} </td>
+            </tr>
+            <tr>
+                <th>Client</th>
+                <td>
+                    {% if command.client %}
+                        
+                        {% if command.client.user %}
+                            {{command.client.user.nom ~ ' ' ~ command.client.user.prenom}}
+                        {% endif %}
+                        
+                    {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>
