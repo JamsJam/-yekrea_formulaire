@@ -41,28 +41,37 @@
                     
                     <td>{{ devi.command.nbCommande}} </td>
                     <td>{{ devi.command.user.nom}} </td>
-                    
-                    {# 
-                    |upper = MAJUSCULE
-                    |capitalize = 1ère lettre en MAJUSCULE
-                    #}
+
                     <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
-                    
-                    {# vérifie qu'il y a une donnée dans la table services détails qui est lié à la commande qu'on récupère par le devis #}
+
                     {% if devi.command.servicesDetail %}
-
-                        {# Boucle qui permet de récupérer les objets qui sont dans services détails car il est aussi considérer comme un objet  #}
-                        {% for item in devi.command.servicesDetail  %}
-                            <td>{{ item.nom}} </td>
-                            <td>{{item.prixMin}} </td>
-                            <td>{{item.prix}} </td>
-                        {% else %}
-                            {# Si non => Affichage quand les données sont NULL #}
-                            <td>Pas de donnée</td>
-                            <td>Pas de donnée</td>
-                            <td>Pas de donnée</td>
+                            <td>
+                        {% set foo = devi.serviceDetail| split(",") %}
+                        {% for items in foo %}
+                            {{items|e}}<br>
                         {% endfor %}
+                            </td>
 
+                            <td>
+                        {% for item in devi.command.servicesDetail  %}
+                            
+                            {{ item.prixMin}} <br>
+                        {% else %}
+                            
+                            Pas de donnée
+                        {% endfor %}
+                            </td>
+
+                            <td>
+                        {% for item in devi.command.servicesDetail  %}
+                            
+                            {{ item.prix}} <br>
+                        {% else %}
+                            
+                            Pas de donnée
+                        {% endfor %}
+                            </td>
+                            
                         {% if devi.command.validationDate %}
                             
                             {# date('d/m/y') => format de la date #}

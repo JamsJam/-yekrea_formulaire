@@ -28,6 +28,26 @@ class Devis
      */
     private $command;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $prix_final;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $service;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $service_detail;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $marteriel;
+
 
     public function getId(): ?int
     {
@@ -54,6 +74,54 @@ class Devis
     public function setCommand(Command $command): self
     {
         $this->command = $command;
+
+        return $this;
+    }
+
+    public function getPrixFinal(): ?float
+    {
+        return $this->prix_final;
+    }
+
+    public function setPrixFinal(?float $prix_final): self
+    {
+        $this->prix_final = $prix_final;
+
+        return $this;
+    }
+
+    public function getService(): ?string
+    {
+        return $this->service;
+    }
+
+    public function setService(string $service): self
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    public function getServiceDetail(): ?string
+    {
+        return $this->service_detail;
+    }
+
+    public function setServiceDetail(string $service_detail): self
+    {
+        $this->service_detail = $service_detail;
+
+        return $this;
+    }
+
+    public function getMarteriel(): ?string
+    {
+        return $this->marteriel;
+    }
+
+    public function setMarteriel(?string $marteriel): self
+    {
+        $this->marteriel = $marteriel;
 
         return $this;
     }
