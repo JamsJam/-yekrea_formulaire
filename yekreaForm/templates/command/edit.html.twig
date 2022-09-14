@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Command{% endblock %}
+{% block title %}Modifier la commande{% endblock %}
 
 {% block body %}
-    <h1>Edit Command</h1>
+    <h1 class="title">Modifier la commande</h1>
 
-    {{ include('command/_form.html.twig', {'button_label': 'Update'}) }}
+    <a class="btn btn-primary" href="{{ path('app_command_index') }}">Retour</a>
 
-    <a href="{{ path('app_command_index') }}">back to list</a>
+    {{ include('command/_form.html.twig', {'button_label': 'Modifier'}) }}
 
     {{ include('command/_delete_form.html.twig') }}
 {% endblock %}

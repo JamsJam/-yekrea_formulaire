@@ -3,25 +3,39 @@
 {% block title %}Command{% endblock %}
 
 {% block body %}
-    <h1>Command</h1>
 
-    <table class="table">
+
+    <h1 class="title">Commande</h1>
+
+    <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_command_index') }}">Retour</a>
+
+    <div class="containerPages">
+        <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ command.id }}</td>
             </tr>
             <tr>
-                <th>CreateDate</th>
-                <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>NbCommande</th>
+                <th>Numéro de commande</th>
                 <td>{{ command.nbCommande }}</td>
             </tr>
             <tr>
-                <th>ValidationDate</th>
-                <td>{{ command.validationDate ? command.validationDate|date('Y-m-d') : 'En attente' }}</td>
+                <th>Services</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Services détail</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            
+            <tr>
+                <th>Date de validation</th>
+                <td>{{ command.validationDate ? command.validationDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>Prestataire</th>
@@ -40,11 +54,15 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+        </table>
+        <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
+            <a class="btn btn-info text-light" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
+            {{ include('command/_delete_form.html.twig') }}
 
-    <a href="{{ path('app_command_index') }}">back to list</a>
+            {# <a class="btn btn-success" href="{{ path('app_devis', {'id': command.id}) }}">Valider</a> #}
 
-    <a href="{{ path('app_command_edit', {'id': command.id}) }}">edit</a>
-
-    {{ include('command/_delete_form.html.twig') }}
+        </div>
+    </div>
+    
+    
 {% endblock %}

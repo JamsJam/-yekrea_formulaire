@@ -64,8 +64,6 @@ class CommandController extends AbstractController
         //     ->getForm();
         // }
 
-
-
         if ($form->isSubmitted() && $form->isValid()) {
             
 

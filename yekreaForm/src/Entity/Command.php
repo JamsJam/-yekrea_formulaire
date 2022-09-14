@@ -52,6 +52,11 @@ class Command
      */
     private $servicesDetail;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Devis::class, mappedBy="command", cascade={"persist", "remove"})
+     */
+    private $devis;
+
     public function __construct()
     {
         $this->servicesDetail = new ArrayCollection();
@@ -98,7 +103,6 @@ class Command
         return $this;
     }
 
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -143,6 +147,23 @@ class Command
     public function removeServicesDetail(ServicesDetail $servicesDetail): self
     {
         $this->servicesDetail->removeElement($servicesDetail);
+
+        return $this;
+    }
+
+    public function getDevis(): ?Devis
+    {
+        return $this->devis;
+    }
+
+    public function setDevis(Devis $devis): self
+    {
+        // set the owning side of the relation if necessary
+        if ($devis->getCommand() !== $this) {
+            $devis->setCommand($this);
+        }
+
+        $this->devis = $devis;
 
         return $this;
     }
