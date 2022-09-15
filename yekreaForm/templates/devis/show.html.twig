@@ -1,58 +1,129 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Devis{% endblock %}
-
+{% block stylesheets %}
+<style>
+    li{
+        list-style: none;
+    }
+</style>
+{% endblock %}
 {% block body %}
 
     <a class="btn btn-primary mt-4 mx-4" href="{{ path('app_devis_index') }}">Retour</a>
+    <div id="test">
+        <h1 class="title" >Devis n° {{ devis.numDevis }}</h1>
+        
+        <h5 class="text-right mb-4 mx-4" >Commercial : {{ devis.command.user.nom|upper}} {{ devis.command.user.prenom|capitalize}}</h4>
+        <h5 class="mb-4 mx-4" >Client : {{ devis.command.client.user.nom|upper}} {{ devis.command.client.user.prenom|capitalize}}</h4>
 
-    <h1 class="title" >Devis n° {{ devis.numDevis }}</h1>
-    
-    <h5 class="text-right mb-4 mx-4" >Commercial : {{ devis.command.user.nom|upper}} {{ devis.command.user.prenom|capitalize}}</h4>
-    <h5 class="mb-4 mx-4" >Client : {{ devis.command.client.user.nom|upper}} {{ devis.command.client.user.prenom|capitalize}}</h4>
+        <div class="containerPages">
+            <table class="table table-bordered my-4 mX-4">
+                <thead class="table-warning">
+                        <th class="col-md-4 text-center">Description</th>
+                        <th class="col-md-1 text-right">Prix total</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <b>Service(s) : </b>
+                                <ul>
+                                    {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                                    {% set foo2 = devis.service| split(",") %}
+                                    {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                                    {% for items in foo2 %}
+                                        {# on affiche chaque tableau contenu dans foo2 #}
+                                        <li>
+                                            {{items|e}}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            <br>
 
-    <div class="containerPages">
-        <table class="table table-bordered my-4 mX-4">
-            <thead class="table-warning">
-                    <th class="col-md-4 text-center">Description</th>
-                    <th class="col-md-1 text-right">Prix total</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <b>Service(s) : </b>
-                            {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
-                            {% set foo2 = devis.service| split(",") %}
-                            {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
-                            {% for items in foo2 %}
-                                {# on affiche chaque tableau contenu dans foo2 #}
-                                {{items|e}}
-                            {% endfor %}
-                        <br>
+                            <b>Détails : </b>
+                                <ul>
+                                    {% set foo = devis.serviceDetail| split(",") %}
+                                    {% for items in foo %}
+                                        <li>
+                                            {{items|e}}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
 
-                        <b>Détails : </b>
-                            {% set foo = devis.serviceDetail| split(",") %}
-                            {% for items in foo %}
-                                {{items|e}}
-                            {% endfor %}
+                            <br>
+                            <b>Matériel:</b>
+                            {% if devis.marteriel %}
 
-                        <br>
-                        <b>Matériel:</b>
-                            {{ devis.marteriel}}
-                    </td>
-                    <td>
-                        {{ devis.prixFinal}}
-                    </td>
-            </tr>
-                
-            </tbody>
-        </table>
+                                <ul>
+                                    {% set materiel = devis.marteriel| split(",") %}
+                                    {% for items in materiel %}
+                                        <li>
+                                            {{items|e}}
+                                        </li>
+                                    {% endfor %}
+                                
+                            </ul>
+
+                            {% else %}
+                                <p>Non Indiqué</p>
+                                
+                            {% endif %}
+                                {# {{ devis.marteriel}} #}
+                        </td>
+                        <td>
+                            {{ devis.prixFinal}}
+                        </td>
+                </tr>
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
-
-    <a class="btn btn-success mb-4 mx-4 text-center" href="{{ path('app_devis_edit', {'id': devis.id}) }}">Modifier</a>
-
+        <a class="btn btn-success mb-4 mx-4 text-center" href="{{ path('app_devis_edit', {'id': devis.id}) }}">Modifier</a>
+        {# Bouton de telechargement a affiché seulement si le prix est renseigné #}
+    {# {% if devis.prixFinal %} #}
+        <a href="#" class='btn btn-secondary btn-info mb-4 mx-4 text-center' id="print">Telecharger au format PDF</a>
+    {# {% endif %} #}
     {# formulaire pour supprimer le devis #}
     {{ include('devis/_delete_form.html.twig') }}
 
     
+{% endblock %}
+{% block javascripts %}
+    {# jsPDF CDN #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js" ></script>
+    <script>
+        let test = document.querySelector('#test')
+        let print = document.querySelector('#print')
+
+
+        async function generatePDF() {
+            print.innerHTML = "Telechargement en cours";
+
+            //Downloading
+            var downloading = document.getElementById("test");
+            var doc = new jsPDF({
+                                orientation: 'landscape',
+                                unit: 'px',
+                                format: 'a4'
+                                });
+
+            await html2canvas(downloading, {
+            }).then((canvas) => {
+                //Canvas (convert to PNG)
+                doc.addImage(canvas.toDataURL("./test"), 'PNG', 50, 50, 520, 300);
+            })
+
+            //PNG (convert to PDF)
+            doc.save("test.pdf");
+
+            //End of downloading
+
+            print.innerHTML = "Telecharger au format PDF";
+        }
+
+
+        print.addEventListener('click',generatePDF)
+    </script>
+
 {% endblock %}

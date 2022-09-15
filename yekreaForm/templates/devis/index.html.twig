@@ -2,7 +2,13 @@
 
 {% block title %}Index devis{% endblock %}
 
-{# Page pour afficher tous les devis #}
+{% block stylesheets %}
+    <style>
+        th,td{
+            text-align:center;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
 
@@ -35,7 +41,7 @@
             <tbody>
 
             {# BOUCLE pour afficher les données récupérer via la table commande #}
-<<<<<<< HEAD
+
             {% for devi in devis %}
                 <tr>
                     {# n° du devis #}
@@ -145,60 +151,4 @@
     </div>
 
     
-{% endblock %}
-{% block javascripts %}
-    {# jsPDF CDN #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js" ></script>
-    <script>
-        let test = document.querySelector('#test')
-        // var doc = new jsPDF()
-        let print = document.querySelector('#print')
-
-
-    //     print.addEventListener('click',()=>{
-
-    //         doc.fromHTML(test,20,10)
-    //         doc.save("test.pdf")
-    //         console.log('hello')
-    //     })
-        
-    </script>
-    
-    
-    
-    {# ********************************************************************************************** #}
-    
-    <script>
-
-    async function generatePDF() {
-            print.innerHTML = "Currently downloading, please wait";
-
-            //Downloading
-            var downloading = document.getElementById("test");
-            var doc = new jsPDF({
-                                orientation: 'landscape',
-                                unit: 'px',
-                                format: 'a4'
-                                });
-
-            await html2canvas(downloading, {
-                //allowTaint: true,
-                //useCORS: true,
-                // width: 530
-            }).then((canvas) => {
-                //Canvas (convert to PNG)
-                doc.addImage(canvas.toDataURL("./test"), 'PNG', 5, 5, 600, 500);
-            })
-
-            doc.save("test.pdf");
-
-            //End of downloading
-
-            print.innerHTML = "Click to download";
-        }
-
-
-        print.addEventListener('click',generatePDF)
-    </script>
-
 {% endblock %}
