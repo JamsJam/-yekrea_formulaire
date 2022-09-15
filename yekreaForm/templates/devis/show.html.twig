@@ -82,7 +82,7 @@
         <a class="btn btn-success mb-4 mx-4 text-center" href="{{ path('app_devis_edit', {'id': devis.id}) }}">Modifier</a>
         {# Bouton de telechargement a affiché seulement si le prix est renseigné #}
     {# {% if devis.prixFinal %} #}
-        <a href="#" class='btn btn-secondary btn-info mb-4 mx-4 text-center' id="print">Telecharger au format PDF</a>
+        <a href="javascript: generatePDF()" class='btn btn-secondary btn-info mb-4 mx-4 text-center' id="print">Telecharger au format PDF</a>
     {# {% endif %} #}
     {# formulaire pour supprimer le devis #}
     {{ include('devis/_delete_form.html.twig') }}
@@ -123,7 +123,7 @@
         }
 
 
-        print.addEventListener('click',generatePDF)
+        // print.addEventListener('click',generatePDF)
     </script>
 
 {% endblock %}
