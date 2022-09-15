@@ -13,7 +13,7 @@
         {# BOUTON pour CREER un nouveau devis via la :/devis/new.html.twig #}
         <a class="btn btn-success mb-4" href="{{ path('app_devis_new') }}">Créer un nouveau devis</a>
 
-        <table class="table table-striped">
+        <table class="table table-striped" id="test">
 
             <thead>
                 <tr class="table-success">
@@ -137,7 +137,64 @@
                 {% endfor %}
             </tbody>
         </table>
+        <a href="#" class="btn btn-secondary" id="print"> Telecharger le PDF</a>
     </div>
 
     
+{% endblock %}
+{% block javascripts %}
+    {# jsPDF CDN #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js" ></script>
+    <script>
+        let test = document.querySelector('#test')
+        // var doc = new jsPDF()
+        let print = document.querySelector('#print')
+
+
+    //     print.addEventListener('click',()=>{
+
+    //         doc.fromHTML(test,20,10)
+    //         doc.save("test.pdf")
+    //         console.log('hello')
+    //     })
+        
+    </script>
+    
+    
+    
+    {# ********************************************************************************************** #}
+    
+    <script>
+
+    async function generatePDF() {
+            print.innerHTML = "Currently downloading, please wait";
+
+            //Downloading
+            var downloading = document.getElementById("test");
+            var doc = new jsPDF({
+                                orientation: 'landscape',
+                                unit: 'px',
+                                format: 'a4'
+                                });
+
+            await html2canvas(downloading, {
+                //allowTaint: true,
+                //useCORS: true,
+                // width: 530
+            }).then((canvas) => {
+                //Canvas (convert to PNG)
+                doc.addImage(canvas.toDataURL("./test"), 'PNG', 5, 5, 600, 500);
+            })
+
+            doc.save("test.pdf");
+
+            //End of downloading
+
+            print.innerHTML = "Click to download";
+        }
+
+
+        print.addEventListener('click',generatePDF)
+    </script>
+
 {% endblock %}
