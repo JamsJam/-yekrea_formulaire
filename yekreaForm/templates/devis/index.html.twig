@@ -21,8 +21,8 @@
                     <th>N°commande</th>
                     <th>Commercial</th>
                     <th>Client</th>
-                    <th>Categorie</th>
-                    <th>Services</th>
+                    <th>Catégorie</th>
+                    {# <th>Services</th> #}
                     <th>Prix Min</th>
                     <th>Prix</th>
                     <th>Commande validée</th>
@@ -37,74 +37,70 @@
             {# BOUCLE pour afficher les données récupérer via la table commande #}
             {% for devi in devis %}
                 <tr>
-
-            {# n° du devis #}
-
+                    {# n° du devis #}
                     <td>{{ devi.numDevis }}</td>
 
-            {# N° de la commande #}
-                    
+                    {# N° de la commande #}
                     <td>{{ devi.command.nbCommande}} </td>
 
-            {# Nom du commercial #}
-
+                    {# Nom du commercial #}
                     <td>{{ devi.command.user.nom}} </td>
 
-            {# Nom du Client #}
-
+                    {# Nom du Client #}
                     <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
 
                     {% if devi.command.servicesDetail %}
 
-            {# Categorie #}
+                        {# Categorie #}
+                        <td>
+                            {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                            {% set foo2 = devi.service| split(",") %}
+                            {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                            {% for items in foo2 %}
+                                {# on affiche chaque tableau contenu dans foo2 #}
+                                {{items|e}}<br>
+                            {% endfor %}
+                        </td>
 
-                            <td>
-                    {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
-                        {% set foo2 = devi.service| split(",") %}
-                    {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
-                        {% for items in foo2 %}
-                    {# on affiche chaque tableau contenu dans foo2 #}
-                            {{items|e}}<br>
-                        {% endfor %}
-                            </td>
+                        {# Service #}
 
-            {# Service #}
+                        {# <td> #}
+                            {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                            {# {% set foo = devi.serviceDetail| split(",") %} #}
 
-                            <td>
-                    {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
-                        {% set foo = devi.serviceDetail| split(",") %}
-                    {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
-                        {% for items in foo %}
-                    {# on affiche chaque tableau contenu dans foo #}
-                            {{items|e}}<br>
-                        {% endfor %}
-                            </td>
-
-            {# PrixMin #}
-
-                            <td>
-                        {% for item in devi.command.servicesDetail  %}
+                            {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                            {# {% for items in foo %} #}
                             
-                            {{ item.prixMin}} <br>
-                        {% else %}
-                            
-                            Pas de donnée
-                        {% endfor %}
-                            </td>
+                                {# on affiche chaque tableau contenu dans foo #}
+                                {# {{items|e}}<br> #}
+                            {# {% endfor %} #}
+                        {# </td>  #}
 
-            {# PrixMax #}
+                        {# PrixMin #}
 
-                            <td>
-                        {% for item in devi.command.servicesDetail  %}
+                        <td>
+                            {% for item in devi.command.servicesDetail  %}
+                                
+                                {{ item.prixMin}} <br>
+                            {% else %}
                             
-                            {{ item.prix}} <br>
-                        {% else %}
+                                Pas de donnée
+                            {% endfor %}
+                        </td>
+
+                        {# PrixMax #}
+
+                        <td>
+                            {% for item in devi.command.servicesDetail  %}
+                                
+                                {{ item.prix}} <br>
+                            {% else %}
+                                
+                                Pas de donnée
+                            {% endfor %}
+                        </td>
                             
-                            Pas de donnée
-                        {% endfor %}
-                            </td>
-                            
-            {# Date de validation #}
+                        {# Date de validation #}
 
                         {% if devi.command.validationDate %}
                             
@@ -112,23 +108,23 @@
                             <td>{{ devi.command.validationDate|date('d/m/y')}} </td>
 
                         {% endif %}
-                    {% else %}
-                    {# Si aucunes données n'est retrouvé dans services détails on aura cet affichage #}
-                        <td>Pas de donnée</td>
-                        <td>Pas de donnée</td>
-                        <td>Pas de donnée</td>
-                        <td>Pas de donnée</td>
-                        
-                    {% endif %}
-                    <td>
-                        {# BOUTON qui permet de VOIR le devis sélectionner (:/devis/show.html.twig) #}
-                        <a class="btn btn-warning text-light" href="{{ path('app_devis_show', {'id': devi.id}) }}">Voir</a>
-                    </td>
-                    <td>
-                        {# BOUTON qui permet de MODIFIER le devis sélectionner (:/devis/edit.html.twig) #}
-                        <a class="btn btn-primary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
-                    </td>
-                </tr>
+                        {% else %}
+                        {# Si aucunes données n'est retrouvé dans services détails on aura cet affichage #}
+                            <td>Pas de donnée</td>
+                            <td>Pas de donnée</td>
+                            <td>Pas de donnée</td>
+                            <td>Pas de donnée</td>
+                            
+                        {% endif %}
+                        <td>
+                            {# BOUTON qui permet de VOIR le devis sélectionner (:/devis/show.html.twig) #}
+                            <a class="btn btn-warning text-light" href="{{ path('app_devis_show', {'id': devi.id}) }}">Voir</a>
+                        </td>
+                        <td>
+                            {# BOUTON qui permet de MODIFIER le devis sélectionner (:/devis/edit.html.twig) #}
+                            <a class="btn btn-primary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
             {% else %}
                 {# permet l'affichage "pas de donnée" si les informations du tableau ne sont pas trouvé#}
                 <tr>

@@ -3,25 +3,56 @@
 {% block title %}Devis{% endblock %}
 
 {% block body %}
-    <h1 class="title" >Devis</h1>
 
-    <a class="btn btn-primary" href="{{ path('app_devis_index') }}">Retour</a>
+    <a class="btn btn-primary mt-4 mx-4" href="{{ path('app_devis_index') }}">Retour</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ devi.id }}</td>
+    <h1 class="title" >Devis n° {{ devis.numDevis }}</h1>
+    
+    <h5 class="text-right mb-4 mx-4" >Commercial : {{ devis.command.user.nom|upper}} {{ devis.command.user.prenom|capitalize}}</h4>
+    <h5 class="mb-4 mx-4" >Client : {{ devis.command.client.user.nom|upper}} {{ devis.command.client.user.prenom|capitalize}}</h4>
+
+    <div class="containerPages">
+        <table class="table table-bordered my-4 mX-4">
+            <thead class="table-warning">
+                    <th class="col-md-4 text-center">Description</th>
+                    <th class="col-md-1 text-right">Prix total</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <b>Service(s) : </b>
+                            {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                            {% set foo2 = devis.service| split(",") %}
+                            {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                            {% for items in foo2 %}
+                                {# on affiche chaque tableau contenu dans foo2 #}
+                                {{items|e}}
+                            {% endfor %}
+                        <br>
+
+                        <b>Détails : </b>
+                            {% set foo = devis.serviceDetail| split(",") %}
+                            {% for items in foo %}
+                                {{items|e}}
+                            {% endfor %}
+
+                        <br>
+                        <b>Matériel:</b>
+                            {{ devis.marteriel}}
+                    </td>
+                    <td>
+                        {{ devis.prixFinal}}
+                    </td>
             </tr>
-            <tr>
-                <th>NumDevis</th>
-                <td>{{ devi.numDevis }}</td>
-            </tr>
-        </tbody>
-    </table>
+                
+            </tbody>
+        </table>
+    </div>
 
-    <a class="btn btn-success" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
+    <a class="btn btn-success mb-4 mx-4 text-center" href="{{ path('app_devis_edit', {'id': devis.id}) }}">Modifier</a>
 
     {# formulaire pour supprimer le devis #}
     {{ include('devis/_delete_form.html.twig') }}
+
+    
 {% endblock %}
