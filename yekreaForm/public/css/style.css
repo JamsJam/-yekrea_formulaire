@@ -5,25 +5,24 @@
     font-family: sans-serif;
 }
 
-/********************************************PAGES */
+/********************************************       PAGES */
 html{
     height: 100vh;
 }
-.bold{
-    font-weight: bold;
-}
 
 /* titre pour les formulaires */
+
 .title{
     text-align: center;
     font-weight: bold;
     margin: 20px 0;
 }
-button a{
-    color: white !important;
-    text-decoration: none;
+
+ul li{
+    text-decoration: none !important;
 }
-/* ******************************************* LOG IN */
+
+/* *******************************************      LOG IN */
 
 
 /* container login */
@@ -33,36 +32,62 @@ button a{
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
 }
+
+/* Mise en forme commune pour les deux div */
+
 .containerLogIn_block{
     height: 100vh;
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
     
 }
+
+/************* div =>  formulaire de connexion */
+
 .containerLogIn_block--form{
-    width: 400px;
+
+    width: 300px;
+
     display: flex;
     flex-direction: column;
 }
 
+/* BOUTON valider */
+
+.bouton{
+    padding: 10px;
+
+    align-self: flex-start;
+
+    color: white !important;
+
+    background-color: #E5191E !important;
+    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+    
+}
+
+
+/************* div =>  logo YEKREA & SLOGAN */
+
+
 .containerLogIn_block--logo{
     background-color: #E5191E;
 }
-.bouton{
-    align-self: center;
-    color: white !important;
-    background-color: #E5191E !important;
-    
-}
+
 img[alt="logo yekrea"]{
     width: 350px;
 }
-ul li{
-    text-decoration: none !important;
+
+.slogan{
+    color: white;
+
+    font-size: 2rem;
 }
+
 /* ****************************************************** SERVICES */
 
 .containerPages{
@@ -73,20 +98,19 @@ ul li{
     justify-content: center;
 }
 
-/* créer un nouveau service */
-.btnServices{
-    justify-content: flex-end;
-}
-
 
 /* ************************************************ RESPONSIVE */
+
 @media screen and (max-width: 800px){
 
-    /***************** LOGIN */
+    /*****************    LOGIN */
+
     .containerLogIn{
         display: flex;  
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
+    /************* div =>  FORMULAIRE CONNEXION */
+
     #containerLogIn_block--form{
         height: 60vh;
         min-height: 400px;
@@ -95,12 +119,23 @@ ul li{
     .containerLogIn_block--form{
         width: 300px;
     }
+
+    /************* div =>  logo YEKREA & SLOGAN de la page de CONNEXION */
+
     .containerLogIn_block--logo{
+
         height: 20vh;
-        min-height: 120px;         
+        min-height: 120px;     
+
     }
+
     img[alt="logo yekrea"]{
+
         width: 230px;
+    }
+
+    .slogan{
+        font-size: 1.4rem;
     }
 
 }
