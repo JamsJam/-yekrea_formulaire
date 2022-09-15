@@ -21,8 +21,8 @@
                     <th>N°commande</th>
                     <th>Commercial</th>
                     <th>Client</th>
-                    <th>Categorie</th>
-                    <th>Services</th>
+                    <th>Catégorie</th>
+                    {# <th>Services</th> #}
                     <th>Prix Min</th>
                     <th>Prix</th>
                     <th>Commande validée</th>
@@ -35,66 +35,66 @@
             <tbody>
 
             {# BOUCLE pour afficher les données récupérer via la table commande #}
-                {% for devi in devis %}
-                    <tr>
+<<<<<<< HEAD
+            {% for devi in devis %}
+                <tr>
+                    {# n° du devis #}
+                    <td>{{ devi.numDevis }}</td>
 
-                {# n° du devis #}
+                    {# N° de la commande #}
+                    <td>{{ devi.command.nbCommande}} </td>
 
-                        <td>{{ devi.numDevis }}</td>
+                    {# Nom du commercial #}
+                    <td>{{ devi.command.user.nom}} </td>
 
-                {# N° de la commande #}
-                        
-                        <td>{{ devi.command.nbCommande}} </td>
+                    {# Nom du Client #}
+                    <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
 
-                {# Nom du commercial #}
+                    {% if devi.command.servicesDetail %}
 
-                        <td>{{ devi.command.user.nom}} </td>
-
-                {# Nom du Client #}
-
-                        <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
-
-                        {% if devi.command.servicesDetail %}
-
-                {# Categorie #}
-
-                                <td style="text-align:center">
-                        {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                        {# Categorie #}
+                        <td>
+                            {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
                             {% set foo2 = devi.service| split(",") %}
-                        {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                            {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
                             {% for items in foo2 %}
-                        {# on affiche chaque tableau contenu dans foo2 #}
+                                {# on affiche chaque tableau contenu dans foo2 #}
                                 {{items|e}}<br>
                             {% endfor %}
-                                </td>
+                        </td>
 
-                {# Service #}
+                        {# Service #}
 
-                                <td>
-                        {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
-                            {% set foo = devi.serviceDetail| split(",") %}
-                        {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
-                            {% for items in foo %}
-                        {# on affiche chaque tableau contenu dans foo #}
-                                {{items|e}}<br>
-                            {% endfor %}
-                                </td>
+                        {# <td> #}
+                            {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                            {# {% set foo = devi.serviceDetail| split(",") %} #}
 
-                {# PrixMin #}
+                            {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                            {# {% for items in foo %} #}
+                            
+                                {# on affiche chaque tableau contenu dans foo #}
+                                {# {{items|e}}<br> #}
+                            {# {% endfor %} #}
+                        {# </td>  #}
 
-                                <td>
+                        {# PrixMin #}
+
+                        <td>
+
                             {% for item in devi.command.servicesDetail  %}
                                 
                                 {{ item.prixMin}} <br>
                             {% else %}
-                                
+                            
                                 Pas de donnée
                             {% endfor %}
-                                </td>
+                        </td>
 
-                {# PrixMax #}
+                        {# PrixMax #}
+
 
                                 <td>
+
                             {% for item in devi.command.servicesDetail  %}
                                 
                                 {{ item.prix}} <br>
@@ -102,16 +102,18 @@
                                 
                                 Pas de donnée
                             {% endfor %}
-                                </td>
-                                
-                {# Date de validation #}
 
-                            {% if devi.command.validationDate %}
-                                
-                                {# date('d/m/y') => format de la date #}
-                                <td>{{ devi.command.validationDate|date('d/m/y')}} </td>
+                        </td>
+                            
+                        {# Date de validation #}
 
-                            {% endif %}
+                        {% if devi.command.validationDate %}
+                            
+                            {# date('d/m/y') => format de la date #}
+                            <td>{{ devi.command.validationDate|date('d/m/y')}} </td>
+
+                        {% endif %}
+
                         {% else %}
                         {# Si aucunes données n'est retrouvé dans services détails on aura cet affichage #}
                             <td>Pas de donnée</td>
@@ -129,12 +131,14 @@
                             <a class="btn btn-primary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
                         </td>
                     </tr>
-                {% else %}
-                    {# permet l'affichage "pas de donnée" si les informations du tableau ne sont pas trouvé#}
-                    <tr>
-                        <td colspan="3">Pas de donnée</td>
-                    </tr>
-                {% endfor %}
+
+            {% else %}
+                {# permet l'affichage "pas de donnée" si les informations du tableau ne sont pas trouvé#}
+                <tr>
+                    <td colspan="3">Pas de donnée</td>
+                </tr>
+            {% endfor %}
+
             </tbody>
         </table>
         <a href="#" class="btn btn-secondary" id="print"> Telecharger le PDF</a>

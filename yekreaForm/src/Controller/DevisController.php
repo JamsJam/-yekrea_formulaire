@@ -49,10 +49,10 @@ class DevisController extends AbstractController
     /**
      * @Route("/{id}", name="app_devis_show", methods={"GET"})
      */
-    public function show(Devis $devi): Response
+    public function show(Devis $devis): Response
     {
         return $this->render('devis/show.html.twig', [
-            'devi' => $devi,
+            'devis' => $devis,
         ]);
     }
 
