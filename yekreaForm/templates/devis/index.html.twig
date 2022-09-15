@@ -2,7 +2,13 @@
 
 {% block title %}Index devis{% endblock %}
 
-{# Page pour afficher tous les devis #}
+{% block stylesheets %}
+    <style>
+        th,td{
+            text-align:center;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
 
@@ -13,7 +19,7 @@
         {# BOUTON pour CREER un nouveau devis via la :/devis/new.html.twig #}
         <a class="btn btn-success mb-4" href="{{ path('app_devis_new') }}">Créer un nouveau devis</a>
 
-        <table class="table table-striped">
+        <table class="table table-striped" id="test">
 
             <thead>
                 <tr class="table-success">
@@ -141,6 +147,7 @@
 
             </tbody>
         </table>
+        <a href="#" class="btn btn-secondary" id="print"> Telecharger le PDF</a>
     </div>
 
     
