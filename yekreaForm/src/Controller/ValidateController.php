@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ValidateController extends AbstractController
 {
     /** A la validation de la commande, cette route permet:
-     * - la création du numéro de devis dans la table DEVIS
+     * - La création d'une nouvelle entré dans la table devis dans la table DEVIS
      * - l'insertion de la "date de validation" dans la table COMMANDE
      * 
      * @Route("admin/validate/{id}", name="app_validate")
@@ -27,43 +27,57 @@ class ValidateController extends AbstractController
         $service = null;
         // création du numéro de devis à la validation du bouton
 
-        $devi = new Devis();
+        $devis = new Devis();
+
         //Selection du change ServicesDetail dans command : retourne un tableau d'objet
         $servicesDetail = $command->getServicesDetail();
         //foreach sur le tableau pour atteintre les objets
         foreach ($servicesDetail as $i => $serviceDetail) {
-
-            if ($i<1) {
-                
+            if ($i<1) {              
                 $serviceDetails = $serviceDetail->getNom();
                 $service = $serviceDetail->getServices()->getNom();
-            } else {
-                
+            } else {            
                 //stockage de toute les element sercive et services details dans des variable dediés
                 $serviceDetails = $serviceDetails .','. $serviceDetail->getNom();
                 $service = $service .','. $serviceDetail->getServices()->getNom();
             }
-            
         }
-        // creer un numero de devis unique basé sur la fonction Time()
-        $numDevis= time()-1900;
-        
+
+
+            
+            $materiels = $command->getMateriel();
+            $materielDevis = null;
+            foreach ($materiels as $index => $materiel) {
+                if($index < 1){
+                    $materielDevis = $materiel->getNom();
+                }else{
+                    $materielDevis = $materielDevis .','. $materiel->getNom();
+
+                }
+            }
+            
+            
+            
+            // creer un numero de devis unique basé sur la fonction Time()
+            $numDevis= time()-1900;
+            
         //assignation dans les champs dédié du ....
         //...Numeros de commande
-        $devi->setnumDevis($numDevis);
+        $devis->setnumDevis($numDevis);
         //des Service_details
-        $devi -> setServiceDetail($serviceDetails);
+        $devis -> setServiceDetail($serviceDetails);
         //des Service
-        $devi -> setService($service);
+        $devis -> setService($service);
         // insert dans la table la date de validation de la commande
         $command->setValidationDate(new DateTimeImmutable("now"));
-        
         //de la commande de reference
-        $devi->setCommand($command);
-        // ajoute en BDD si l'id n'existe pas et le modifie si l'ID existe
+        $devis->setCommand($command);
+        // du materiel necessaire a la commande
+        $devis->setMateriel($materielDevis);
 
+        // ajoute en BDD si l'id n'existe pas et le modifie si l'ID existe
         $commandRepository->add($command, true);
-        $devisRepository->add($devi, true);
+        $devisRepository->add($devis, true);
         
         return $this->redirectToRoute('app_command_show',["id"=>$command->getId()], Response::HTTP_SEE_OTHER);
     }

@@ -30,14 +30,15 @@ class Materiel
     private $prix;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ServicesDetail::class, mappedBy="materiel")
+     * @ORM\ManyToMany(targetEntity=Command::class, mappedBy="materiel")
      */
-    private $servicesDetails;
+    private $commands;
 
     public function __construct()
     {
-        $this->servicesDetails = new ArrayCollection();
+        $this->commands = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -69,29 +70,30 @@ class Materiel
     }
 
     /**
-     * @return Collection<int, ServicesDetail>
+     * @return Collection<int, Command>
      */
-    public function getServicesDetails(): Collection
+    public function getCommands(): Collection
     {
-        return $this->servicesDetails;
+        return $this->commands;
     }
 
-    public function addServicesDetail(ServicesDetail $servicesDetail): self
+    public function addCommand(Command $command): self
     {
-        if (!$this->servicesDetails->contains($servicesDetail)) {
-            $this->servicesDetails[] = $servicesDetail;
-            $servicesDetail->addMateriel($this);
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->addMateriel($this);
         }
 
         return $this;
     }
 
-    public function removeServicesDetail(ServicesDetail $servicesDetail): self
+    public function removeCommand(Command $command): self
     {
-        if ($this->servicesDetails->removeElement($servicesDetail)) {
-            $servicesDetail->removeMateriel($this);
+        if ($this->commands->removeElement($command)) {
+            $command->removeMateriel($this);
         }
 
         return $this;
     }
+
 }

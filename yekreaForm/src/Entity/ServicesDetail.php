@@ -41,11 +41,6 @@ class ServicesDetail
     private $services;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Materiel::class, inversedBy="servicesDetails")
-     */
-    private $materiel;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Command::class, mappedBy="servicesDetail")
      */
     private $commands;
@@ -110,30 +105,6 @@ class ServicesDetail
     public function setServices(?Services $services): self
     {
         $this->services = $services;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Materiel>
-     */
-    public function getMateriel(): Collection
-    {
-        return $this->materiel;
-    }
-
-    public function addMateriel(Materiel $materiel): self
-    {
-        if (!$this->materiel->contains($materiel)) {
-            $this->materiel[] = $materiel;
-        }
-
-        return $this;
-    }
-
-    public function removeMateriel(Materiel $materiel): self
-    {
-        $this->materiel->removeElement($materiel);
 
         return $this;
     }

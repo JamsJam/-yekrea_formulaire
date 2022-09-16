@@ -1,0 +1,102 @@
+{# 
+    Route ayant pour seul et unique but de mettre en forme le PDF, 
+    CSS a mettre dans balise style
+    tableau basé sur devis/show
+
+    adresse pour le PDF : http://localhost:8000/admin/devis/pdf/{id}
+#}
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <style>
+            /* style experimentale */
+            body{
+                padding-top:150px
+            }
+                h1{
+                    text-align:center;
+                }
+                li{
+                    list-style: none;
+                    font-weigh: 400;
+                }
+                td,tr,thead{
+                    border:1px solid navy;
+                }
+                table{
+                    width: 900px;
+                    margin: 0 auto;
+                }
+            </style>
+        </head>
+        <body>
+            
+        <h1>Devis n° {{ devis.numDevis }}</h1>
+        
+        <h5 >Commercial : {{ devis.command.user.nom|upper}} {{ devis.command.user.prenom|capitalize}}</h4>
+        <h5 >Client : {{ devis.command.client.user.nom|upper}} {{ devis.command.client.user.prenom|capitalize}}</h4>
+
+        <div >
+            <table >
+                <thead >
+                        <th >Description</th>
+                        <th >Prix total</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <b>Service(s) : </b>
+                            <ul>
+                                {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                                {% set foo2 = devis.service| split(",") %}
+                                {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                                {% for items in foo2 %}
+                                    {# on affiche chaque tableau contenu dans foo2 #}
+                                    <li>
+                                        {{items|e}}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <br>
+
+                            <b>Détails : </b>
+                            <ul>
+                                {% set foo = devis.serviceDetail| split(",") %}
+                                {% for items in foo %}
+                                    <li>
+                                        {{items|e}}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+
+                            <br>
+                            <b>Matériel:</b>
+                            {% if devis.materiel %}
+                                <ul>
+                                    {% set materiel = devis.materiel| split(",") %}
+                                    {% for items in materiel %}
+                                        <li>
+                                            {{items|e}}
+                                        </li>
+                                    {% endfor %}
+                                    
+                                </ul>
+                            {% else %}
+                                <p>Non Indiqué</p>
+                                
+                            {% endif %}
+                                {# {{ devis.materiel}} #}
+                        </td>
+                        <td>
+                            {{ devis.prixFinal}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </body>
+        </html>
