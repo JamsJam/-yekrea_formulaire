@@ -24,7 +24,6 @@
         {# La barre de navigation n'est visible que lorsqu'un utilisateur est connecté #}
         {% if is_granted("ROLE_USER") %}
             
-            <header>
                 <nav class="navbar navbar-expand-lg row bg-light">
                     <div class="container-fluid ">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,12 +100,10 @@
         {% endif %}
 
     {% endblock %}
-    <main>
+    {% block body %}
         
-        {% block body %}
-            
-        {% endblock %}
-    </main>
+    {% endblock %}
+
     <!-- JavaScript Bundle with Popper -->
     
     <script type="text/javascript" src="{{ asset("js/bootstrap.min.js") }}"></script>

@@ -10,7 +10,7 @@
 
         <div class="containerLogIn">
 
-            {# Logo YEKREA & SLOGAN#}
+            {# Logo YEKREA & SLOGAN #}
             <div class="containerLogIn_block containerLogIn_block--logo">
 
                 <img class="" src="images/logoYekreaSmall.jpg" alt="logo yekrea">
@@ -27,8 +27,6 @@
 
                     {# CLASS BOOTSTRAP
 
-                        col-md-2 = taille de l'input
-
                         mb- = margin-bottom
                         mt- = margin-top
 
@@ -41,7 +39,7 @@
                     <div class="form-group mb-4">
 
                         <label class="form-group mb-2" for="username">Identifiant</label>
-                        <input style="box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2); border:none;" class="form-control" aria-describedby="emailHelp" type="text" id="username" name="_username" value="{{ last_username }}"/>
+                        <input  class="form-control" aria-describedby="emailHelp" type="text" id="username" name="_username" value="{{ last_username }}"/>
 
                     </div>
 
@@ -56,7 +54,7 @@
                         {# <input id="checkbox" class="bold mt-3" type="checkbox" onclick="myFunction()">
                         <label style="font-size:12px;" for="checkbox">Voir mon mot de passe</label> #}
 
-                        <button class="btn bouton mb-4 fw-bold" data-toggle="button" aria-pressed="false" autocomplete="off" type="submit">Valider</button>
+                        <button class="btn bouton" data-toggle="button" aria-pressed="false" autocomplete="off" type="submit">Valider</button>
                     </div>
 
                     {# If you want to control the URL the user is redirected to on success

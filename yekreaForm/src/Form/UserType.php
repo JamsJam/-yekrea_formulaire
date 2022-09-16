@@ -20,12 +20,14 @@ class UserType extends AbstractType
         $builder
             ->add('email',EmailType::class,[
                 'required' => false,
+                "label"=> 'Email',
                 "attr"=>[
                     "class"=> "bg-light"
                 ],
             ])
             ->add('nom',TextType::class,[
                 'required' => false,
+                "label"=> 'Nom',
                 "attr"=>[
                     "class"=> "bg-light"
                 ],
@@ -33,12 +35,14 @@ class UserType extends AbstractType
 
                 ->add('prenom',TextType::class,[
                     'required' => false,
+                    "label"=> 'Prénom',
                     "attr"=>[
                         "class"=> "bg-light"
                     ],
                 ])
 
                 -> add('roles',ChoiceType::class, [
+                    "label"=> 'Role',
                     "attr"=>[
                         "class"=> "bg-light"
                     ],

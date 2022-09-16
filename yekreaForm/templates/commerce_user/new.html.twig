@@ -5,11 +5,18 @@
 {% block body %}
 
     <div class="containerPages">
-        <h1 class="title">Ajouter un nouvel utilisateur</h1>
 
-        <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_user_index') }}">Retour</a>
+        <h1 class="title">Création d'un nouvel utilisateur</h1>
+
+        {# Barre de progression première étape #}
+        <div class="progress">
+            <div class="progress-bar mb-4" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        {# <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_user_index') }}">Retour</a> #}
 
         {{ include('commerce_user/_form.html.twig') }}
+
     </div>
 {% endblock %}
 

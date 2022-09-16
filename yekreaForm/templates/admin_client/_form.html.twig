@@ -1,6 +1,6 @@
 {{ form_start(form) }}
 
-    <div class="shadow p-3 mb-2 bg-light containerFormulaire">
+    <div>
         {% if  not app.request.query.get("id")  %}
         
             {{form_row(form.user)}}
@@ -13,7 +13,7 @@
 
         {{form_row(form.Reseaux)}}
         
-        <button class="btn btn-success">{{ button_label|default('Valider') }}</button>
+        <button class="btn bouton">{{ button_label|default('Valider') }}</button>
     </div>
 
     

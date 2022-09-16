@@ -1,9 +1,9 @@
 {{ form_start(form) }}
 
-    <div class="shadow p-3 mb-2 bg-light containerFormulaire">
+    <div>
         {# {{ form_widget(form) }} #}
 
-        {{form_row(form.nom)}}
+        {{form_row(form.nom)}} 
         
         {{form_row(form.prenom)}}
 
@@ -13,9 +13,8 @@
         {# {{form_row(form.password)}} #}
 
         {{form_row(form.roles)}}
-            
 
-        <button class="btn btn-success mb-4 mt-4">{{ button_label|default('Enregistrer') }}</button>
+        <button class="btn bouton">{{ button_label|default('Valider') }}</button>
         
 
     </div>

@@ -25,19 +25,23 @@ class ClientType extends AbstractType
         if(!isset($_GET['id'])){
             $builder
                 ->add('user',EntityType::class,[
+                    
                     'class' => user::class,
                     'choice_label' => 'email'
                 ]);
         }
         $builder
             ->add('societe',TextType::class,[
-                'required' => false
+                'required' => false,
+                "label"=> 'Société'
             ])
             ->add('telephone',TelType::class,[
-                'required' => false
+                'required' => false,
+                "label"=> 'Téléphone'
             ])
             ->add('Reseaux',TextareaType::class,[
-                'required' => false
+                'required' => false,
+                "label"=> 'Réseaux sociaux'
             ])
 
         ;
