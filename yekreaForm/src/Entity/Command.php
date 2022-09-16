@@ -57,9 +57,15 @@ class Command
      */
     private $devis;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Materiel::class, inversedBy="commands")
+     */
+    private $materiel;
+
     public function __construct()
     {
         $this->servicesDetail = new ArrayCollection();
+        $this->materiel = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,6 +170,30 @@ class Command
         }
 
         $this->devis = $devis;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Materiel>
+     */
+    public function getMateriel(): Collection
+    {
+        return $this->materiel;
+    }
+
+    public function addMateriel(Materiel $materiel): self
+    {
+        if (!$this->materiel->contains($materiel)) {
+            $this->materiel[] = $materiel;
+        }
+
+        return $this;
+    }
+
+    public function removeMateriel(Materiel $materiel): self
+    {
+        $this->materiel->removeElement($materiel);
 
         return $this;
     }

@@ -46,7 +46,7 @@ class Devis
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $marteriel;
+    private $materiel;
 
 
     public function getId(): ?int
@@ -114,14 +114,14 @@ class Devis
         return $this;
     }
 
-    public function getMarteriel(): ?string
+    public function getMateriel(): ?string
     {
-        return $this->marteriel;
+        return $this->materiel;
     }
 
-    public function setMarteriel(?string $marteriel): self
+    public function setMateriel(?string $materiel): self
     {
-        $this->marteriel = $marteriel;
+        $this->materiel = $materiel;
 
         return $this;
     }

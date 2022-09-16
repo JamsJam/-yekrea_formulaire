@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Devis;
 use App\Form\DevisType;
 use App\Repository\DevisRepository;
+use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -87,4 +88,33 @@ class DevisController extends AbstractController
 
         return $this->redirectToRoute('app_devis_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    // **************************************** AFFICHAGE DU PDF
+
+
+    //Route ayant pour seul et unique but de mettre en forme et de servir de base au PDF. 
+    // /!\/!\   Non destiné a etre affiché   /!\/!\
+    /**
+     * @Route("/pdf/{id}", name="app_devis_pdf_template", methods={"GET"})
+     */
+    public function htmlToPdf(Devis $devis):Response
+    {
+        return $this->render('devis/toPdf.html.twig', [
+            'devis' => $devis,
+        ]);
+    }
+
+
+    //Route permettant de telecharger le PDF
+    // /!\/!\   Route a mettre sur les boutons correspondant   /!\/!\
+    /**
+     * @Route("/getpdf/{id}", name="app_devis_pdf_render")
+     */
+    public function generatePdfDevis(Devis $devis , PdfService $pdf)
+    {
+        $html = $this-> render('devis/toPdf.html.twig',['devis' => $devis]);
+        $pdf-> showPdfFile($html);
+        }
+
+
 }
