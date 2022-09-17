@@ -59,7 +59,7 @@ class ValidateController extends AbstractController
             
             
             // creer un numero de devis unique basé sur la fonction Time()
-            $numDevis= time()-1900;
+            $numDevis= time()-1663170000;
             
         //assignation dans les champs dédié du ....
         //...Numeros de commande
