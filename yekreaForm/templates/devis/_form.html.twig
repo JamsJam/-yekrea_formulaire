@@ -1,4 +1,78 @@
+        {# Variable servant de compteur #}
+        {% set serviceCount = 0 %}
+        {% set serviceDetailCount = 0 %}
+        {% set materielCount = 0 %}
+
+<h2 style="text-align:center">Devis n°{{devis.numDevis}}</h2>
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+
+{% set services = devis.service|split(',') %}
+{% set services_details = devis.serviceDetail|split(',') %}
+{% set materiels = devis.materiel|split(',') %}
+
+
+{# 
+    Container comprenant des input intermediaire permetant
+    de modifier et ajouter de maniere plus intuitif les champs service et detailService
+#}
+    <div style="display:flex; justify-content: center">
+
+        {# btn permettant d'ajouter une categorie et un service #}
+        <div style="align-self: center; margin-right:30px; margin-left: -170px">
+            <a href="javascript:newItems()" class="btn btn-info" > ajouter un service</a>
+        </div>
+
+        {# input de Service #}
+        <div style="display: flex; flex-direction: column;margin-right:30px" id='devis__Form--serviceContainer'>
+
+            {% for service in services %}
+                {% set serviceCount = serviceCount + 1 %}
+                    <label for="service">Categorie</label>
+                    <input type="text" name="service" class='devis__Form--inputService' id="{{"service-" ~ serviceCount }} "value="{{service}}">
+            {% endfor %}
+            
+        </div>
+
+        {# input de ServiceDetails #}
+        <div style="display: flex; flex-direction: column" id='devis__Form--serviceDetailContainer'>
+
+            {% for services_detail in services_details %}
+                {% set serviceDetailCount = serviceDetailCount + 1 %}
+                    <label for="services_detail">Service</label>
+                    <input type="text" name="services_detail" class='devis__Form--inputServiceDetail' id="{{"services_detail-" ~ serviceDetailCount }}" value="{{services_detail}}">
+            {% endfor %}
+
+        </div>
+
+
+        {# <div style="display: flex; flex-direction: column">
+
+            {% for materiel in materiels %}
+                {% set materielCount = materielCount + 1 %}
+                    
+                        <label for="materiel">materiel</label>
+                        <input type="text" name="materiel" id="{{"materiel-" ~ materielCount }}" value="{{materiel}}">
+                    
+            {% endfor %}
+
+        </div> #}
+
+
+        
+        
+    </div>
+
+    <div style="display:none">
+        {# 
+            Ces deux forms seront remplis avec un joins des forms au dessus (event change)
+        #}
+        {{ form_row(form.service) }}
+        {{ form_row(form.serviceDetail) }}
+    
+    </div>
+
+    {{ form_row(form.materiel) }}
+    {{ form_row(form.prix_final) }}
+    <button class="btn btn-success mt-3">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

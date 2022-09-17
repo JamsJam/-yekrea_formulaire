@@ -21,31 +21,35 @@ class DevisController extends AbstractController
      */
     public function index(DevisRepository $devisRepository): Response
     {
+
+
         return $this->render('devis/index.html.twig', [
-            'devis' => $devisRepository->findAll(),
+            //rangement dans du plus recent au plus ancient
+            'devis' => $devisRepository->findBy([],['id' => 'DESC']),
         ]);
     }
 
-    /**
-     * @Route("/new", name="app_devis_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, DevisRepository $devisRepository): Response
-    {
-        $devi = new Devis();
-        $form = $this->createForm(DevisType::class, $devi);
-        $form->handleRequest($request);
+    //Route inutile car l'ajout de devis se fait par le ValidateController
+        // /**
+        //  * @Route("/new", name="app_devis_new", methods={"GET", "POST"})
+        //  */
+        // public function new(Request $request, DevisRepository $devisRepository): Response
+        // {
+                //     $devi = new Devis();
+                //     $form = $this->createForm(DevisType::class, $devi);
+                //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $devisRepository->add($devi, true);
+                //     if ($form->isSubmitted() && $form->isValid()) {
+                //         $devisRepository->add($devi, true);
 
-            return $this->redirectToRoute('app_devis_index', [], Response::HTTP_SEE_OTHER);
-        }
+                //         return $this->redirectToRoute('app_devis_index', [], Response::HTTP_SEE_OTHER);
+                //     }
 
-        return $this->renderForm('devis/new.html.twig', [
-            'devi' => $devi,
-            'form' => $form,
-        ]);
-    }
+                //     return $this->renderForm('devis/new.html.twig', [
+                //         'devi' => $devi,
+                //         'form' => $form,
+                //     ]);
+    // }
 
     /**
      * @Route("/{id}", name="app_devis_show", methods={"GET"})
@@ -60,19 +64,19 @@ class DevisController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_devis_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Devis $devi, DevisRepository $devisRepository): Response
+    public function edit(Request $request, Devis $devis, DevisRepository $devisRepository): Response
     {
-        $form = $this->createForm(DevisType::class, $devi);
+        $form = $this->createForm(DevisType::class, $devis);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $devisRepository->add($devi, true);
+            $devisRepository->add($devis, true);
 
             return $this->redirectToRoute('app_devis_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('devis/edit.html.twig', [
-            'devi' => $devi,
+            'devis' => $devis,
             'form' => $form,
         ]);
     }
@@ -80,10 +84,10 @@ class DevisController extends AbstractController
     /**
      * @Route("/{id}", name="app_devis_delete", methods={"POST"})
      */
-    public function delete(Request $request, Devis $devi, DevisRepository $devisRepository): Response
+    public function delete(Request $request, Devis $devis, DevisRepository $devisRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$devi->getId(), $request->request->get('_token'))) {
-            $devisRepository->remove($devi, true);
+        if ($this->isCsrfTokenValid('delete'.$devis->getId(), $request->request->get('_token'))) {
+            $devisRepository->remove($devis, true);
         }
 
         return $this->redirectToRoute('app_devis_index', [], Response::HTTP_SEE_OTHER);

@@ -16,8 +16,8 @@
 
         <h1 class="title" >Devis</h1>
 
-        {# BOUTON pour CREER un nouveau devis via la :/devis/new.html.twig #}
-        <a class="btn btn-success mb-4" href="{{ path('app_devis_new') }}">Créer un nouveau devis</a>
+        {# BOUTON pour CREER un nouveau devis via l'acceptation d'une d'une commande #}
+        {# <a class="btn btn-success mb-4" href="{{ path('app_devis_new') }}">Créer un nouveau devis</a> #}
 
         <table class="table table-striped" id="test">
 
@@ -29,8 +29,8 @@
                     <th>Client</th>
                     <th>Catégorie</th>
                     {# <th>Services</th> #}
-                    <th>Prix Min</th>
-                    <th>Prix</th>
+                    {# <th>Prix Min</th>
+                    <th>Prix</th> #}
                     <th>Commande validée</th>
                     <th>Voir</th>
                     <th>Modifier</th>
@@ -85,7 +85,7 @@
 
                         {# PrixMin #}
 
-                        <td>
+                        {# <td>
 
                             {% for item in devi.command.servicesDetail  %}
                                 
@@ -94,22 +94,22 @@
                             
                                 Pas de donnée
                             {% endfor %}
-                        </td>
+                        </td> #}
 
                         {# PrixMax #}
 
 
-                                <td>
+                                {# <td>
 
                             {% for item in devi.command.servicesDetail  %}
                                 
-                                {{ item.prix}} <br>
+                                {{ item.prix}}€ <br>
                             {% else %}
                                 
                                 Pas de donnée
                             {% endfor %}
 
-                        </td>
+                        </td> #}
                             
                         {# Date de validation #}
 
