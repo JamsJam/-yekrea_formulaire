@@ -4,7 +4,12 @@
 {% block stylesheets %}
     <style>
         .devis__Form--inputServiceDetail{
-            width: 450px;
+            width: 390px !important;
+        }
+
+        #devis_prix_final{
+            padding: 0;
+            border-radius:0;
         }
     </style>
 {% endblock %}
@@ -22,10 +27,12 @@
     <script>
         let input_service_detail = document.querySelector('#devis_serviceDetail');
         let input_service = document.querySelector('#devis_service');
+        let input_materiel = document.querySelector('#devis_materiel');
         
         let el;
         let service_details = document.querySelectorAll('.devis__Form--inputServiceDetail');
         let services = document.querySelectorAll('.devis__Form--inputService');
+        let materiels = document.querySelectorAll('.devis__Form--inputMateriel');
 
 
 
@@ -51,6 +58,28 @@
             // Redeclare la liste des elements dans les variables
             services = document.querySelectorAll('.devis__Form--inputService');
             service_details = document.querySelectorAll('.devis__Form--inputServiceDetail');
+            
+        }
+
+        function newMateriel() {
+            let newMateriel = document.createElement('div');
+            
+
+            //donne a chacun d'entre eu un display flex, en colonne
+            newMateriel.style.display = "flex"
+            newMateriel.style.flexDirection = "column"
+
+
+            // Remplis les deux dive avec l'HTML correspondant aux inputs et labels avec les proprietes et les classes
+            newMateriel.innerHTML = '<label for="service">Nouveau Materiel</label><input type="text" name="service" class="devis__Form--inputMateriel" value="">';
+
+            //Ajoute les elements créés dans les contenaires qui leurs sont dédiés
+            document.querySelector('#devis__Form--materielContainer').append(newMateriel);
+
+
+            // Redeclare la liste des elements dans les variables
+            materiels = document.querySelectorAll('.devis__Form--inputMateriel');
+
             
         }
         // Cette evenement s'active quand l'element(ici le body) s'active, par un click ou l'appuie d'une touche.
@@ -95,6 +124,27 @@
                         text_service = service_value.join(' ,');
                         //la valeurs final est donné a l'input dont la valeur sera donnée a la BDD
                         input_service.value = text_service;
+                        
+                    }); 
+                })
+            })
+
+            //Pour chaque input materiel, 
+            materiels.forEach(element => {
+                //j'ajoute un evenement onInput
+                element.addEventListener('input',()=> {
+                    //initialisation du tableau servant a  stocker les valeurs des input
+                    let materiel_value = []
+                    //initialisation de la variable servant a  les valeurs concaténé
+                    let text_materiel
+                    //Pour chaque input materiel
+                    materiels.forEach(input => {
+                        //je recupere la valeur et je le push dans mon tableau
+                        el  = materiel_value.push(input.value);
+                        // puis je join avec une virgule comme separateur
+                        text_materiel = materiel_value.join(' ,');
+                        //la valeurs final est donné a l'input dont la valeur sera donnée a la BDD
+                        input_materiel.value = text_materiel;
                         
                     }); 
                 })
