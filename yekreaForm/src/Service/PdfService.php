@@ -17,12 +17,13 @@ class PdfService
         $pdfOptions = new Options();
         //exemple : la font de base (option disponible dans la documentation)
         $pdfOptions->set('defaultFont', 'Courrier');
+        $pdfOptions->set('isHtml5ParserEnabled', true);
         $this->domPdf->setPaper('A4', 'landscape');
         // $pdfOptions->set('defaultPapersize', );
         // dd($pdfOptions);
         //associe l'option au pdf
         $this->domPdf->setOptions($pdfOptions);
-
+        
 
     }
 
