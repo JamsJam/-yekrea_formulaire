@@ -28,17 +28,11 @@
             <tbody>
             {% for command in commands %}
                 <tr>
-                {# <pre>
-                    {{ dump(command.servicesdetail.services) }}
-                </pre> #}
-                    {# <td>{{ command.id }}</td> #}
+
                     <td>{{ command.nbCommande }}</td>
                     <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
                     
                     {% if command.servicesdetail %}
-                            {# <pre>
-                                {{ dump(item.services.nom) }}
-                            </pre> #}
                             <td>
                                 {% for item in command.servicesdetail %}
                                         {{item.services.nom}} <br>

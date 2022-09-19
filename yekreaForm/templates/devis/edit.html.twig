@@ -1,13 +1,154 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Edit Devis{% endblock %}
+{% block stylesheets %}
+    <style>
+        .devis__Form--inputServiceDetail{
+            width: 390px !important;
+        }
 
+        #devis_prix_final{
+            padding: 0;
+            border-radius:0;
+        }
+    </style>
+{% endblock %}
 {% block body %}
     <h1 class="title">Modifier le devis</h1>
 
     <a class="btn btn-primary" href="{{ path('app_devis_index') }}">Retour</a>
+    
 
     {{ include('devis/_form.html.twig', {'button_label': 'Update'}) }}
 
     {{ include('devis/_delete_form.html.twig') }}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        let input_service_detail = document.querySelector('#devis_serviceDetail');
+        let input_service = document.querySelector('#devis_service');
+        let input_materiel = document.querySelector('#devis_materiel');
+        
+        let el;
+        let service_details = document.querySelectorAll('.devis__Form--inputServiceDetail');
+        let services = document.querySelectorAll('.devis__Form--inputService');
+        let materiels = document.querySelectorAll('.devis__Form--inputMateriel');
+
+
+
+        function newItems(){
+            //Cree deux element
+            let newCategorie = document.createElement('div');
+            let newService = document.createElement('div');
+
+            //donne a chacun d'entre eu un display flex, en colonne
+            newCategorie.style.display = "flex"
+            newCategorie.style.flexDirection = "column"
+            newService.style.display = "flex"
+            newService.style.flexDirection = "column"
+
+            // Remplis les deux dive avec l'HTML correspondant aux inputs et labels avec les proprietes et les classes
+            newCategorie.innerHTML = '<label for="service">Nouvelle Categorie</label><input type="text" name="service" class="devis__Form--inputService" value="">';
+            newService.innerHTML = '<label for="services_detail">Nouveau Service</label><input type="text" name="services_detail" class="devis__Form--inputServiceDetail" value="">';
+
+            //Ajoute les elements créés dans les contenaires qui leurs sont dédiés
+            document.querySelector('#devis__Form--serviceContainer').append(newCategorie);
+            document.querySelector('#devis__Form--serviceDetailContainer').append(newService);
+
+            // Redeclare la liste des elements dans les variables
+            services = document.querySelectorAll('.devis__Form--inputService');
+            service_details = document.querySelectorAll('.devis__Form--inputServiceDetail');
+            
+        }
+
+        function newMateriel() {
+            let newMateriel = document.createElement('div');
+            
+
+            //donne a chacun d'entre eu un display flex, en colonne
+            newMateriel.style.display = "flex"
+            newMateriel.style.flexDirection = "column"
+
+
+            // Remplis les deux dive avec l'HTML correspondant aux inputs et labels avec les proprietes et les classes
+            newMateriel.innerHTML = '<label for="service">Nouveau Materiel</label><input type="text" name="service" class="devis__Form--inputMateriel" value="">';
+
+            //Ajoute les elements créés dans les contenaires qui leurs sont dédiés
+            document.querySelector('#devis__Form--materielContainer').append(newMateriel);
+
+
+            // Redeclare la liste des elements dans les variables
+            materiels = document.querySelectorAll('.devis__Form--inputMateriel');
+
+            
+        }
+        // Cette evenement s'active quand l'element(ici le body) s'active, par un click ou l'appuie d'une touche.
+        //Son role est de recharger la liste d'element contenu dans Service_details pour que mes nouveau elements soient pris en compte
+        document.body.addEventListener('DOMActivate', () => {
+
+            //Pour chaque input service, 
+            service_details.forEach(element => {
+                
+                //j'ajoute un evenement onInput
+                element.addEventListener('input',()=> {
+                    //initialisation du tableau servant a  stocker les valeurs des input
+                    let service_detail_value = []
+                    //initialisation de la variable servant a  les valeurs concaténé
+                    let text_service_detail
+                    //Pour chaque input service
+                    service_details.forEach(input => {
+                        //je recupere la valeur et je le push dans mon tableau
+                        el  = service_detail_value.push(input.value);
+                        // puis je join avec une virgule comme separateur
+                        text_service_detail = service_detail_value.join(' ,');
+                        //la valeurs final est donné a l'input dont la valeur sera donnée a la BDD
+                        input_service_detail.value = text_service_detail;
+                        
+                    }); 
+                })
+            })
+
+            //Pour chaque input service, 
+            services.forEach(element => {
+                //j'ajoute un evenement onInput
+                element.addEventListener('input',()=> {
+                    //initialisation du tableau servant a  stocker les valeurs des input
+                    let service_value = []
+                    //initialisation de la variable servant a  les valeurs concaténé
+                    let text_service
+                    //Pour chaque input service
+                    services.forEach(input => {
+                        //je recupere la valeur et je le push dans mon tableau
+                        el  = service_value.push(input.value);
+                        // puis je join avec une virgule comme separateur
+                        text_service = service_value.join(' ,');
+                        //la valeurs final est donné a l'input dont la valeur sera donnée a la BDD
+                        input_service.value = text_service;
+                        
+                    }); 
+                })
+            })
+
+            //Pour chaque input materiel, 
+            materiels.forEach(element => {
+                //j'ajoute un evenement onInput
+                element.addEventListener('input',()=> {
+                    //initialisation du tableau servant a  stocker les valeurs des input
+                    let materiel_value = []
+                    //initialisation de la variable servant a  les valeurs concaténé
+                    let text_materiel
+                    //Pour chaque input materiel
+                    materiels.forEach(input => {
+                        //je recupere la valeur et je le push dans mon tableau
+                        el  = materiel_value.push(input.value);
+                        // puis je join avec une virgule comme separateur
+                        text_materiel = materiel_value.join(' ,');
+                        //la valeurs final est donné a l'input dont la valeur sera donnée a la BDD
+                        input_materiel.value = text_materiel;
+                        
+                    }); 
+                })
+            })
+        });
+    </script>
 {% endblock %}

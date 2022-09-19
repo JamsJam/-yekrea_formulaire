@@ -53,7 +53,7 @@ class AdminClientController extends AbstractController
             //Assignation du champ User avec l'objet UserID
             $client->setUser($userID) ;
         }
-         $clientRepository->add($client, true);
+        $clientRepository->add($client, true);
             $clientId = $client->getId();
             
             //Envoie en BDD de client

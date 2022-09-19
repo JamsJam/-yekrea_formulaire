@@ -9,8 +9,8 @@
     
         <h1 class="title" >Devis n° {{ devis.numDevis }}</h1>
         
-        <h5 class="text-right mb-4 mx-4" >Commercial : {{ devis.command.user.nom|upper}} {{ devis.command.user.prenom|capitalize}}</h4>
-        <h5 class="mb-4 mx-4" >Client : {{ devis.command.client.user.nom|upper}} {{ devis.command.client.user.prenom|capitalize}}</h4>
+        <h5 class="text-right mb-4 mx-4" >Commercial : {{ devis.command.user.nom|upper}} {{ devis.command.user.prenom|capitalize}}</h5>
+        <h5 class="mb-4 mx-4" >Client : {{ devis.command.client.user.nom|upper}} {{ devis.command.client.user.prenom|capitalize}}</h5>
 
         <div class="containerPages">
             <table class="table table-bordered my-4 mX-4">
@@ -64,7 +64,7 @@
                                 {# {{ devis.materiel}} #}
                         </td>
                         <td>
-                            {{ devis.prixFinal}}
+                            {{ devis.prixFinal}} €
                         </td>
                     </tr>
                 </tbody>

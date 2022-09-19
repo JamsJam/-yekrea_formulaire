@@ -221,6 +221,85 @@ img[alt="logo yekrea"]{
     color : #FFF;
     font-size:22px; 
 }
+
+/* ******************************************************  LANDING */
+
+
+
+
+#landing__container a,
+#landing__container h1{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#landing__container{
+    background-color: white;
+    min-height: 100vh;
+    max-width: 1010px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 4px 7px #ffffff, 
+                0px 0px 11px 24px #ad1216;
+}
+
+#landing__title{
+    text-align:center;
+    padding-top: 20px;
+}
+
+#landing__container--user,
+#landing__container--admin
+{
+    width: 90vw;
+    min-width: 455px;
+    max-width: 1000px;
+    margin: 50px auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    
+}
+
+#landing__container--user,
+#landing__container--admin
+{
+    width: 90vw;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: 50px auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+}
+
+.landing__pageBloc{
+    background-color: #e5191e;
+    height:200px;
+    width:200px;
+    border-radius: 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: color 0.3s ease, background-color 0.3s ease
+}
+.landing__pageBloc--a{
+    text-decoration:none;
+    color : white;
+
+}
+.landing__pageBloc:hover{
+    background-color: black;
+    
+}
+
+.landing__pageBloc--a:hover{
+    color: white;
+}
+
+
+
+
+
 /* ****************************************************** SERVICES */
 
 
@@ -269,6 +348,23 @@ img[alt="logo yekrea"]{
 
     .slogan{
         font-size: 1.4rem;
+    }
+
+}
+
+@media screen and (max-width:680px) {
+    #landing__container--user,
+    #landing__container--admin
+    {
+        width:100vw;
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+    }
+    
+    .landing__pageBloc{
+        height:150px;
+        width:150px;
+        margin: 10px 0;
     }
 
 }

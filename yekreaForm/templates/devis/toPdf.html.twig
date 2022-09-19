@@ -13,32 +13,84 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Document</title>
             <style>
-            /* style experimentale */
-            body{
-                padding-top:150px
-            }
-                h1{
+                *
+                {
+                    padding: 0;
+                    margin: 0 ;
+                    /* box-sizing: border-box ; */
+                    font-family : Arial, sans-serif;
+                }
+                /* style experimentale */
+                h1
+                {
                     text-align:center;
+                    margin: 20px 0;
                 }
-                li{
-                    list-style: none;
-                    font-weigh: 400;
+
+                h5 
+                {
+                    margin-left: 201pt;
                 }
-                td,tr,thead{
-                    border:1px solid navy;
+                body
+                {
+                    padding-top:150px;
+                    padding: 10px ;
                 }
-                table{
+
+
+                table
+                {
                     width: 900px;
-                    margin: 0 auto;
+                    margin: 50px auto;
+                    
+                }  
+                
+                thead,td
+                {
+                    border: 1px solid slategray;
                 }
+
+                thead{
+                    background-color: antiquewhite;
+                }
+
+                th
+                {
+                    font-size:1.5rem;
+
+                }
+
+                tr 
+                {
+                    font-weight: bold;
+                    
+                }  
+                
+                td{
+                    padding:10px
+                }
+
+                li
+                {
+                    list-style: none;
+                    
+                    font-weight:lighter;
+                    margin-left: 25px
+                }
+
+                p
+                {
+
+                }
+
             </style>
         </head>
         <body>
             
         <h1>Devis n° {{ devis.numDevis }}</h1>
         
-        <h5 >Commercial : {{ devis.command.user.nom|upper}} {{ devis.command.user.prenom|capitalize}}</h4>
-        <h5 >Client : {{ devis.command.client.user.nom|upper}} {{ devis.command.client.user.prenom|capitalize}}</h4>
+        <h5 >Commercial : {{ devis.command.user.nom|upper}} {{ devis.command.user.prenom|capitalize}}</h5>
+        <h5 >Client : {{ devis.command.client.user.nom|upper}} {{ devis.command.client.user.prenom|capitalize}}</h5>
 
         <div >
             <table >
@@ -49,7 +101,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <b>Service(s) : </b>
+                            Service(s) : 
                             <ul>
                                 {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
                                 {% set foo2 = devis.service| split(",") %}
@@ -57,13 +109,13 @@
                                 {% for items in foo2 %}
                                     {# on affiche chaque tableau contenu dans foo2 #}
                                     <li>
-                                        {{items|e}}
+                                            {{items|e}}
                                     </li>
                                 {% endfor %}
                             </ul>
                             <br>
 
-                            <b>Détails : </b>
+                            Détails : 
                             <ul>
                                 {% set foo = devis.serviceDetail| split(",") %}
                                 {% for items in foo %}
@@ -74,7 +126,7 @@
                             </ul>
 
                             <br>
-                            <b>Matériel:</b>
+                            Matériel:
                             {% if devis.materiel %}
                                 <ul>
                                     {% set materiel = devis.materiel| split(",") %}
@@ -86,13 +138,16 @@
                                     
                                 </ul>
                             {% else %}
-                                <p>Non Indiqué</p>
+                                <p>Aucun materiel</p>
                                 
                             {% endif %}
                                 {# {{ devis.materiel}} #}
                         </td>
-                        <td>
-                            {{ devis.prixFinal}}
+                        <td style="
+                            font-size: 1.5rem;
+                            text-align: center;
+                        ">
+                            {{ devis.prixFinal}} €
                         </td>
                     </tr>
                 </tbody>
