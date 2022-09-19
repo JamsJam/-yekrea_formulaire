@@ -3,6 +3,12 @@
 {% block title %}{{parent()}}Accueil{% endblock %}
 
 {% block stylesheets %}
+<style>
+    body{
+    background-color: #e5191e;
+    
+}
+</style>
 {% endblock %}
 
 {% block body %}
@@ -10,24 +16,34 @@
 
 
         <div id="landing__container--admin">
-            <div class="landing__pageBloc">
-                <a href="#">Gestion User</a>
-            </div>
+            <a class="landing__pageBloc--a" href="{{path("app_user_index")}}">
+                <div class="landing__pageBloc">
+                    Gestion User
+                </div>
+            </a>
 
-            <div class="landing__pageBloc">
-                <a href="#">Gestion des Client</a>
-            </div>
+            <a class="landing__pageBloc--a" href="{{path("app_admin_client_index")}}">
+                <div class="landing__pageBloc">
+                    Gestion des Client
+                </div>
+            </a>
         </div>
         <div id="landing__container--user">
-            <div class="landing__pageBloc">
-                <a href="#">Nouveau Client</a>
-            </div>
-            <div class="landing__pageBloc">
-                <a href="#">Nouvelle Commande</a>
-            </div>
-            <div class="landing__pageBloc">
-                <a href="#">Historique</a>
-            </div>
+            <a class="landing__pageBloc--a" href="{{path("app_user_new")}}">
+                <div class="landing__pageBloc">
+                    Nouveau Client 
+                </div>
+            </a>
+            <a class="landing__pageBloc--a" href="{{path("app_command_index")}}">
+                <div class="landing__pageBloc">
+                    Nouvelle Commande
+                </div>
+            </a>
+            <a class="landing__pageBloc--a" href="#">
+                <div class="landing__pageBloc">
+                    Historique
+                </div>  
+            </a>
         </div>
     </div>
 {% endblock %}

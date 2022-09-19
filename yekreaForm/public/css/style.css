@@ -105,10 +105,7 @@ img[alt="logo yekrea"]{
 /* ******************************************************  LANDING */
 
 
-body{
-    background-color: #e5191e;
-    
-}
+
 
 #landing__container a,
 #landing__container h1{
@@ -165,7 +162,7 @@ body{
     justify-content:center;
     transition: color 0.3s ease, background-color 0.3s ease
 }
-.landing__pageBloc a{
+.landing__pageBloc--a{
     text-decoration:none;
     color : white;
 
@@ -175,9 +172,9 @@ body{
     
 }
 
-/* .landing__pageBloc:hover a{
-    color: black;
-} */
+.landing__pageBloc--a:hover{
+    color: white;
+}
 
 
 
