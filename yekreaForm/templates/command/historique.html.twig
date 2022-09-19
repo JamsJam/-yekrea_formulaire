@@ -14,7 +14,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    {# <th>Id</th> #}
+
                     <th>Numéro de commande</th>
                     <th>Date de création </th>
                     <th>Service</th>
@@ -31,12 +31,6 @@
             {% for command in commands %}
                 {% if command.validationDate != null %}
 
-                {% if command.devis %}
-                
-                    <pre>
-                        {{ dump(command.devis.id) }}
-                    </pre>
-                {% endif %}
                 
                     <tr>
 

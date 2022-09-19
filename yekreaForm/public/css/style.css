@@ -301,7 +301,73 @@ img[alt="logo yekrea"]{
     color: white;
 }
 
+/* ****************************************************** DashBoard */
 
+
+#section1__container{
+    background: aquamarine;
+    min-height: 100vh;
+}
+.section1__titleSection{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#section1__gridContainer{
+    border-bottom: #000 solid 1px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+#section1__grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px,200px));
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.section1__lastCommande{
+    min-height: 199px;
+    border: 1px solid navy;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#section1__voirCommande{
+    margin: 20px auto;
+}
+
+.section1__bestVendeur,
+.section1__bestCategorie,
+.section1__bestProduit
+{
+    display:flex;
+    justify-content: space-around;
+    margin: 10px 0
+}
+
+.section1__bestCategorie{
+    margin-right:44px
+}
+
+.section1__bestCategorie--rentable{
+    margin-left: 18px;
+}
+
+.section1__bestProduit--item,
+.section1__bestVender--item
+{
+    font-weight: 700;
+}
+
+.section1__bestProduit--valeur,
+.section1__bestVender--valeur
+{
+    text-align: center;
+}
 
 
 
@@ -356,7 +422,7 @@ img[alt="logo yekrea"]{
     }
 
 }
-
+/* ******************************************************  LANDING */
 @media screen and (max-width:680px) {
     #landing__container--user,
     #landing__container--admin
