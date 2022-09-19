@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminClientController extends AbstractController
 {
     /**
-     * @Route("admin/", name="app_admin_client_index", methods={"GET"})
+     * @Route("/admin/", name="app_admin_client_index", methods={"GET"})
      */
     public function index(ClientRepository $clientRepository): Response
     {
