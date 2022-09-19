@@ -9,7 +9,12 @@
 html{
     height: 100vh;
 }
-
+.containerPages{
+    position: fixed;
+    top: 70px;
+    left: 300px;
+    width: 80%;
+}
 /* titre pour les formulaires */
 
 .title{
