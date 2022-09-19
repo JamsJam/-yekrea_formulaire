@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("admin/devis")
+ * @Route("")
  */
 class DevisController extends AbstractController
 {
     /**
-     * @Route("/", name="app_devis_index", methods={"GET"})
+     * @Route("/admin/devis/", name="app_devis_index", methods={"GET"})
      */
     public function index(DevisRepository $devisRepository): Response
     {
@@ -52,7 +52,7 @@ class DevisController extends AbstractController
     // }
 
     /**
-     * @Route("/{id}", name="app_devis_show", methods={"GET"})
+     * @Route("admin/devis/devis/{id}", name="app_devis_show", methods={"GET"})
      */
     public function show(Devis $devis): Response
     {
@@ -62,7 +62,7 @@ class DevisController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_devis_edit", methods={"GET", "POST"})
+     * @Route("/admin/devis/{id}/edit", name="app_devis_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Devis $devis, DevisRepository $devisRepository): Response
     {
@@ -82,7 +82,7 @@ class DevisController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_devis_delete", methods={"POST"})
+     * @Route("/admin/devis/{id}", name="app_devis_delete", methods={"POST"})
      */
     public function delete(Request $request, Devis $devis, DevisRepository $devisRepository): Response
     {
@@ -99,7 +99,7 @@ class DevisController extends AbstractController
     //Route ayant pour seul et unique but de mettre en forme et de servir de base au PDF. 
     // /!\/!\   Non destiné a etre affiché   /!\/!\
     /**
-     * @Route("/pdf/{id}", name="app_devis_pdf_template", methods={"GET"})
+     * @Route("/admin/devis/pdf/{id}", name="app_devis_pdf_template", methods={"GET"})
      */
     public function htmlToPdf(Devis $devis):Response
     {
@@ -112,7 +112,7 @@ class DevisController extends AbstractController
     //Route permettant de telecharger le PDF
     // /!\/!\   Route a mettre sur les boutons correspondant   /!\/!\
     /**
-     * @Route("/getpdf/{id}", name="app_devis_pdf_render")
+     * @Route("commerce/devis/getpdf/{id}", name="app_devis_pdf_render")
      */
     public function generatePdfDevis(Devis $devis , PdfService $pdf)
     {

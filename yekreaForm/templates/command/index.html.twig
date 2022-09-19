@@ -30,7 +30,7 @@
                 <tr>
 
                     <td>{{ command.nbCommande }}</td>
-                    <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
                     
                     {% if command.servicesdetail %}
                             <td>
@@ -63,7 +63,7 @@
                         <td colspan='3'>NC </td>
                         
                     {% endif %}
-                    <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('Y-m-d') : 'en attente' }}</td>
+                    <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('d/m/Y') : 'en attente' }}</td>
                     </td>
                     <td>
                         <a class="btn btn-warning text-light" href="{{ path('app_command_show', {'id': command.id}) }}">Voir</a>

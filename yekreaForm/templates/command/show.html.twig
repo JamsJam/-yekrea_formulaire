@@ -83,8 +83,11 @@
         </tbody>
         </table>
         <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
+        {% if not command.validationDate %}
             <a class="btn btn-info text-light" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
+        {% endif %}
             {{ include('command/_delete_form.html.twig') }}
+
 
 
             {% if is_granted('ROLE_ADMIN') %}

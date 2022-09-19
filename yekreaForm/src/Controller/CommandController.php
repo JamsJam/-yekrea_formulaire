@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * @Route("/command")
@@ -25,11 +25,40 @@ class CommandController extends AbstractController
      */
     public function index(CommandRepository $commandRepository): Response
     {
-        // $user = $this->$security->getUser();
-        // dd($this->$security->getUser());
+        $userRoles = $this->getUser()->getRoles();
+        // $validation = $command->getValidateDate();
+        if (in_array("ROLE_ADMIN", $userRoles)){
+            // Si Admin, alors j'affiche toutes les commandes
+            $command = $commandRepository->findby(["validationDate" => null],["id" => "DESC"]);
+        }elseif (in_array("ROLE_COMMERCIAL", $userRoles)) {
+            //Si Commercial, j'affiche seulement les commandes le concernant null
+            $userId = $this->getUser()->getId(); // getId() affiche methode undefini mais fonctionne
+            $command = $commandRepository->findby(['user'=> $userId, "validationDate" => null],["id" => "DESC"]);
+        }
         // $command->setUser($user->getId());
         return $this->render('command/index.html.twig', [
-            'commands' => $commandRepository->findAll(),
+            'commands' => $command,
+        ]);
+    }
+    
+    /**
+     * @Route("/historique", name="app_command_historique", methods={"GET"})
+     */
+    public function historique(CommandRepository $commandRepository): Response
+    {
+        $userRoles = $this->getUser()->getRoles();
+        // $validation = $command->getValidateDate();
+        if (in_array("ROLE_ADMIN", $userRoles)){
+            // Si Admin, alors j'affiche toutes les commandes
+            $command = $commandRepository->findby([],["validationDate" => "DESC"]);
+        }elseif (in_array("ROLE_COMMERCIAL", $userRoles)) {
+            //Si Commercial, j'affiche seulement les commandes le concernant null
+            $userId = $this->getUser()->getId(); // getId() affiche methode undefini mais fonctionne
+            $command = $commandRepository->findby(['user'=> $userId],["validationDate" => "DESC"]);
+        }
+        // $command->setUser($user->getId());
+        return $this->render('command/historique.html.twig', [
+            'commands' => $command,
         ]);
     }
     
@@ -68,7 +97,7 @@ class CommandController extends AbstractController
         return $this->renderForm('command/new.html.twig', [
             'command' => $command,
             'form' => $form,
-            // 'form2' => $form2
+            
         ]);
     }
 

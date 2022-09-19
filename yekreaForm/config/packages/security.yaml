@@ -27,7 +27,9 @@ security:
             # login_throttling:
             # Permet 3 tentative de connection toutes les 2mn
                 # max_attempts: 5          
-                # interval: '2 minutes' 
+                # interval: '2 minutes'
+                default_target_path: app_landing
+
             logout:
                 path: app_logout
             # activate different ways to authenticate
