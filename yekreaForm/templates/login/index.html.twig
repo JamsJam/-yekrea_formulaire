@@ -49,6 +49,8 @@
                         <input class="form-control mb-4 " type="password" id="password" name="_password" style="box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2); border:none;" />
 
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        {# If you want to control the URL the user is redirected to on success
+                        <input type="hidden" name="app_landing" value="/accueil"/>  #}
                         
                         {# INPUT POUR VOIR LE MOT DE PASSE #}
                         {# <input id="checkbox" class="bold mt-3" type="checkbox" onclick="myFunction()">
@@ -57,8 +59,6 @@
                         <button class="btn bouton" data-toggle="button" aria-pressed="false" autocomplete="off" type="submit">Valider</button>
                     </div>
 
-                    {# If you want to control the URL the user is redirected to on success
-                    <input type="hidden" name="_target_path" value="/account"/> #}
 
 
                     {# Message d'erreur en cas de mdp incorrect #}
