@@ -23,85 +23,67 @@
     
         {# La barre de navigation n'est visible que lorsqu'un utilisateur est connecté #}
         {% if is_granted("ROLE_USER") %}
-            
-                <nav class="navbar navbar-expand-lg row bg-light">
-                    <div class="container-fluid ">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                            <ul class="navbar-nav">
-                                {# BOUTON TABLEAU DE BORD#}
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#"><button type="button" class="btn btn-light" data-bs-toggle="button" autocomplete="off">Tableau de bord</button></a>
-                                </li>
-
-                                {# DROPDOWN pour L'onglet COMMANDE #}
-                                <li class="nav-item dropdown mt-2">
-                                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" autocomplete="off">
-                                        Nouvelle commande
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
-
-                                            <li><a class="dropdown-item" href="{{ path('app_user_new')}}">Nouveau client</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="">Clients</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                    
-                                            <li><a class="dropdown-item" href="">Historique des commandes</a></li>
-                                        
-                                        </ul>
-                                </li>
-                                {# DROPDOWN pour L'onglet DEVIS #}
-                                <li class="nav-item dropdown mt-2">
-                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" autocomplete="off">
-                                    Devis
-                                    </button>
-                                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
-
-                                            <li><a class="dropdown-item" href="">En cours</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="">Valider</a></li>                                                                 
-                                        </ul>
-                                </li>
-                            
-                            </ul>
+        
+                <nav class="sidebar">
+                    <header>
+                        {# Logo Yekrea #}
+                        <div class="imgNav">
+                            <img src="/images/logoYekreaSmall.jpg" alt="Logo yekrea" class="logoYekreaNav" style="width:150px;">
                         </div>
-                        <div></div>
-                        
-                        {# DROPDOWN pour L'onglet MON COMPTE #}
-                        <div class="dropdown dropstart">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                            Mon compte
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
-
-
-                            {# Lien accessible uniquement pour l'ADMIN #}
-                            {% if is_granted('ROLE_ADMIN')%}
-                                <li><a class="dropdown-item" href="{{ path('app_services_index')}}">Gestion des services</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ path('app_user_index') }}">Gestion des utilisateurs</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                            {% endif %}
-
-                                <li><a class="dropdown-item" href="">Gérer mes clients</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ path('app_logout')}}">Déconnexion</a></li>
+                    </header>
+                    
+                    {# lien pour les pages #}
+                    <div class="menu-bar">
+                        <li class="dashbord">
+                            <a href="">Tableau de bord</a>
+                        </li>
+                        <div class="menu">
+                            <ul>
+                                <li class="nav-link">
+                                    <a href="">
+                                    
+                                    Commande
+                                    </a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="">Devis</a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="">Statistique</a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="">
+                                    Mon compte
+                                    </a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="">User</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                </nav>
+                </nav>    
 
+                <div style="position:fixed; top: 0; right:0; padding: 10px; text-align:right; background-color:black;
+                color:white;
+                ">
                 
-            </header>
-            
+                    <p>
+                    bonjour 
+                    <span></span>
+                    <a class="dropdown-item" href="{{ path('app_logout')}}">D</a>
+                    </p> 
+                </div>
+                
+                    
 
         {% endif %}
 
     {% endblock %}
     {% block body %}
         
+            <div class="containerPages" style="position: fixed;">
+            </div>
     {% endblock %}
 
     <!-- JavaScript Bundle with Popper -->
