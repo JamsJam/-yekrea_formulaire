@@ -1,6 +1,5 @@
 {{ form_start(form) }}
 
-    <div>
         {% if  not app.request.query.get("id")  %}
         
             {{form_row(form.user)}}
@@ -13,8 +12,8 @@
 
         {{form_row(form.Reseaux)}}
         
-        <button class="btn bouton">{{ button_label|default('Valider') }}</button>
-    </div>
+        <button class="btn bouton mt-4 mb-4">{{ button_label|default('Valider') }}</button>
+    
 
     
 {{ form_end(form) }}

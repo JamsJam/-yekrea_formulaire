@@ -3,63 +3,67 @@
 {% block title %}Client{% endblock %}
 
 {% block body %}
-    <h1 class="title">Client</h1>
+    
+    <div class="containerPages">
+    
+        <h1 class="title">Client</h1>
 
-    <a class="btn btn-primary" href="{{ path('app_admin_client_index') }}">Retour</a>
+        <a class="btn btn-primary" href="{{ path('app_admin_client_index') }}">Retour</a>
 
 
-    <div class="containerCard" style=" justiy-content:space-around !important;">
+        <div class="containerCard" style=" justiy-content:space-around !important;">
 
-        <div class="card col-md-2 shadow p-3 mb-2 bg-light " style="justify-content:space-between; width: 30rem;">
-            <div class="card-body" >
-                <p class="card-text">
-                    Nom : 
-                        {% if client.user %}
-                            {{client.user.nom}}
-                        {% else %}
-                            NR
-                        {% endif %}
-                </p>
-                <p class="card-text">
-                    Prénom : 
-                        {% if client.user %}
-                            {{client.user.prenom}}
-                        {% else %}
-                            NR
-                        {% endif %}
-                </p>
-                <p class="card-text">
-                    Email :
-                        {% if client.user %}
-                            {{client.user.email}}
-                        {% else %}
-                            NR
-                        {% endif %}
-                </p>
-                
-                <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
+            <div class="card col-md-2 shadow p-3 mb-2 bg-light " style="justify-content:space-between; width: 30rem;">
+                <div class="card-body" >
+                    <p class="card-text">
+                        Nom : 
+                            {% if client.user %}
+                                {{client.user.nom}}
+                            {% else %}
+                                NR
+                            {% endif %}
+                    </p>
+                    <p class="card-text">
+                        Prénom : 
+                            {% if client.user %}
+                                {{client.user.prenom}}
+                            {% else %}
+                                NR
+                            {% endif %}
+                    </p>
+                    <p class="card-text">
+                        Email :
+                            {% if client.user %}
+                                {{client.user.email}}
+                            {% else %}
+                                NR
+                            {% endif %}
+                    </p>
                     
-                    <a class="btn btn-success" href="{{ path('app_user_edit', {'id': client.user.id}) }}">Modifier</a>
+                    <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
+                        
+                        <a class="btn btn-success" href="{{ path('app_user_edit', {'id': client.user.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow p-3 mb-2 bg-light " style=" width: 30rem;">
+                <div class="card-body" >
+                    <p class="card-text">Société : {{ client.societe }}</p>
+                    <p class="card-text">Téléphone : {{ client.telephone }}</p>
+                    <p class="card-text">Réseaux: {{ client.Reseaux }}</p>
+                    
+                    <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
+
+                        {{ include('admin_client/_delete_form.html.twig') }}
+
+                        <a class="btn btn-success" href="{{ path('app_admin_client_edit', {'id': client.id}) }}">Modifier</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="card shadow p-3 mb-2 bg-light " style=" width: 30rem;">
-            <div class="card-body" >
-                <p class="card-text">Société : {{ client.societe }}</p>
-                <p class="card-text">Téléphone : {{ client.telephone }}</p>
-                <p class="card-text">Réseaux: {{ client.Reseaux }}</p>
-                
-                <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
-
-                    {{ include('admin_client/_delete_form.html.twig') }}
-
-                    <a class="btn btn-success" href="{{ path('app_admin_client_edit', {'id': client.id}) }}">Modifier</a>
-                </div>
-            </div>
-        </div>
     </div>
-
 
     
 {% endblock %}

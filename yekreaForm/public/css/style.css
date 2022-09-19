@@ -9,18 +9,30 @@
 html{
     height: 100vh;
 }
+
+/* div pour toutes les pages */
 .containerPages{
     position: fixed;
     top: 70px;
     left: 300px;
     width: 80%;
+    
+}
+
+.containerForm{
+    display: flex;
+    justify-content: center;
+    
+}
+.formulaire{
+    width: 500px;
 }
 /* titre pour les formulaires */
 
 .title{
     text-align: center;
     font-weight: bold;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 ul li{
@@ -158,15 +170,17 @@ img[alt="logo yekrea"]{
     
     
 }
+/* lien au survol de la souris */
 .menu li a:hover{
     background-color: #fff;
     color: #000;
 }
+
+/* lien au clique de la souris */
 .menu li a:active{
     background-color: #000;
     color: #FFF;
 }
-
 
 /* lien tableau de bord  */
 

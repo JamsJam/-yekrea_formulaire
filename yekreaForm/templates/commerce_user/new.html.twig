@@ -13,9 +13,13 @@
             <div class="progress-bar mb-4" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
 
-        {# <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_user_index') }}">Retour</a> #}
+        <div class="containerForm">
+            <div class="formulaire">
+                {# <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_user_index') }}">Retour</a> #}
 
-        {{ include('commerce_user/_form.html.twig') }}
+                {{ include('commerce_user/_form.html.twig') }}
+            </div>
+        </div>
 
     </div>
 {% endblock %}
