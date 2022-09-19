@@ -13,7 +13,7 @@ html{
     position: fixed;
     top: 70px;
     left: 300px;
-    width: 80%;
+    width: 70%;
 }
 /* titre pour les formulaires */
 
@@ -127,13 +127,17 @@ img[alt="logo yekrea"]{
     position: relative;
 }
 
-.sidebar li{
+
+/* lien de la barre de navigation */
+.link{
 
     display: flex;
     align-items: center;
 
     list-style-type: none;
+
 }
+
 /* liens de la barre de navigation */
 .menu{
     height: 80%;
@@ -143,8 +147,7 @@ img[alt="logo yekrea"]{
 }
 .menu li a {
     text-decoration: none;
-
-    margin: 20px 0 ;
+    
     padding: 5px;
     width: 140px;
     
@@ -155,20 +158,18 @@ img[alt="logo yekrea"]{
     font-weight: bold;
     font-size: 18px;
 
-    
-    
 }
-.menu li a:hover{
+.link:hover{
     background-color: #fff;
     color: #000;
 }
-.menu li a:active{
+.link:active{
     background-color: #000;
     color: #FFF;
 }
 
 
-/* lien tableau de bord  */
+/* lien TABLEAU DE BORD */
 
 .dashbord {
     margin: 0;
@@ -198,34 +199,14 @@ img[alt="logo yekrea"]{
     font-weight: bold;
 
 }
+
 /* logo Yekrea */
 .imgNav{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-/* Chevron pour réduire la nav */
 
-.sidebar .toggle {
-    height : 25px ;
-    width : 25px ;
-
-    position : absolute ;
-    top : 50%;
-    right : -25px ;
-
-    transform : translateY ( -50% ) ;
-
-    background-color: #000;
-
-    display : flex ;
-    align-items : center ;
-    justify-content : center ;
-
-    border-radius: 50% ;
-    color : #FFF;
-    font-size:22px; 
-}
 
 /* ******************************************************  LANDING */
 
@@ -386,7 +367,7 @@ img[alt="logo yekrea"]{
 
 @media screen and (max-width: 800px){
 
-    /*****************    LOGIN */
+    /********************************************************************    LOGIN */
 
     .containerLogIn{
         display: flex;  
@@ -420,6 +401,8 @@ img[alt="logo yekrea"]{
     .slogan{
         font-size: 1.4rem;
     }
+
+    /********************************************************************    NAV */
 
 }
 /* ******************************************************  LANDING */

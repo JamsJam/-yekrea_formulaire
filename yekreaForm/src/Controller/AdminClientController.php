@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminClientController extends AbstractController
 {
     /**
-     * @Route("admin/", name="app_admin_client_index", methods={"GET"})
+     * @Route("/admin/", name="app_admin_client_index", methods={"GET"})
      */
     public function index(ClientRepository $clientRepository): Response
     {
@@ -42,7 +42,7 @@ class AdminClientController extends AbstractController
         
         
         
-        
+    
         
         if ($form->isSubmitted() && $form->isValid()) {
             // si il y a une variable GET ['id']

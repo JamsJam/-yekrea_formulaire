@@ -3,11 +3,19 @@
 {% block title %}Modifier la commande{% endblock %}
 
 {% block body %}
-    <h1 class="title">Modifier la commande</h1>
 
-    <a class="btn btn-primary" href="{{ path('app_command_index') }}">Retour</a>
+    <div class="containerPages">
+        <h1 class="title">Modifier la commande</h1>
 
-    {{ include('command/_form.html.twig', {'button_label': 'Modifier'}) }}
+        <a class="btn btn-primary" href="{{ path('app_command_index') }}">Retour</a>
 
-    {{ include('command/_delete_form.html.twig') }}
+        <div class="containerForm">
+            <div class="formulaire">
+                {{ include('command/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+                {{ include('command/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    
 {% endblock %}
