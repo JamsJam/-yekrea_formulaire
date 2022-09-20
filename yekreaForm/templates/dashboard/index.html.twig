@@ -11,70 +11,83 @@
     <section id="dashboard__section1">
         <div id="section1__container">
             <h2 class="section1__titleSection">Vue d'ensemble</h2>
-            <div>
+            
 
                 <div id="section1__gridContainer">
                     <div id="section1__grid">
 
+                    {% for commande in lastCommandes %}
+                        
                     
                         <div class="section1__lastCommande">
                             <div class="section1__lastCommande--identiteContainer">
-                                <h3>Commande n°</h3>
-                                <div class="section1__lastCommande--client">Nom du client /Societe</div>
-                                <div class="section1__lastCommande--vendeur">Nom du vender</div>
+                                <h3 class="section1__lastCommande--cardTitle">Commande n°{{commande.nbCommande}}</h3>
+                                <div class="section1__lastCommande--client">{{commande.client.user.nom}} de {{commande.client.societe|capitalize}}</div>
+                                <div class="section1__lastCommande--vendeur">{{commande.user.nom}}</div>
                             </div>
-                            <div class="section1__lastCommande--prix">PRIX Final</div>
-                            <div class="section1__lastCommande--validation">etat</div>
-                            <button>button</button>
-                        </div>
+                            <div class="section1__lastCommande--prix">
+                            {% if commande.devis %}
+                                {% if commande.devis.prixFinal %}
+                                    Prix final : {{commande.devis.prixFinal}}€
+                            {% else %}
+                                
+                                {% if commande.servicesDetail %}
+                                    {# Variable qui stoquera les prix max et min #}
+                                    {% set prixMin = 0 %}
+                                    {% set prixMax = 0 %}
+                                    {# Boucle qui va additionner les prix min et max des differents services #}
+                                    {% for service in commande.servicesDetail %}
+                                    
+                                        {% set prixMin = prixMin + service.prixMin|default(0) %}
+                                        {% set prixMax = prixMax + service.prix|default(0) %}
+                                    {% endfor %}
+                                {% endif %}
+                                A partir de {{prixMin}}€
+                                {# à {{prixMax}} #}
+                                {% endif %}
 
-                    
-                        <div class="section1__lastCommande">
-                            <div class="section1__lastCommande--identiteContainer">
-                                <h3>Commande n°</h3>
-                                <div class="section1__lastCommande--client">Nom du client /Societe</div>
-                                <div class="section1__lastCommande--vendeur">Nom du vender</div>
+                                
+                            {% endif %}
                             </div>
-                            <div class="section1__lastCommande--prix">PRIX Final</div>
-                            <div class="section1__lastCommande--validation">etat</div>
-                            <button>button</button>
-                        </div>
+                            <div class="section1__lastCommande--validation">
+                            {# Si la commande a été passé mais n'as pas encore été validé #}
+                                {% if not commande.validationDate %}
+                                    
+                                        Non validé
+                                    </div>
+                                    <a class="section1__lastCommande--cardBtn">Valider la commande</a>
+                                {% else %}
 
-                    
-                        <div class="section1__lastCommande">
-                            <div class="section1__lastCommande--identiteContainer">
-                                <h3>Commande n°</h3>
-                                <div class="section1__lastCommande--client">Nom du client /Societe</div>
-                                <div class="section1__lastCommande--vendeur">Nom du vender</div>
-                            </div>
-                            <div class="section1__lastCommande--prix">PRIX Final</div>
-                            <div class="section1__lastCommande--validation">etat</div>
-                            <button>button</button>
-                        </div>
+                                {% if not commande.devis.prixFinal %}
+                                    {# Si la commande a été validé mais le prix final n'as pas encore été definis #}
+                                        En attente de prixFinal
+                                    </div>
+                                    <a class="section1__lastCommande--cardBtn">Definir le Prix Final</a>
+                                {% else %}
 
-                    
-                        <div class="section1__lastCommande">
-                            <div class="section1__lastCommande--identiteContainer">
-                                <h3>Commande n°</h3>
-                                <div class="section1__lastCommande--client">Nom du client /Societe</div>
-                                <div class="section1__lastCommande--vendeur">Nom du vender</div>
+                                {# Si le prix final a été definis mais que le client n'as pas encore validé #}
+                                        En attente de validation client
+                                    </div>
+                                    <div style="display:flex;flex-direction:column">
+                                        <a class="section1__lastCommande--cardBtn">
+                                        Validation client
+                                        </a>
+                                        <a class="section1__lastCommande--cardBtn">
+                                        
+                                        Voir le devis
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                        
+                                        
+                                {% endif %}
+                                {# {% else %} #}
+                                    
+                                {# {% endif %}
                             </div>
-                            <div class="section1__lastCommande--prix">PRIX Final</div>
-                            <div class="section1__lastCommande--validation">etat</div>
-                            <button>button</button>
+                            <button>button</button> #}
                         </div>
-
-                    
-                        <div class="section1__lastCommande">
-                            <div class="section1__lastCommande--identiteContainer">
-                                <h3>Commande n°</h3>
-                                <div class="section1__lastCommande--client">Nom du client /Societe</div>
-                                <div class="section1__lastCommande--vendeur">Nom du vender</div>
-                            </div>
-                            <div class="section1__lastCommande--prix">PRIX Final</div>
-                            <div class="section1__lastCommande--validation">etat</div>
-                            <button>button</button>
-                        </div>
+                    {% endfor %}
 
                         
                     </div>
@@ -92,7 +105,7 @@
                         </div>
                         <div>
                             <div class="section1__bestVender--item">Commerçant le plus performant</div>
-                            <div class="section1__bestVender--valeur">Valeur</div>
+                            <div class="section1__bestVender--valeur">{{premierVender.0}} avec  {{premierVender.2}}  ventent</div>
                             <a href="" class="section1__voirPlus">Voir plus</a>
                         </div>
                     </div>
@@ -114,7 +127,7 @@
 
 
 
-            </div>
+            
         </div>
     </section>
 
