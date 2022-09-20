@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=d30ice-width,200itial-scal201.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Yekrea-form | {% endblock %}</title>
     {# link bootstrapp #}
     <!-- bootstrap CSS only -->
@@ -18,89 +18,77 @@
 <body>
 
     {# _________ BARRE DE NAVIGATION #}
-
+    <div class="pages--container">
+    
     {% block nav %}
     
         {# La barre de navigation n'est visible que lorsqu'un utilisateur est connecté #}
         {% if is_granted("ROLE_USER") %}
-        
+            <div class="nav--container">
+            
                 <nav class="sidebar">
                     <header>
                         {# Logo Yekrea #}
                         <div class="imgNav">
-                            <img src="/images/logoYekreaSmall.jpg" alt="Logo yekrea" class="logoYekreaNav" style="width:130px;">
+                            <img src="/images/logoYekreaSmall.jpg" alt="Logo yekrea" class="logoYekreaNav" style="width:150px;">
                         </div>
                     </header>
                     
                     {# lien pour les pages #}
-                    <div class="menu-bar">
-                        <li class="dashbord">
-                            <a href="">Tableau de bord</a>
-                        </li>
-                        <div class="menu">
-                            <ul>
-
-                                {# COMMANDE #}
-                                <li class="nav-link">
-                                    <a class="link disabled" href="{{ path('app_command_index') }}">
-                                    Commande
-                                    </a>
-                                </li>
-
-                                {# DEVIS #}
-                                
-                                <li class="nav-link active">
-                                    
-                                    <a class="link disabled" href="{{ path('app_devis_index') }}">Devis</a>
-
-                                </li>
-
-                                {# STATISTIQUE #}
-
-                                <li class="nav-link">
-
-                                    <a  class="link disabled" href="">Statistique</a>
-                                </li>
-
-                                {# MON COMPTE #}
-                                <li class="nav-link">
-                                    <a  class="link disabled" href="">Mon compte</a>
-                                </li>
-
-                                {# USER #}
-                                <li class="nav-link">
-                                    <a  class="link disabled" href="">User</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="menu">
+                        <ul>
+                            <li class="dashbord">
+                                <a href="">Tableau de bord</a>
+                            </li>
+                            <li class="nav-link">
+                                <a class="link" href="{{ path('app_command_index') }}">
+                                Commande
+                                </a>
+                            </li>
+                            <li class="nav-link ">
+                                <a class="link" href="{{ path('app_devis_index') }}">Devis</a>
+                            </li>
+                            <li class="nav-link ">
+                                <a href="">Statistique</a>
+                            </li>
+                            <li class="nav-link">
+                                <a class="link" href="">
+                                Mon compte
+                                </a>
+                            </li>
+                            <li class="nav-link ">
+                                <a class="link" href="">User</a>
+                            </li>
+                        </ul>
                     </div>
-                </nav>    
-
-                <div style="position:fixed; top: 0; right:20px; padding: 10px;">
-                    <p>
-                    bonjour
+                    
+                </nav>   
+            </div>
+            <div class="welcome--container" >
+                <p>
+                bonjour
                     <span style="color:#E5191E; font-weight:bold;">Chris</span>
                     <a style="text-decoration:none; color:#000;" href="{{ path('app_logout')}}">
                         {# Icon bootstrap déconnexion #}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
                             <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
                         </svg>
                     </a>
-                    </p> 
-                </div>
-                
+                </p> 
+            </div>
                     
 
         {% endif %}
 
     {% endblock %}
-    {% block body %}
-        
-            <div class="containerPages">
-            </div>
-    {% endblock %}
+    <div class="containerPages">
+        {% block body %}
 
+                    
+        {% endblock %}
+    </div>
+    </div>
     <!-- JavaScript Bundle with Popper -->
     
     <script type="text/javascript" src="{{ asset("js/bootstrap.min.js") }}"></script>
