@@ -17,7 +17,7 @@ class DashboardController extends AbstractController
      */
     public function index(CommandRepository $commandRepository, UserRepository $userRepository): Response
     {
-        // $commercial = $userRepository->findBy(["roles"=> "ROLE_USER"]);
+        // ***********************************Recuperation du premier vendeur
         $users = $userRepository->findAll();
         $resultat = [];
         foreach ($users as $user) {
@@ -29,14 +29,31 @@ class DashboardController extends AbstractController
                 array_push($resultat, $table);
             }
         }
-        $columns = array_column($resultat, 2);
-        array_multisort($columns, SORT_DESC, $resultat);
-        // dd($resultat[0]);
-        return $this->render('dashboard/index.html.twig', [
-            'commandes' =>  $commandRepository->findall(),
-            'lastCommandes' => $lastCommand = $commandRepository->findby([],['id'=> 'DESC'], 4),
-            'premierVender' => $resultat[0],
+        $columnVente = array_column($resultat, 2);
+        array_multisort($columnVente, SORT_DESC, $resultat);
 
+        // ****************************************recuperation du vendeur le plus rentable
+        $commandes =  $commandRepository->findall();
+        $prixCommande = [];
+        foreach ($commandes as $commande) {
+            if($commande->getDevis() !== null){
+
+                if($commande->getDevis()->getPrixFinal() !== null ){
+                    $prixFinal = $commande->getDevis()->getPrixFinal();
+                    $table2 = [$commande->getUser()->getNom().' '.$commande->getUser()->getPrenom(), $prixFinal];
+                    array_push($prixCommande,$table2);
+                }  
+            }
+        }
+        dd($prixCommande);
+
+
+
+
+        return $this->render('dashboard/index.html.twig', [
+            
+            'lastCommandes' =>  $commandRepository->findby([],['id'=> 'DESC'], 4),
+            'premierVender' => $resultat[0],
         ]);
     }
 }
