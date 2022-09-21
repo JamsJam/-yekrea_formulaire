@@ -10,27 +10,14 @@ html{
     height: 100vh;
 }
 
-/* div => block body */
-.base__displayContainer{
-    display: flex;
-    flex-direction: row;
-}
 .containerPages{
-<<<<<<< HEAD
+
     position: absolute;
     width: 100vh;
     top: 70px;
     left: 300px;
     width: 70%;
-=======
-    /* position: fixed; */
-    /* top: 70px; */
-    /* left: 300px; */
-    /* width: 70%; */
-    width: 70vw;
-    margin: 0 auto;
-    padding-top: 50px;
->>>>>>> develop
+
 }
 
 .pages{
@@ -141,12 +128,8 @@ img[alt="logo yekrea"]{
 
 .sidebar{
 
-<<<<<<< HEAD
     position:fixed;
-=======
 
-    position:sticky;
->>>>>>> develop
     top:0;
     height: 100vh;
     width: 250px;

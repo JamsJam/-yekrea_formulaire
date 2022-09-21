@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %} #}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}{{parent()}} {% endblock %}
 
-{{% block body %}}
+{% block body %} #}
 
     {# Page de connexion #}
     <!DOCTYPE html>
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
     {# la fonction twig (asset()) perlmet d'acceter a la racine du dossier "public"
     il accepte en argument le chemin vers le fichier desiré a partir le dossier public#}
-        <title>Yekrea| Login</title>
+        <title>Yekrea | Login</title>
     </head>
     <body>
         
@@ -76,8 +76,6 @@
                         <button class="btn bouton" data-toggle="button" aria-pressed="false" autocomplete="off" type="submit">Valider</button>
                     </div>
 
-
-
                     {# Message d'erreur en cas de mdp incorrect #}
                     {% if error %}
                         <div class="alert alert-danger text-center">
@@ -96,9 +94,9 @@
     </body>
     </html>
 
-{% endblock %}
+{# {% endblock %} #}
 
-{% block javascripts %}
+{# {% block javascripts %}
 
     FONCTION JS POUR L'AFFICHAGE DU MOT DE PASSE
     <script>
@@ -112,5 +110,5 @@
     //     }
     </script>
     
-{% endblock %} 
+{% endblock %} #}
 

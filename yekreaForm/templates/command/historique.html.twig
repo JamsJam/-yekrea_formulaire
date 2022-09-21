@@ -8,89 +8,89 @@
         <div class="pages">
             <h1 class="title">Commandes</h1>
 
-        <a class="btn btn-success mb-4" href="{{ path('app_command_new') }}">
-            Créer une nouvelle commande
-        </a>
+            <a class="btn btn-success mb-4" href="{{ path('app_command_new') }}">
+                Créer une nouvelle commande
+            </a>
 
-        <table class="table">
-            <thead>
-                <tr>
-
-                    <th>Numéro de commande</th>
-                    <th>Date de création </th>
-                    <th>Service</th>
-                    <th>Détail</th>
-                    <th>Prix</th>
-                    <th>Date de validation</th>
-                    <th>Devis</th>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <th>Details</th>
-                    {% endif %}
-                </tr>
-            </thead>
-            <tbody>
-            {% for command in commands %}
-                {% if command.validationDate != null %}
-
-                
+            <table class="table">
+                <thead>
                     <tr>
 
-                        <td>{{ command.nbCommande }}</td>
-                        <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
-                        
-                        {% if command.servicesdetail %}
-                                <td>
-                                    {% for item in command.servicesdetail %}
-                                            {{item.services.nom}} <br>
-                                    {% endfor %}    
-                                </td>
-
-                                <td>
-                                    {% for item in command.servicesdetail %}
-                                            {{item.nom}} <br>
-                                    {% endfor %} 
-                                </td>
-
-                                <td>
-                                    {% for item in command.servicesdetail %}
-                                            
-                                        {% if item.prix != 0 %}
-                                    
-                                            entre {{ item.prixMin }} et {{ item.prix }} <br>
-                                        
-                                        {% else %}
-                                            
-                                            A partir de {{ item.prixMin }} <br>
-                                        {% endif %}
-                                    {% endfor %} 
-                                </td>
-                            
-                        {% else %}
-                            <td colspan='3'>NC </td>
-                            
-                        {% endif %}
-                        <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('d/m/Y') : 'en attente' }}</td>
-                        </td>
-                        <td>
-                            {% if command.devis %}
-                                <a class="btn btn-warning text-light" href="{{ path('app_devis_pdf_render', {'id':  command.devis.id}) }}">Voir le devis</a>
-                        </td>
+                        <th>Numéro de commande</th>
+                        <th>Date de création </th>
+                        <th>Service</th>
+                        <th>Détail</th>
+                        <th>Prix</th>
+                        <th>Date de validation</th>
+                        <th>Devis</th>
                         {% if is_granted('ROLE_ADMIN') %}
-                            
-                            <td>
-                                <a class="btn btn-primary" href="{{ path('app_devis_show', {'id': command.devis.id}) }}">Voir plus</a>
-                            </td>
+                        <th>Details</th>
                         {% endif %}
-                            {% endif %}
                     </tr>
-                {% endif %}
-            {% else %}
-                <tr>
-                    <td colspan="6">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for command in commands %}
+                        {% if command.validationDate != null %}
+
+                        
+                            <tr>
+
+                                <td>{{ command.nbCommande }}</td>
+                                <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
+                                
+                                {% if command.servicesdetail %}
+                                        <td>
+                                            {% for item in command.servicesdetail %}
+                                                    {{item.services.nom}} <br>
+                                            {% endfor %}    
+                                        </td>
+
+                                        <td>
+                                            {% for item in command.servicesdetail %}
+                                                    {{item.nom}} <br>
+                                            {% endfor %} 
+                                        </td>
+
+                                        <td>
+                                            {% for item in command.servicesdetail %}
+                                                    
+                                                {% if item.prix != 0 %}
+                                            
+                                                    entre {{ item.prixMin }} et {{ item.prix }} <br>
+                                                
+                                                {% else %}
+                                                    
+                                                    A partir de {{ item.prixMin }} <br>
+                                                {% endif %}
+                                            {% endfor %} 
+                                        </td>
+                                    
+                                {% else %}
+                                    <td colspan='3'>NC </td>
+                                    
+                                {% endif %}
+                                <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('d/m/Y') : 'en attente' }}</td>
+                                </td>
+                                <td>
+                                    {% if command.devis %}
+                                        <a class="btn btn-warning text-light" href="{{ path('app_devis_pdf_render', {'id':  command.devis.id}) }}">Voir le devis</a>
+                                </td>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ path('app_devis_show', {'id': command.devis.id}) }}">Voir plus</a>
+                                    </td>
+                                {% endif %}
+                                    {% endif %}
+                            </tr>
+                        {% endif %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 
