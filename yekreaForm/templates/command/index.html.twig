@@ -5,80 +5,84 @@
 {% block body %}
 
     <div class="containerPages">
-        <h1 class="title">Commandes</h1>
+    
+        <div class="pages">
 
-        <a class="btn btn-success mb-4" href="{{ path('app_command_new') }}">
-            Créer une nouvelle commande
-        </a>
+            <h1 class="title">Commandes</h1>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    {# <th>Id</th> #}
-                    <th>Numéro de commande</th>
-                    <th>Date de création </th>
-                    <th>Service</th>
-                    <th>Détail</th>
-                    <th>Prix</th>
-                    <th>Date de validation</th>
-                    <th>Voir</th>
-                    <th>Modifier</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for command in commands %}
-                <tr>
+            <a class="btn btn-success mb-4" href="{{ path('app_command_new') }}">
+                Créer une nouvelle commande
+            </a>
 
-                    <td>{{ command.nbCommande }}</td>
-                    <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
-                    
-                    {% if command.servicesdetail %}
-                            <td>
-                                {% for item in command.servicesdetail %}
-                                        {{item.services.nom}} <br>
-                                {% endfor %}    
-                            </td>
+            <table class="table mb-5">
+                <thead>
+                    <tr>
+                        {# <th>Id</th> #}
+                        <th>Numéro de commande</th>
+                        <th>Date de création </th>
+                        <th>Service</th>
+                        <th>Détail</th>
+                        <th>Prix</th>
+                        <th>Date de validation</th>
+                        <th>Voir</th>
+                        <th>Modifier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for command in commands %}
+                    <tr>
 
-                            <td>
-                                {% for item in command.servicesdetail %}
-                                        {{item.nom}} <br>
-                                {% endfor %} 
-                            </td>
+                        <td>{{ command.nbCommande }}</td>
+                        <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
+                        
+                        {% if command.servicesdetail %}
+                                <td>
+                                    {% for item in command.servicesdetail %}
+                                            {{item.services.nom}} <br>
+                                    {% endfor %}    
+                                </td>
 
-                            <td>
-                                {% for item in command.servicesdetail %}
-                                        
-                                    {% if item.prix != 0 %}
-                                
-                                        entre {{ item.prixMin }} et {{ item.prix }} <br>
+                                <td>
+                                    {% for item in command.servicesdetail %}
+                                            {{item.nom}} <br>
+                                    {% endfor %} 
+                                </td>
+
+                                <td>
+                                    {% for item in command.servicesdetail %}
+                                            
+                                        {% if item.prix != 0 %}
                                     
-                                    {% else %}
+                                            entre {{ item.prixMin }} et {{ item.prix }} <br>
                                         
-                                        A partir de {{ item.prixMin }} <br>
-                                    {% endif %}
-                                {% endfor %} 
-                            </td>
-                        
-                    {% else %}
-                        <td colspan='3'>NC </td>
-                        
-                    {% endif %}
-                    <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('d/m/Y') : 'en attente' }}</td>
-                    </td>
-                    <td>
-                        <a class="btn btn-warning text-light" href="{{ path('app_command_show', {'id': command.id}) }}">Voir</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="6">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                                        {% else %}
+                                            
+                                            A partir de {{ item.prixMin }} <br>
+                                        {% endif %}
+                                    {% endfor %} 
+                                </td>
+                            
+                        {% else %}
+                            <td colspan='3'>NC </td>
+                            
+                        {% endif %}
+                        <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('d/m/Y') : 'en attente' }}</td>
+                        </td>
+                        <td>
+                            <a class="btn btn-warning text-light" href="{{ path('app_command_show', {'id': command.id}) }}">Voir</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
 {% endblock %}

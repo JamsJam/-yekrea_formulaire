@@ -15,23 +15,24 @@
             progress-bar-striped  = trait sur la barre de progression
             progress-bar-animated = animation de la barre de progression
 
-            #}
+        #}
+
             {# Barre de progression 2eme étape #}
 
             <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width:33%; background-color:#E5191E !important;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         
-        <div class="containerForm">
-            
-            <div class="formulaire">
-                {# <a class="btn btn-primary" href="{{ path('app_admin_client_index') }}">Retour</a> #}
+            <div class="containerForm">
+                
+                <div class="formulaire">
+                    {# <a class="btn btn-primary" href="{{ path('app_admin_client_index') }}">Retour</a> #}
 
-                {{ include('admin_client/_form.html.twig') }}
+                    {{ include('admin_client/_form.html.twig') }}
+                </div>
+                
+
             </div>
-            
-
-        </div>
     </div>
     
 
