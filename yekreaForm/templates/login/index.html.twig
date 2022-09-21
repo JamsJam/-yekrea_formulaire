@@ -1,10 +1,27 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 
-{% block title %}{{parent()}} {% endblock %}
+{# {% block title %}{{parent()}} {% endblock %} #}
 
-{% block body %}
+{# {% block body %} #}
 
     {# Page de connexion #}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
+    <link rel="stylesheet" href="{{ asset("css/style.css") }}">
+    {# la fonction twig (asset()) perlmet d'acceter a la racine du dossier "public"
+    il accepte en argument le chemin vers le fichier desiré a partir le dossier public#}
+        <title>Yekrea| Login</title>
+    </head>
+    <body>
+        
+    
     
     <div class="login__container">
 
@@ -70,8 +87,16 @@
                 </form>
             </div>
     </div>
+    <!-- JavaScript Bundle with Popper -->
+    
+    <script type="text/javascript" src="{{ asset("js/bootstrap.min.js") }}"></script>
 
-{% endblock %}
+        
+    <script type="text/javascript" src="{{ asset("js/script.js") }}"></script>
+    </body>
+    </html>
+
+{# {% endblock %} #}
 
 {# {% block javascripts %}
 
