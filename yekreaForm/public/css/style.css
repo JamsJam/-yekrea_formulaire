@@ -9,18 +9,17 @@
 html{
     height: 100vh;
 }
+
+/* div => block body */
+
 .containerPages{
     position: fixed;
     top: 70px;
     left: 300px;
     width: 70%;
-    height: 100vh;
 }
 
-.pages--container{
-    display: flex;
-}
-/* titre pour les formulaires */
+/* titre */
 
 .title{
     text-align: center;
@@ -30,6 +29,21 @@ html{
 
 ul li{
     text-decoration: none !important;
+}
+
+/* BOUTON valider */
+
+.bouton{
+    padding: 10px;
+    
+    align-self: flex-start;
+
+    font-weight: bold;
+    color: white !important;
+
+    background-color: #E5191E !important;
+    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+    
 }
 
 /* INPUT TEXTE / EMAIL / PASSWORD */
@@ -77,26 +91,11 @@ input[type=text], input[type=email], input[type=password], input[type=tel], inpu
     flex-direction: column;
 }
 
-/* BOUTON valider */
-
-.bouton{
-    padding: 10px;
-    
-    align-self: flex-start;
-
-    font-weight: bold;
-    color: white !important;
-
-    background-color: #E5191E !important;
-    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-    
-}
 .progress{
     margin-bottom: 20px;
 }
 
 /************* div =>  logo YEKREA & SLOGAN */
-
 
 .containerLogIn_block--logo{
     background-color: #E5191E;
@@ -114,13 +113,14 @@ img[alt="logo yekrea"]{
 
 /* ****************************************************** NAV BARRE */
 
-/* container navigation */
+/* Nav LOGO + Liens */
+
 .sidebar{
 
     position:sticky;
     top:0;
     left: 0;
-
+    
     height: 100vh;
     width: 250px;
 
@@ -128,43 +128,106 @@ img[alt="logo yekrea"]{
     border-radius: 30px;
 }
 
+/* logo YEKREA NAV */
+
 .sidebar header{
     position: relative;
 }
 
+/* image logo YEKREA  */
 
-/* lien de la barre de navigation */
+.imgNav{
+
+    padding: 10px 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+/* div =>  TABLEAU DE BORD */
+
+.dashbord {
+
+    margin: 0;
+    padding: 0;
+
+    position: sticky;
+
+    height: 20px;
+    width: 250px;
+
+    margin-bottom: 80px;
+
+    text-decoration: none;
+    background: #FFF;
+
+    display: flex;
+    align-items: center;
+
+}
+
+/* lien "a" => TABLEAU DE BORD */
+
+.dashbord a{
+    margin: 0 65px;
+
+    padding: 0 70px;
+    color: #000 !important;
+
+    font-size: 14px !important;
+    font-weight: bold;
+}
+
+/* "ul" (liste) de la barre de navigation + dashboard*/
+
+.menu{
+
+    height: 80%;
+
+}
+
+.menu ul{
+
+    position: sticky;
+    padding-left: 0;
+
+}
+
+/* "li" de la barre de navigation + dashbord*/
+.menu li a {
+
+    padding: 5px;
+
+    width: 140px;
+
+    text-decoration: none;
+    
+    display: flex;
+    align-items: center;
+
+    color: #FFF;
+    
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+/* "li" de la barre de navigation SANS le dashbord */
+
+.nav-link{
+    padding-left: 40px;
+}
+
+/* "a" de la barre de navigation SANS le dashboard*/
+
 .link{
 
     display: flex;
     align-items: center;
 
     list-style-type: none;
-
-}
-
-/* liens de la barre de navigation */
-.menu{
-    height: 80%;
-
-}
-.menu ul{
-    position: sticky;
-    padding-left: 0;
-}
-.menu li a {
-    text-decoration: none;
-    
-    padding: 5px;
-    width: 140px;
-    
-    display: flex;
-    align-items: center;
-
-    color: #FFF;
-    font-weight: bold;
-    font-size: 18px;
-
 }
 
 .link:hover{
@@ -177,48 +240,6 @@ img[alt="logo yekrea"]{
 }
 
 
-/* lien TABLEAU DE BORD */
-
-.dashbord {
-    margin: 0;
-    padding: 0;
-
-    /* aligne le lien et la barre */
-    position: sticky;
-
-    height: 20px;
-    width: 250px;
-
-    margin-right: 20px;
-    margin-bottom: 80px;
-
-    text-decoration: none;
-    background: #FFF;
-
-    display: flex;
-    align-items: center;
-}
-
-.dashbord a{
-    margin: 0 65px;
-
-    padding: 0 70px;
-    color: #000 !important;
-
-    font-size: 14px !important;
-    font-weight: bold;
-
-}
-.nav-link{
-    padding-left: 30px;
-}
-/* logo Yekrea */
-.imgNav{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 14px;
-}
 /* div => bonjour USER  */
 
 .welcome--container{
@@ -227,6 +248,10 @@ img[alt="logo yekrea"]{
     right: 0;
     padding: 10px;
 }
+
+
+
+
 /* ******************************************************  LANDING */
 
 
@@ -371,25 +396,31 @@ img[alt="logo yekrea"]{
 /* ****************************************************** SERVICES */
 
 
-
-
 .containerCard{
     display: flex;
     justify-content: center;
 }
 
 
-/* ************************************************ RESPONSIVE */
+/* ********************************************************** RESPONSIVE */
 
 @media screen and (max-width: 800px){
 
-    /********************************************************************    LOGIN */
+    
+    /* container du MAIN */
+    .containerPages{
+        top: 170px;
+        left: 0;
+        width: 100%;
+    }
+
+    /**********************************************  LOGIN */
 
     .containerLogIn{
         display: flex;  
         flex-direction: column;
     }
-    /************* div =>  FORMULAIRE CONNEXION */
+    /***** div =>  FORMULAIRE CONNEXION */
 
     #containerLogIn_block--form{
         height: 60vh;
@@ -400,7 +431,7 @@ img[alt="logo yekrea"]{
         width: 300px;
     }
 
-    /************* div =>  logo YEKREA & SLOGAN de la page de CONNEXION */
+    /****** div =>  logo YEKREA & SLOGAN de la page de CONNEXION */
 
     .containerLogIn_block--logo{
 
@@ -418,10 +449,91 @@ img[alt="logo yekrea"]{
         font-size: 1.4rem;
     }
 
-    /********************************************************************    NAV */
+    /**************************************************    NAV */
+
+    /* NAV  */
+    .sidebar{
+        width: 100%;
+        height: 150px;
+        display: flex;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
     
+    }
+    /* "ul" (liste) de la nav */
+    .menu{
+        display: flex;
+        
+    }
+
+    /* "a" (liens) de la NAV + DASHBOARD */
+    .menu li a{
+
+        width: 100%;
+        padding: 0;
+        font-size: 12px;
+
+    }
+
+    /* "a" (liens) de la nav SANS le dashboard */
+    .nav-link{
+        display: inline-block;
+        padding: 8px;
+    }
+    
+
+    /* dashboard */
+    .dashbord{
+        margin-bottom: 10px;
+        width: 100%;
+        display: flex;
+        
+    }
+
+    /* lien du dashboard */
+
+    .dashbord a{
+        margin: 0 ;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* Logo Yekrea + NAVIGATION */
+
+    .nav--container{
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* div => bonjour USER */
+
+    .welcome--container{
+        position: absolute;
+        top: 10px;
+        font-size: 12px;
+    }
+
+    /* texte bonjour USER */
+
+    .welcome--container p{
+        color: #E5191E;
+    }
+    /* prénom du user */
+    .welcome--container span{
+        color: #000 !important;
+    }
+    .welcome--container a{
+        color: #FFF !important;
+    }
+    .welcome--container svg{
+        width:  24px;
+    }
 }
 /* ******************************************************  LANDING */
+
 @media screen and (max-width:680px) {
     #landing__container--user,
     #landing__container--admin
