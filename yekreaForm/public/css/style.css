@@ -10,19 +10,18 @@ html{
     height: 100vh;
 }
 
-/* div => block body */
-.base__displayContainer{
-    display: flex;
-    flex-direction: row;
-}
 .containerPages{
-    /* position: fixed; */
-    /* top: 70px; */
-    /* left: 300px; */
-    /* width: 70%; */
-    width: 70vw;
-    margin: 0 auto;
-    padding-top: 50px;
+
+    position: absolute;
+    width: 100vh;
+    top: 70px;
+    left: 300px;
+    width: 70%;
+
+}
+
+.pages{
+    position:relative;
 }
 
 /* titre */
@@ -51,6 +50,12 @@ ul li{
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     
 }
+
+/* bouton valider centrer des formulaires */
+.center{
+    margin: 0 40%;
+}
+
 
 /* INPUT TEXTE / EMAIL / PASSWORD */
 
@@ -123,8 +128,8 @@ img[alt="logo yekrea"]{
 
 .sidebar{
 
+    position:fixed;
 
-    position:sticky;
     top:0;
     height: 100vh;
     width: 250px;
@@ -253,8 +258,6 @@ img[alt="logo yekrea"]{
     right: 0;
     padding: 10px;
 }
-
-
 
 
 /* ******************************************************  LANDING */
@@ -444,6 +447,8 @@ img[alt="logo yekrea"]{
         top: 170px;
         left: 0;
         width: 100%;
+
+        padding: 20px;
     }
 
     /**********************************************  LOGIN */
@@ -493,6 +498,7 @@ img[alt="logo yekrea"]{
         justify-content: center;
         align-items: center;
 
+        position: sticky;
     
     }
     /* "ul" (liste) de la nav */

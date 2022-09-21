@@ -2,49 +2,54 @@
 
 {% block title %}ServicesDetail index{% endblock %}
 {% block body %}
-<h1 class="title" >Proposition Commerciales</h1>
+    
+    <div class="containerPages">
+        <div class="pages">
+            <h1 class="title" >Propositions commerciales</h1>
 
-    <a class="btn btn-success mb-4" href="{{ path('app_admin_services_detail_new') }}">Ajouter une nouvelle proposition</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prix MIN</th>
-                <th scope="col">Prix MAX</th>
-                {# <th>Date_creation</th> #}
-                <th scope="col">Voir</th>
-                <th scope="col">Modifier</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for services_detail in services_details %}
-            <tr class="table-striped">
-                <td>{{ services_detail.id }}</td>
-                <td>{{ services_detail.nom }}</td>
-                {% if services_detail.prix != 0 %}
-                    <td>{{ services_detail.prixMin}}€</td>
-                    <td>{{ services_detail.prix }}€</td>
-                    
+            <a class="btn btn-success mb-4" href="{{ path('app_admin_services_detail_new') }}">Ajouter une nouvelle proposition</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prix MIN</th>
+                        <th scope="col">Prix MAX</th>
+                        {# <th>Date_creation</th> #}
+                        <th scope="col">Voir</th>
+                        <th scope="col">Modifier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for services_detail in services_details %}
+                    <tr class="table-striped">
+                        <td>{{ services_detail.id }}</td>
+                        <td>{{ services_detail.nom }}</td>
+                        {% if services_detail.prix != 0 %}
+                            <td>{{ services_detail.prixMin}}€</td>
+                            <td>{{ services_detail.prix }}€</td>
+                            
+                        {% else %}
+                            <td >A partir de {{ services_detail.prixMin}}€</td>
+                            <td > Client à contacter</td>
+                        {% endif %}
+                        {# <td>{{ services_detail.dateCreation ? services_detail.dateCreation|date('d/m/Y') : '' }}</td> #}
+                        <td>
+                            <a class="btn btn-warning" href="{{ path('app_admin_services_detail_show', {'id': services_detail.id}) }}">Voir</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_admin_services_detail_edit', {'id': services_detail.id}) }}">Editer</a>
+                        </td>
+                    </tr>
+
                 {% else %}
-                    <td >A partir de {{ services_detail.prixMin}}€</td>
-                    <td > Client à contacter</td>
-                {% endif %}
-                {# <td>{{ services_detail.dateCreation ? services_detail.dateCreation|date('d/m/Y') : '' }}</td> #}
-                <td>
-                    <a class="btn btn-warning" href="{{ path('app_admin_services_detail_show', {'id': services_detail.id}) }}">Voir</a>
-                </td>
-                <td>
-                    <a class="btn btn-primary" href="{{ path('app_admin_services_detail_edit', {'id': services_detail.id}) }}">Editer</a>
-                </td>
-            </tr>
-
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 {% endblock %}
