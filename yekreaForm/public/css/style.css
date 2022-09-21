@@ -14,6 +14,11 @@ html{
     top: 70px;
     left: 300px;
     width: 70%;
+    height: 100vh;
+}
+
+.pages--container{
+    display: flex;
 }
 /* titre pour les formulaires */
 
@@ -111,18 +116,18 @@ img[alt="logo yekrea"]{
 
 /* container navigation */
 .sidebar{
-    padding: 10px 14px;
 
-    position:fixed;
+    position:sticky;
     top:0;
     left: 0;
 
-    height: 100%;
+    height: 100vh;
     width: 250px;
 
     background-color: #E5191E;
     border-radius: 30px;
 }
+
 .sidebar header{
     position: relative;
 }
@@ -142,8 +147,10 @@ img[alt="logo yekrea"]{
 .menu{
     height: 80%;
 
-    margin-top: 100px;
-
+}
+.menu ul{
+    position: sticky;
+    padding-left: 0;
 }
 .menu li a {
     text-decoration: none;
@@ -159,6 +166,7 @@ img[alt="logo yekrea"]{
     font-size: 18px;
 
 }
+
 .link:hover{
     background-color: #fff;
     color: #000;
@@ -176,41 +184,50 @@ img[alt="logo yekrea"]{
     padding: 0;
 
     /* aligne le lien et la barre */
-    position: fixed;
-    left: 0;
-    top: 70px;
+    position: sticky;
 
     height: 20px;
     width: 250px;
+
+    margin-right: 20px;
+    margin-bottom: 80px;
 
     text-decoration: none;
     background: #FFF;
 
     display: flex;
+    align-items: center;
 }
 
 .dashbord a{
-    text-decoration: none;
+    margin: 0 65px;
 
     padding: 0 70px;
-    color: #000;
+    color: #000 !important;
 
-    font-size: 14px;
+    font-size: 14px !important;
     font-weight: bold;
 
 }
-
+.nav-link{
+    padding-left: 30px;
+}
 /* logo Yekrea */
 .imgNav{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px 14px;
 }
+/* div => bonjour USER  */
 
-
+.welcome--container{
+    position:fixed; 
+    top: 10px;
+    right: 0;
+    padding: 10px;
+}
 /* ******************************************************  LANDING */
-
-
 
 
 #landing__container a,
@@ -224,8 +241,7 @@ img[alt="logo yekrea"]{
     min-height: 100vh;
     max-width: 1010px;
     margin: 0 auto;
-    box-shadow: 0px 0px 4px 7px #ffffff, 
-                0px 0px 11px 24px #ad1216;
+    
 }
 
 #landing__title{
@@ -259,13 +275,13 @@ img[alt="logo yekrea"]{
 }
 
 .landing__pageBloc{
-    background-color: #e5191e;
     height:200px;
     width:200px;
     border-radius: 20px;
     display:flex;
     align-items:center;
     justify-content:center;
+    background-color: #E5191E;
     transition: color 0.3s ease, background-color 0.3s ease
 }
 .landing__pageBloc--a{
@@ -430,7 +446,7 @@ img[alt="logo yekrea"]{
     }
 
     /********************************************************************    NAV */
-
+    
 }
 /* ******************************************************  LANDING */
 @media screen and (max-width:680px) {
