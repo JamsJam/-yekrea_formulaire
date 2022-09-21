@@ -30,16 +30,30 @@
                         <td>{{ user.nom }}</td>
                         <td>{{ user.prenom }}</td>
                         <td>{{ user.email }}</td>    
-                        <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                        <td>
+                            {% if user.roleInt == 1 %}
+                                Administrateur
+                            {% else %}
+                                {% if user.roleInt == 2 %}
+                                Commercial
+                                {% else %}
+                                    {% if user.roleInt == 3 %}
+                                    
+                                        Client
+                                
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                            
+                        </td>
                         
                         {# <td>{{ user.password }}</td> #}
                         <td>
                             <a class="btn btn-warning text-light" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
                         </td>
                         <td>
-                            <button class="btn btn-primary"><a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-                            </button>
-                            
+                            <a class="btn btn-primary text-light" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+
                         </td>
                     </tr>
                 {% else %}

@@ -66,6 +66,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $client;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $RoleInt;
+
     public function __construct()
     {
         $this->commands = new ArrayCollection();
@@ -235,6 +240,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getRoleInt(): ?int
+    {
+        return $this->RoleInt;
+    }
+
+    public function setRoleInt(int $RoleInt): self
+    {
+        $this->RoleInt = $RoleInt;
 
         return $this;
     }

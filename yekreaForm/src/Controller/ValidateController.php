@@ -23,7 +23,10 @@ class ValidateController extends AbstractController
 
     public function index( Command $command, CommandRepository $commandRepository, DevisRepository $devisRepository ): Response
 
-    {   $serviceDetails = null;
+    {
+        $command->setIsValidated(true);
+
+        $serviceDetails = null;
         $service = null;
         // création du numéro de devis à la validation du bouton
 
@@ -77,6 +80,8 @@ class ValidateController extends AbstractController
 
         // ajoute en BDD si l'id n'existe pas et le modifie si l'ID existe
         $commandRepository->add($command, true);
+        //Definition par defaut du Statut En attente (en attente d'une validation client)
+        $devis->setStatus("pending");
         $devisRepository->add($devis, true);
         
         return $this->redirectToRoute('app_command_show',["id"=>$command->getId()], Response::HTTP_SEE_OTHER);

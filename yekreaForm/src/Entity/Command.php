@@ -62,6 +62,11 @@ class Command
      */
     private $materiel;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isValidated;
+
     public function __construct()
     {
         $this->servicesDetail = new ArrayCollection();
@@ -194,6 +199,19 @@ class Command
     public function removeMateriel(Materiel $materiel): self
     {
         $this->materiel->removeElement($materiel);
+
+        return $this;
+    }
+
+    public function isValidated(): ?bool
+    {
+        
+        return $this->isValidated;
+    }
+
+    public function setIsValidated(bool $isValidated): self
+    {
+        $this->isValidated = $isValidated;
 
         return $this;
     }

@@ -56,6 +56,7 @@ class DevisController extends AbstractController
      */
     public function show(Devis $devis): Response
     {
+        // dd($devis->getCommand()->isValidated());
         return $this->render('devis/show.html.twig', [
             'devis' => $devis,
         ]);

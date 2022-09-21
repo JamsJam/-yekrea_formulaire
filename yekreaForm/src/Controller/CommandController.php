@@ -49,6 +49,7 @@ class CommandController extends AbstractController
     public function historique(CommandRepository $commandRepository): Response
     {
         $userRoles = $this->getUser()->getRoles();
+        
         // $validation = $command->getValidateDate();
         if (in_array("ROLE_ADMIN", $userRoles)){
             // Si Admin, alors j'affiche toutes les commandes
@@ -72,7 +73,7 @@ class CommandController extends AbstractController
         $command = new Command();
         $form = $this->createForm(CommandType::class, $command);
         $form->handleRequest($request);
-        
+        $command->setIsValidated(false);
         $numeroCommande = time()-100000;
         $command->setNbCommande($numeroCommande);
         //je set le champ User avec l'user actuellement connecté
@@ -108,6 +109,7 @@ class CommandController extends AbstractController
      */
     public function show(Command $command): Response
     {
+        
         return $this->render('command/show.html.twig', [
             'command' => $command,
         ]);

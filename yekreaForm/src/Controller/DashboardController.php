@@ -45,7 +45,7 @@ class DashboardController extends AbstractController
                 }  
             }
         }
-        dd($prixCommande);
+        // dd($prixCommande);
 
 
 

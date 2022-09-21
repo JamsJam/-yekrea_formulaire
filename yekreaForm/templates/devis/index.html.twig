@@ -27,6 +27,7 @@
                     <th>N°commande</th>
                     <th>Commercial</th>
                     <th>Client</th>
+                    <th>Status</th>
                     <th>Catégorie</th>
                     {# <th>Services</th> #}
                     {# <th>Prix Min</th>
@@ -55,6 +56,25 @@
 
                     {# Nom du Client #}
                     <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
+
+
+
+                    {# Status du devis #}
+                    <td>
+                        {% if devi.status == "pending" %}
+                            En attente
+                        {% else %}
+                            {% if devi.status == "accepted" %}
+                                Accepter
+                            {% else %}
+                                {% if devi.status == "aborted" %}
+                                    Annuler
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    
+                    
+                    </td>
 
                     {% if devi.command.servicesDetail %}
 
