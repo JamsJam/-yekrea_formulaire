@@ -124,7 +124,8 @@ img[alt="logo yekrea"]{
 .sidebar{
 
 
-    
+    position:sticky;
+    top:0;
     height: 100vh;
     width: 250px;
 
@@ -535,9 +536,7 @@ img[alt="logo yekrea"]{
     /* Logo Yekrea + NAVIGATION */
 
     .nav--container{
-        position:sticky;
-        top:0;
-        left: 0;
+        
         display: flex;
         flex-direction: row;
     }

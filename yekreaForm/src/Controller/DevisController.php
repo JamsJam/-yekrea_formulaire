@@ -94,6 +94,24 @@ class DevisController extends AbstractController
         return $this->redirectToRoute('app_devis_index', [], Response::HTTP_SEE_OTHER);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // **************************************** AFFICHAGE DU PDF
 
 
