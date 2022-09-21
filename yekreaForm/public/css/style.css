@@ -443,11 +443,15 @@ img[alt="logo yekrea"]{
 
     
     /* container du MAIN */
+
     .containerPages{
         top: 170px;
         left: 0;
-        width: 100%;
 
+        width: 100%;
+    }
+
+    .pages{
         padding: 20px;
     }
 

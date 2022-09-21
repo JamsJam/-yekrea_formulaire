@@ -2,18 +2,26 @@
 
 {% block title %}Edit ServicesDetail{% endblock %}
 
+{# PAGE pour MODIFIER les SERVICES DETAILS #}
+
 {% block body %}
 
     <div class="containerPages">
-        <h1 class="title">Modifier une proposition</h1>
 
-        <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_admin_services_detail_index') }}">Retour</a>
-
-
+        <div class="pages">
         
-        {{ include('admin_services_detail/_form.html.twig', {'button_label': 'Update'}) }}
-        
-        {{ include('admin_services_detail/_delete_form.html.twig') }}
+            <h1 class="title">Modifier une proposition</h1>
+            
+            {# BOUTON pour RETOURNER sur la PAGE INDEX #}
+            <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_admin_services_detail_index') }}">Retour</a>
+            
+            {# FORMULAIRE pour MODIFER le SERVICE DETAIL #}
+            {{ include('admin_services_detail/_form.html.twig', {'button_label': 'Update'}) }}
+            
+            {# FORMULAIRE pour SUPPRIMER le SERVICE DETAIL #}
+            {{ include('admin_services_detail/_delete_form.html.twig') }}
+
+        </div>
     </div>
 
 

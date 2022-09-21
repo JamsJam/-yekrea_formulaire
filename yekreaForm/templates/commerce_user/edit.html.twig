@@ -2,19 +2,27 @@
 
 {% block title %}Modifier les utilisateurs{% endblock %}
 
+{# PAGE pour MODIFIER les UTILISATEURS #}
 {% block body %}
 
     <div class="containerPages">
 
-        <h1 class="title">Modifier l'utilisateur</h1>
-
-        <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_user_index') }}">Retour</a>
-
-        {{ include('commerce_user/_form.html.twig', {'button_label': 'Modifier'}) }}
+        <div class="pages">
         
-        {% if is_granted('ROLE_ADMIN') %}
-            {{ include('commerce_user/_delete_form.html.twig') }}
-        {% endif %}
+            <h1 class="title">Modifier l'utilisateur</h1>
+
+            {# BOUTON pour RETOURNER sur la PAGE INDEX #}
+            <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_user_index') }}">Retour</a>
+
+            {# FORMULAIRE pour MODIFER l'UTILISATEUR #}
+            {{ include('commerce_user/_form.html.twig', {'button_label': 'Modifier'}) }}
+            
+            {# FORMULAIRE pour SUPPRIMER l'UTILISATEUR #}
+            {% if is_granted('ROLE_ADMIN') %}
+                {{ include('commerce_user/_delete_form.html.twig') }}
+            {% endif %}
+
+        </div>
         
     </div>
 {% endblock %}

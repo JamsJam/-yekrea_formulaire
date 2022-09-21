@@ -20,154 +20,156 @@
             {# BOUTON pour CREER un nouveau devis via l'acceptation d'une d'une commande #}
             {# <a class="btn btn-success mb-4" href="{{ path('app_devis_new') }}">Créer un nouveau devis</a> #}
 
-            <table class="table table-striped" id="test">
+            <div class="table-responsive-sm">
+                <table class="table table-striped" id="test">
 
-                <thead>
-                    <tr class="table-success">
-                        <th>N°devis</th>
-                        <th>N°commande</th>
-                        <th>Commercial</th>
-                        <th>Client</th>
-                        <th>Status</th>
-                        <th>Catégorie</th>
-                        {# <th>Services</th> #}
-                        {# <th>Prix Min</th>
-                        <th>Prix</th> #}
-                        <th>Commande validée</th>
-                        <th>Voir</th>
-                        <th>Modifier</th>
-                    </tr>
-                </thead>
-
-
-                <tbody>
-
-                {# BOUCLE pour afficher les données récupérer via la table commande #}
-
-                {% for devi in devis %}
-                    <tr>
-                        {# n° du devis #}
-                        <td>{{ devi.numDevis }}</td>
-
-                        {# N° de la commande #}
-                        <td>{{ devi.command.nbCommande}} </td>
-
-                        {# Nom du commercial #}
-                        <td>{{ devi.command.user.nom}} </td>
-
-                        {# Nom du Client #}
-                        <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
+                    <thead>
+                        <tr class="table-success">
+                            <th>N°devis</th>
+                            <th>N°commande</th>
+                            <th>Commercial</th>
+                            <th>Client</th>
+                            <th>Status</th>
+                            <th>Catégorie</th>
+                            {# <th>Services</th> #}
+                            {# <th>Prix Min</th>
+                            <th>Prix</th> #}
+                            <th>Commande validée</th>
+                            <th>Voir</th>
+                            <th>Modifier</th>
+                        </tr>
+                    </thead>
 
 
+                    <tbody>
 
-                        {# Status du devis #}
-                        <td>
-                            {% if devi.status == "pending" %}
-                                En attente
-                            {% else %}
-                                {% if devi.status == "accepted" %}
-                                    Accepter
+                    {# BOUCLE pour afficher les données récupérer via la table commande #}
+
+                    {% for devi in devis %}
+                        <tr>
+                            {# n° du devis #}
+                            <td>{{ devi.numDevis }}</td>
+
+                            {# N° de la commande #}
+                            <td>{{ devi.command.nbCommande}} </td>
+
+                            {# Nom du commercial #}
+                            <td>{{ devi.command.user.nom}} </td>
+
+                            {# Nom du Client #}
+                            <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
+
+
+
+                            {# Status du devis #}
+                            <td>
+                                {% if devi.status == "pending" %}
+                                    En attente
                                 {% else %}
-                                    {% if devi.status == "aborted" %}
-                                        Annuler
+                                    {% if devi.status == "accepted" %}
+                                        Accepter
+                                    {% else %}
+                                        {% if devi.status == "aborted" %}
+                                            Annuler
+                                        {% endif %}
                                     {% endif %}
                                 {% endif %}
-                            {% endif %}
-                        
-                        
-                        </td>
-
-                        {% if devi.command.servicesDetail %}
-
-                            {# Categorie #}
-                            <td>
-                                {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
-                                {% set foo2 = devi.service| split(",") %}
-                                {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
-                                {% for items in foo2 %}
-                                    {# on affiche chaque tableau contenu dans foo2 #}
-                                    {{items|e}}<br>
-                                {% endfor %}
+                            
+                            
                             </td>
 
-                            {# Service #}
+                            {% if devi.command.servicesDetail %}
 
-                            {# <td> #}
-                                {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
-                                {# {% set foo = devi.serviceDetail| split(",") %} #}
+                                {# Categorie #}
+                                <td>
+                                    {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                                    {% set foo2 = devi.service| split(",") %}
+                                    {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                                    {% for items in foo2 %}
+                                        {# on affiche chaque tableau contenu dans foo2 #}
+                                        {{items|e}}<br>
+                                    {% endfor %}
+                                </td>
 
-                                {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
-                                {# {% for items in foo %} #}
-                                
-                                    {# on affiche chaque tableau contenu dans foo #}
-                                    {# {{items|e}}<br> #}
-                                {# {% endfor %} #}
-                            {# </td>  #}
+                                {# Service #}
 
-                            {# PrixMin #}
+                                {# <td> #}
+                                    {# le filtre split permet de separer un string en tableau a chaque fois qu'une rencontre le separateur indiqué #}
+                                    {# {% set foo = devi.serviceDetail| split(",") %} #}
 
-                            {# <td>
-
-                                {% for item in devi.command.servicesDetail  %}
+                                    {# A chaque tour de boucle, foo contient un certain nombre de tableau #}
+                                    {# {% for items in foo %} #}
                                     
-                                    {{ item.prixMin}} <br>
+                                        {# on affiche chaque tableau contenu dans foo #}
+                                        {# {{items|e}}<br> #}
+                                    {# {% endfor %} #}
+                                {# </td>  #}
+
+                                {# PrixMin #}
+
+                                {# <td>
+
+                                    {% for item in devi.command.servicesDetail  %}
+                                        
+                                        {{ item.prixMin}} <br>
+                                    {% else %}
+                                    
+                                        Pas de donnée
+                                    {% endfor %}
+                                </td> #}
+
+                                {# PrixMax #}
+
+
+                                        {# <td>
+
+                                    {% for item in devi.command.servicesDetail  %}
+                                        
+                                        {{ item.prix}}€ <br>
+                                    {% else %}
+                                        
+                                        Pas de donnée
+                                    {% endfor %}
+
+                                </td> #}
+                                    
+                                {# Date de validation #}
+
+                                {% if devi.command.validationDate %}
+                                    
+                                    {# date('d/m/y') => format de la date #}
+                                    <td>{{ devi.command.validationDate|date('d/m/y')}} </td>
+
+                                {% endif %}
+
                                 {% else %}
-                                
-                                    Pas de donnée
-                                {% endfor %}
-                            </td> #}
-
-                            {# PrixMax #}
-
-
-                                    {# <td>
-
-                                {% for item in devi.command.servicesDetail  %}
+                                {# Si aucunes données n'est retrouvé dans services détails on aura cet affichage #}
+                                    <td>Pas de donnée</td>
+                                    <td>Pas de donnée</td>
+                                    <td>Pas de donnée</td>
+                                    <td>Pas de donnée</td>
                                     
-                                    {{ item.prix}}€ <br>
-                                {% else %}
-                                    
-                                    Pas de donnée
-                                {% endfor %}
+                                {% endif %}
+                                <td>
+                                    {# BOUTON qui permet de VOIR le devis sélectionner (:/devis/show.html.twig) #}
+                                    <a class="btn btn-warning text-light" href="{{ path('app_devis_show', {'id': devi.id}) }}">Voir</a>
+                                </td>
+                                <td>
+                                    {# BOUTON qui permet de MODIFIER le devis sélectionner (:/devis/edit.html.twig) #}
+                                    <a class="btn btn-primary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
+                                </td>
+                            </tr>
 
-                            </td> #}
-                                
-                            {# Date de validation #}
-
-                            {% if devi.command.validationDate %}
-                                
-                                {# date('d/m/y') => format de la date #}
-                                <td>{{ devi.command.validationDate|date('d/m/y')}} </td>
-
-                            {% endif %}
-
-                            {% else %}
-                            {# Si aucunes données n'est retrouvé dans services détails on aura cet affichage #}
-                                <td>Pas de donnée</td>
-                                <td>Pas de donnée</td>
-                                <td>Pas de donnée</td>
-                                <td>Pas de donnée</td>
-                                
-                            {% endif %}
-                            <td>
-                                {# BOUTON qui permet de VOIR le devis sélectionner (:/devis/show.html.twig) #}
-                                <a class="btn btn-warning text-light" href="{{ path('app_devis_show', {'id': devi.id}) }}">Voir</a>
-                            </td>
-                            <td>
-                                {# BOUTON qui permet de MODIFIER le devis sélectionner (:/devis/edit.html.twig) #}
-                                <a class="btn btn-primary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
-                            </td>
+                    {% else %}
+                        {# permet l'affichage "pas de donnée" si les informations du tableau ne sont pas trouvé#}
+                        <tr>
+                            <td colspan="3">Pas de donnée</td>
                         </tr>
+                    {% endfor %}
 
-                {% else %}
-                    {# permet l'affichage "pas de donnée" si les informations du tableau ne sont pas trouvé#}
-                    <tr>
-                        <td colspan="3">Pas de donnée</td>
-                    </tr>
-                {% endfor %}
-
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

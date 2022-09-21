@@ -14,47 +14,50 @@
             {# BOUTON ajouter un nouveau client #}
             <a class="btn btn-success" href="{{ path('app_admin_client_new') }}">Ajouter un nouveau client</a>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Client</th>
-                        <th>Société</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th>Réseaux</th>
-                        <th>Voir</th>
-                        <th>Modifier</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for client in clients %}
+            <div class="table-responsive-sm">
 
-                    <tr>
-                        <td>{{client.user.nom|upper}} {{client.user.prenom|capitalize}}</td>
-                        <td>{{ client.societe }}</td>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Société</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Réseaux</th>
+                            <th>Voir</th>
+                            <th>Modifier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for client in clients %}
+
+                        <tr>
+                            <td>{{client.user.nom|upper}} {{client.user.prenom|capitalize}}</td>
+                            <td>{{ client.societe }}</td>
+                                <td>
+                                    {% if client.user %}
+                                        {{client.user.email}}
+                                    {% else %}
+                                        NR
+                                    {% endif %}
+                                </td>
+                            <td>{{ client.telephone }}</td>
+                            <td>{{ client.Reseaux }}</td>
                             <td>
-                                {% if client.user %}
-                                    {{client.user.email}}
-                                {% else %}
-                                    NR
-                                {% endif %}
+                                <a class="btn btn-warning text-light" href="{{ path('app_admin_client_show', {'id': client.id}) }}">Voir</a>
                             </td>
-                        <td>{{ client.telephone }}</td>
-                        <td>{{ client.Reseaux }}</td>
-                        <td>
-                            <a class="btn btn-warning text-light" href="{{ path('app_admin_client_show', {'id': client.id}) }}">Voir</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-primary" href="{{ path('app_admin_client_edit', {'id': client.id}) }}">Modifier</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="5">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                            <td>
+                                <a class="btn btn-primary" href="{{ path('app_admin_client_edit', {'id': client.id}) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
