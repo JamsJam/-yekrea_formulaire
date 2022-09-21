@@ -18,9 +18,8 @@ class ValidateController extends AbstractController
      * - La création d'une nouvelle entré dans la table devis dans la table DEVIS
      * - l'insertion de la "date de validation" dans la table COMMANDE
      * 
-     * @Route("admin/validate/{id}", name="app_validate")
+     * @Route("admin/command/validate/{id}", name="app_validate")
      */
-
     public function index( Command $command, CommandRepository $commandRepository, DevisRepository $devisRepository ): Response
 
     {
@@ -31,6 +30,9 @@ class ValidateController extends AbstractController
         // création du numéro de devis à la validation du bouton
 
         $devis = new Devis();
+
+        //Definition par defaut du Statut En attente (en attente d'une validation client)
+        $devis->setStatus("pending");
 
         //Selection du change ServicesDetail dans command : retourne un tableau d'objet
         $servicesDetail = $command->getServicesDetail();
@@ -80,10 +82,31 @@ class ValidateController extends AbstractController
 
         // ajoute en BDD si l'id n'existe pas et le modifie si l'ID existe
         $commandRepository->add($command, true);
-        //Definition par defaut du Statut En attente (en attente d'une validation client)
-        $devis->setStatus("pending");
+        
         $devisRepository->add($devis, true);
         
         return $this->redirectToRoute('app_command_show',["id"=>$command->getId()], Response::HTTP_SEE_OTHER);
     }
+
+
+    /** 
+     * Sur validation de la decision client,
+     * -->changement du status du devis : accepté ou annulé
+     * -->Definition de la date de decision
+     * -->envoie en BDD
+     * @Route("admin/devis/validate/{id}", name="app_devis_validate")
+     */
+    public function clientValidateDevis( Devis $devis, DevisRepository $devisRepository, Request $request ): Response
+    {
+        $status = $request->query->get('status');
+        
+        $devis->setStatus($status);
+        $devis->setClientDecisionDate(new DateTimeImmutable("now"));
+        $devisRepository->add($devis, true);
+        
+        return $this->redirectToRoute('app_devis_show',["id"=>$devis->getId()], Response::HTTP_SEE_OTHER);
+    }
+
+    
+
 }
