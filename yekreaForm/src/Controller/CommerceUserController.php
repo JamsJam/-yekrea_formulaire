@@ -67,17 +67,44 @@ class CommerceUserController extends AbstractController
         $user->setPassword($hashedPassword);
         
         
-        // enfin on envois notre objet en base de donner
-        $userRepository->add($user, true);
-        $userId = $user->getId();
+        // *********************************Attribution identificateur de role (roleInt)
 
-
-
+        //Recuperation du role effectif de notre nouvelle utilisateur
+        $role = $userRoles[0];
+        // Attribution de l'identificateur de role en fonction du role effectif
+        switch ($role) {
+            case "ROLE_ADMIN":
+                $user->setRoleInt(1);
+                break;
+                
+            case "ROLE_COMMERCIAL":
+                $user->setRoleInt(2);
+                break;
+        
+            case "ROLE_USER":
+                $user->setRoleInt(3);
+                break;
+                
+            };
+                    
+                    
+                    
+                    
+            // enfin on envois notre objet en base de donner
+            $userId = $user->getId();
+            
             //Si role different d'admin, redirection vers vers le formulaire client
-            if (in_array("ROLE_USER", $userRoles) ){
+            if (in_array("ROLE_COMMERCIAL", $userRoles) or in_array("ROLE_ADMIN", $userRoles) ){
+                $userRepository->add($user, true);
+                
+                return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            }else{
+            
+                $userRepository->add($user, true);
+                
+
                 return $this->redirectToRoute('app_admin_client_new', ['id'=> $userId], Response::HTTP_SEE_OTHER);
             }
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('commerce_user/new.html.twig', [

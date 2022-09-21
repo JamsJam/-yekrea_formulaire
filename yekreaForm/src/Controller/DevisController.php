@@ -56,6 +56,7 @@ class DevisController extends AbstractController
      */
     public function show(Devis $devis): Response
     {
+        // dd($devis->getCommand()->isValidated());
         return $this->render('devis/show.html.twig', [
             'devis' => $devis,
         ]);
@@ -93,6 +94,24 @@ class DevisController extends AbstractController
         return $this->redirectToRoute('app_devis_index', [], Response::HTTP_SEE_OTHER);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // **************************************** AFFICHAGE DU PDF
 
 

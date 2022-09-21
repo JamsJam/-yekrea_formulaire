@@ -25,7 +25,6 @@
             {# La barre de navigation n'est visible que lorsqu'un utilisateur est connecté #}
             {% if is_granted("ROLE_USER") %}
 
-
                 {# NAVIGATION #}
                 <div class="nav--container">
 
@@ -83,43 +82,77 @@
                 </div> 
 
                 {# bonjour USER #}
-                <div class="welcome--container">
-                    <p>
-                        bonjour
+                
+                    {# NAVIGATION #}
+                    <div class="nav--container">
 
-                            {# récupère le nom de l'utilisateur connecté + 1ère lettre en majuscule (capitalize) #}
-                            <span style="color:#E5191E; font-weight:bold;">
-                            {{app.user.prenom|capitalize}}
-                            </span>
+                        <nav class="sidebar">
 
-                            {# lien déconnexion #}
-                            <a style="text-decoration:none; color:#000;" href="{{ path('app_logout')}}">
+                            <header>
 
-                                {# 
-                                    Icon bootstrap déconnexion 
-                                    width et height => modifie la taille
-                                #}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-                                    <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-                                </svg>
+                                {# Logo Yekrea #}
 
-                            </a>
-                    </p> 
-                </div> 
+                                <div class="imgNav">
+                                    <img src="/images/logoYekreaSmall.jpg" alt="Logo yekrea" class="logoYekreaNav" style="width:150px;">
+                                </div>
+
+                            </header>
+                            
+                            {# liste liens Navigation #}
+                            <div class="menu">
+                                <ul>
+                                    {# Tableau de bord #}
+                                    <li class="dashbord">
+                                        <a href="">Tableau de bord</a>
+                                    </li>
+
+                                    {# COMMANDE #}
+                                    <li class="nav-link">
+                                        <a class="link" href="{{ path('app_command_index') }}">
+                                        Commande
+                                        </a>
+                                    </li>
+
+                                    {# DEVIS #}
+                                    <li class="nav-link ">
+                                        <a class="link" href="{{ path('app_devis_index') }}">Devis</a>
+                                    </li>
+
+                                    {# STATISTIQUE #}
+                                    <li class="nav-link ">
+                                        <a class="link" href="">Statistique</a>
+                                    </li>
+
+                                    {# MON COMPTE #}
+                                    <li class="nav-link">
+                                        <a class="link" href=""> Mon compte </a>
+                                    </li>
+
+                                    {# USER #}
+                                    <li class="nav-link ">
+                                        <a class="link" href="">User</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </nav>   
+                        
+                    </div> 
+
+
 
             {% endif %}
 
         {% endblock %}
 
-        {% block body %}
+                {# container de toutes les pages #}
+                <div class="containerPages">
+                {% block body %}
 
-            {# container de toutes les pages #}
-            <div class="containerPages">
-                
+                        
+                {% endblock %}
+                </div>
             </div>
-        {% endblock %}
-
     
     <!-- JavaScript Bundle with Popper -->
     

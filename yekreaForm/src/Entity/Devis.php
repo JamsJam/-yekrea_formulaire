@@ -48,6 +48,17 @@ class Devis
      */
     private $materiel;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $status;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $clientDecisionDate;
+
+
 
     public function getId(): ?int
     {
@@ -126,4 +137,30 @@ class Devis
         return $this;
     }
 
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getClientDecisionDate(): ?\DateTimeInterface
+    {
+        return $this->clientDecisionDate;
+    }
+
+    public function setClientDecisionDate(?\DateTimeInterface $clientDecisionDate): self
+    {
+        $this->clientDecisionDate = $clientDecisionDate;
+
+        return $this;
+    }
+
+
+    
 }

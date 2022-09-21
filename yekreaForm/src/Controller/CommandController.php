@@ -25,15 +25,17 @@ class CommandController extends AbstractController
      */
     public function index(CommandRepository $commandRepository): Response
     {
+        // dd($this->getUser());
         $userRoles = $this->getUser()->getRoles();
         // $validation = $command->getValidateDate();
         if (in_array("ROLE_ADMIN", $userRoles)){
             // Si Admin, alors j'affiche toutes les commandes
-            $command = $commandRepository->findby(["validationDate" => null],["id" => "DESC"]);
+            $command = $commandRepository->findBy(["validationDate" => null],["id" => "DESC"]);
         }elseif (in_array("ROLE_COMMERCIAL", $userRoles)) {
             //Si Commercial, j'affiche seulement les commandes le concernant null
-            $userId = $this->getUser()->getId(); // getId() affiche methode undefini mais fonctionne
-            $command = $commandRepository->findby(['user'=> $userId, "validationDate" => null],["id" => "DESC"]);
+            $userId = $this->getUser(); // getId() affiche methode undefini mais fonctionne
+            // dd($userId);
+            $command = $commandRepository->findBy(['user'=> $userId, "validationDate" => null],["id" => "DESC"]);
         }
         // $command->setUser($user->getId());
         return $this->render('command/index.html.twig', [
@@ -47,14 +49,15 @@ class CommandController extends AbstractController
     public function historique(CommandRepository $commandRepository): Response
     {
         $userRoles = $this->getUser()->getRoles();
+        
         // $validation = $command->getValidateDate();
         if (in_array("ROLE_ADMIN", $userRoles)){
             // Si Admin, alors j'affiche toutes les commandes
-            $command = $commandRepository->findby([],["validationDate" => "DESC"]);
+            $command = $commandRepository->findBy([],["validationDate" => "DESC"]);
         }elseif (in_array("ROLE_COMMERCIAL", $userRoles)) {
-            //Si Commercial, j'affiche seulement les commandes le concernant null
-            $userId = $this->getUser()->getId(); // getId() affiche methode undefini mais fonctionne
-            $command = $commandRepository->findby(['user'=> $userId],["validationDate" => "DESC"]);
+            //Si Commercial, j'affiche seulement les commandes le concernant
+            $userId = $this->getUser(); // getId() affiche methode undefini mais fonctionne
+            $command = $commandRepository->findBy(['user'=> $userId],["validationDate" => "DESC"]);
         }
         // $command->setUser($user->getId());
         return $this->render('command/historique.html.twig', [
@@ -70,7 +73,7 @@ class CommandController extends AbstractController
         $command = new Command();
         $form = $this->createForm(CommandType::class, $command);
         $form->handleRequest($request);
-        
+        $command->setIsValidated(false);
         $numeroCommande = time()-100000;
         $command->setNbCommande($numeroCommande);
         //je set le champ User avec l'user actuellement connecté
@@ -106,6 +109,7 @@ class CommandController extends AbstractController
      */
     public function show(Command $command): Response
     {
+        
         return $this->render('command/show.html.twig', [
             'command' => $command,
         ]);
