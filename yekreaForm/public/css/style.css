@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /********************************************       PAGES */
@@ -27,7 +27,6 @@ html{
 /* titre */
 
 .title{
-    text-align: center;
     font-weight: bold;
     margin: 20px 0;
 }
@@ -181,7 +180,7 @@ img[alt="logo yekrea"]{
 /* lien "a" => TABLEAU DE BORD */
 
 .dashbord a{
-    margin: 0 65px;
+    margin: 0 55px;
 
     padding: 0 70px;
     color: #000 !important;
@@ -262,73 +261,44 @@ img[alt="logo yekrea"]{
 
 /* ******************************************************  LANDING */
 
+/* container du LANDING */
+.landingContainer{
+    border: 1px solid red;
+    padding: 30px 30px 30px 50px;
 
-#landing__container a,
-#landing__container h1{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
-    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-#landing__container{
-    background-color: white;
-    min-height: 100vh;
-    max-width: 1010px;
-    margin: 0 auto;
-    
-}
-
-#landing__title{
-    text-align:center;
-    padding-top: 20px;
-}
-
-#landing__container--user,
-#landing__container--admin
-{
-    width: 90vw;
-    min-width: 455px;
-    max-width: 1000px;
-    margin: 50px auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-around;
-    
-}
-
-#landing__container--user,
-#landing__container--admin
-{
-    width: 90vw;
-    min-width: 300px;
-    max-width: 1000px;
-    margin: 50px auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-around;
-}
-
-.landing__pageBloc{
-    height:200px;
-    width:200px;
-    border-radius: 20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background-color: #E5191E;
-    transition: color 0.3s ease, background-color 0.3s ease
-}
-.landing__pageBloc--a{
-    text-decoration:none;
-    color : white;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-gap: 20px;
 
 }
-.landing__pageBloc:hover{
-    background-color: black;
-    
+
+/* liens  */
+.landingbloc--a{
+    text-decoration: none;
+
+    padding: 10px;
+
+    width: 170px;
+    height: 170px;
+
+    font-weight: 600;
+    color: #000;
+    border-radius: 30px;
+    background-color: #E6E6E6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
-.landing__pageBloc--a:hover{
-    color: white;
+.landingbloc--a:hover{
+    background-color: #E5191E ;
+    color: #FFF;
+}
+
+.tableau{
+    border: white !important;
 }
 
 /* ****************************************************** DashBoard */
@@ -574,25 +544,24 @@ img[alt="logo yekrea"]{
     .welcome--container svg{
         width:  24px;
     }
-}
-/* ******************************************************  LANDING */
+    /* ******************************************************  LANDING */
 
-@media screen and (max-width:680px) {
-    #landing__container--user,
-    #landing__container--admin
-    {
-        width:100vw;
-        /* flex-wrap: wrap; */
-        flex-direction: column;
-    }
-    
-    .landing__pageBloc{
-        height:150px;
-        width:150px;
-        margin: 10px 0;
+    .landingbloc--a{
+        width: 30vw;
+        height: 30vw;
+
+        font-size: 0.7em;
+
     }
 
+    .landingContainer{
+        grid-template-columns: repeat(auto-fill, 100px);
+        grid-gap: 30px;
+    }
 }
+
+
+
 /* ******************************************************  dashborad*/
 @media screen and (max-width:465px) {
     #section1__grid{

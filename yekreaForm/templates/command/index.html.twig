@@ -15,28 +15,37 @@
             </a>
 
             <div class="table-responsive-sm">
-                <table class="table mb-5">
+                <table class="table mb-5 tableau">
                     <thead>
                         <tr>
                             {# <th>Id</th> #}
-                            <th>Numéro de commande</th>
-                            <th>Date de création </th>
+                            <th>Ref</th>
+                            <th>Client</th>
                             <th>Service</th>
-                            <th>Détail</th>
-                            <th>Prix</th>
-                            <th>Date de validation</th>
-                            <th>Voir</th>
-                            <th>Modifier</th>
+                            <th>Services détails</th>
+                            <th>Créé le</th>
+                            <th>Validée le</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for command in commands %}
                         <tr>
 
+                            {# référence de la commande #}
                             <td>{{ command.nbCommande }}</td>
-                            <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
                             
+
+                            {% if command.client %}
+                                <td>{{command.client.societe}}</td> 
+                            {% endif %}
+
                             {% if command.servicesdetail %}
+                                    <td>
+                                        {% for item in command.servicesdetail %}
+                                                {{item.services.nom}} <br>
+                                        {% endfor %}   
+                                    </td>
                                     <td>
                                         {% for item in command.servicesdetail %}
                                                 {{item.services.nom}} <br>
@@ -49,7 +58,7 @@
                                         {% endfor %} 
                                     </td>
 
-                                    <td>
+                                    {# <td>
                                         {% for item in command.servicesdetail %}
                                                 
                                             {% if item.prix != 0 %}
@@ -61,12 +70,16 @@
                                                 A partir de {{ item.prixMin }} <br>
                                             {% endif %}
                                         {% endfor %} 
-                                    </td>
+                                    </td> #}
                                 
                             {% else %}
                                 <td colspan='3'>NC </td>
                                 
                             {% endif %}
+                            {# date de création de la commande #}
+                            <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
+
+                            {# date de validation de la commande #}
                             <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('d/m/Y') : 'en attente' }}</td>
                             </td>
                             <td>

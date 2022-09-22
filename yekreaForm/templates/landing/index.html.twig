@@ -6,42 +6,63 @@
 
 {% endblock %}
 
+{# LANDING #}
+
 {% block body %}
+
     <div class="containerPages">
-        <div id="landing__container">
 
+        <div class="pages">
 
-            <div id="landing__container--admin">
-                <a class="landing__pageBloc--a" href="{{path("app_user_index")}}">
-                    <div class="landing__pageBloc">
-                        Gestion User
+            <h2 class="title">
+                Que souhaitez-vous faire?
+            </h2>
+
+            <div class="landingContainer">
+
+                <a href="{{path("app_command_index")}}" class="landingbloc--a">
+                    <div class="landingBloc">
+                        <p>Nouvelle commande</p>
                     </div>
                 </a>
 
-                <a class="landing__pageBloc--a" href="{{path("app_admin_client_index")}}">
-                    <div class="landing__pageBloc">
-                        Gestion des Client
+                <a href="{{path("app_command_historique")}}" class="landingbloc--a">
+                    <div class="landingBloc">
+                        <p>Historique de commande</p>
                     </div>
                 </a>
+                
+                
+                <a href="{{ path('app_devis_index') }}" class="landingbloc--a">
+                    <div class="landingBloc">
+                        <p>Liste de devis</p>
+                    </div>
+                </a>
+                
+                <a href="" class="landingbloc--a">
+                    <div class="landingBloc">
+                        <p>Statistiques</p>
+                    </div>
+                </a>
+                
+                <a href="{{path("app_admin_client_index")}}" class="landingbloc--a">
+                    <div class="landingBloc">
+                        <p>CRM</p>
+                    </div>
+                </a>
+                
+                {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ path('app_user_new') }}" class="landingbloc--a">
+                        <div class="landingBloc">
+                            <p>Nouveau commercial</p>
+                        </div>
+                    </a>
+                {% endif %}
+
             </div>
-            <div id="landing__container--user">
-                <a class="landing__pageBloc--a" href="{{path("app_user_new")}}">
-                    <div class="landing__pageBloc">
-                        Nouveau Client 
-                    </div>
-                </a>
-                <a class="landing__pageBloc--a" href="{{path("app_command_index")}}">
-                    <div class="landing__pageBloc">
-                        Nouvelle Commande
-                    </div>
-                </a>
-                <a class="landing__pageBloc--a" href="{{path("app_command_historique")}}">
-                    <div class="landing__pageBloc">
-                        Historique
-                    </div>  
-                </a>
-            </div>
+
         </div>
 
     </div>
+
 {% endblock %}
