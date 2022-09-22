@@ -1,15 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello DashboardController!{% endblock %}
-{% block styleSheets %}
+{% block stylesheets %}
 <style>
-    
+    .nav--container,
+    .sidebar
+    {
+        display: none
+    }
 </style>
 
 {% endblock %}
 {# {% block nav %}{% endblock %} #}
 {% block body %}
-    <section id="dashboard__section1">
+    <sections  id="dashboard__section1">
         <div id="section1__container">
             <h2 class="section1__titleSection">Vue d'ensemble</h2>
             
@@ -98,15 +102,32 @@
                 
 
                 <div id="section1__bestContainer">
+                    <div class="section1__general--container">
+                    <div>
+                        <p class="section1__general--label">Nombre de devis validée</p>
+                        <p class="section1__general--valeur">{{devisAccepted}}</p>
+                        <a href="#">Voir tout</a>
+                    </div>
+                    <div>
+                        <p class="section1__general--label">Nombre de devis en attente</p>
+                        <p class="section1__general--valeur">{{devisPending}}</p>
+                        <a href="#">Voir tout</a>
+                    </div>
+                    <div>
+                        <p class="section1__general--label">Nombre de devis annulée</p>
+                        <p class="section1__general--valeur">{{devisAborted}}</p>
+                        <a href="#">Voir tout</a>
+                    </div>
+                    </div>
                     <div class="section1__bestVendeur">
                         <div>
                             <div class="section1__bestVender--item">Commerçant le plus rentable</div>
-                            <div class="section1__bestVender--valeur">valeur</div>
+                            <div class="section1__bestVender--valeur">{{vendeurRentable.0}} avec {{vendeurRentable.1}}€ cm</div>
                             <a href="" class="section1__voirPlus">voir plus</a>
                         </div>
                         <div>
                             <div class="section1__bestVender--item">Commerçant le plus performant</div>
-                            <div class="section1__bestVender--valeur">{{premierVender.0}} avec  {{premierVender.2}}  ventent</div>
+                            <div class="section1__bestVender--valeur">{{premierVender.0}} avec  {{premierVender.2}}  ventes</div>
                             <a href="" class="section1__voirPlus">Voir plus</a>
                         </div>
                     </div>

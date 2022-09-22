@@ -399,7 +399,8 @@ img[alt="logo yekrea"]{
 
 .section1__bestVendeur,
 .section1__bestCategorie,
-.section1__bestProduit
+.section1__bestProduit,
+.section1__general--container
 {
     display:flex;
     justify-content: space-around;
@@ -415,13 +416,15 @@ img[alt="logo yekrea"]{
 }
 
 .section1__bestProduit--item,
-.section1__bestVender--item
+.section1__bestVender--item,
+.section1__general--label
 {
     font-weight: 700;
 }
 
 .section1__bestProduit--valeur,
-.section1__bestVender--valeur
+.section1__bestVender--valeur,
+.section1__general--valeur
 {
     text-align: center;
 }
