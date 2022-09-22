@@ -5,64 +5,72 @@
 {% block body %}
     <div class="containerPages">
     
-        <h1 class="title">Utilisateurs</h1>
+        <div class="pages">
+            <h1 class="title">Utilisateurs</h1>
 
-        <a class="btn btn-success mt-4 mb-4" href="{{ path('app_user_new') }}">
-            Créer un nouvel utilisateur
-        </a>
-            <table class="table mb-5">
-                <thead>
-                    <tr>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Prénom</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Rôle</th>
-                        {# <th>Password</th> #}
-                        
-                        <th scope="col">Voir</th>
-                        <th scope="col">Modifier</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for user in users %}
-                    <tr>
-                        {# <td>{{ user.id }}</td> #}
-                        <td>{{ user.nom }}</td>
-                        <td>{{ user.prenom }}</td>
-                        <td>{{ user.email }}</td>    
-                        <td>
-                            {% if user.roleInt == 1 %}
-                                Administrateur
-                            {% else %}
-                                {% if user.roleInt == 2 %}
-                                Commercial
+            <a class="btn btn-success mt-4 mb-4" href="{{ path('app_user_new') }}">
+                Créer un nouvel utilisateur
+            </a>
+            
+            <div class="table-responsive-sm">
+
+                <table class="table mb-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Rôle</th>
+                            {# <th>Password</th> #}
+                            
+                            <th scope="col">Voir</th>
+                            <th scope="col">Modifier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            {# <td>{{ user.id }}</td> #}
+                            <td>{{ user.nom }}</td>
+                            <td>{{ user.prenom }}</td>
+                            <td>{{ user.email }}</td>    
+                            <td>
+                                {% if user.roleInt == 1 %}
+                                    Administrateur
                                 {% else %}
-                                    {% if user.roleInt == 3 %}
+                                    {% if user.roleInt == 2 %}
+                                    Commercial
+                                    {% else %}
+                                        {% if user.roleInt == 3 %}
+                                        
+                                            Client
                                     
-                                        Client
-                                
+                                        {% endif %}
                                     {% endif %}
                                 {% endif %}
-                            {% endif %}
+                                
+                            </td>
                             
-                        </td>
-                        
-                        {# <td>{{ user.password }}</td> #}
-                        <td>
-                            <a class="btn btn-warning text-light" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-primary text-light" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                            {# <td>{{ user.password }}</td> #}
+                            <td>
+                                <a class="btn btn-warning text-light" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary text-light" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
 
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="7">Aucun enregistrement trouvé</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table> 
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table> 
+                
+            </div>
+        </div>
+
     </div>
 
 

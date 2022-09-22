@@ -2,46 +2,58 @@
 
 {% block title %}ServicesDetail{% endblock %}
 
+{# PAGE POUR AFFICHER LE SERVICE DETAIL SELECTIONNER #}
+
 {% block body %}
 
     <div class="containerPages">
         <div class="pages">
+
             <h1 class="title">Détail du service</h1>
 
+            {# BOUTON pour RETOURNER sur la PAGE INDEX #}
             <a class="btn btn-primary t-4 mb-4" href="{{ path('app_admin_services_detail_index') }}">Retour</a>
-        
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th>Id</th>
-                        <td>{{ services_detail.id }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nom</th>
-                        <td>{{ services_detail.nom }}</td>
-                    </tr>
-                    <tr>
-                        <th>Prix Minimum</th>
-                        <td>{{ services_detail.prixMin }}</td>
-                    </tr>
-                    <tr>
-                        <th>Prix Maximum</th>
-                        {% if  services_detail.prix != 0 %}
-                            
-                        <td>{{ services_detail.prix }}</td> 
 
-                        {% else %}
-                            <td>Prix personnalisé</td>
-                        {% endif %}
-                    </tr>
-                    <tr>
-                        <th>Date_creation</th>
-                        <td>{{ services_detail.dateCreation ? services_detail.dateCreation|date('d-m-Y') : '' }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive-sm">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ services_detail.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ services_detail.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Prix Minimum</th>
+                            <td>{{ services_detail.prixMin }}</td>
+                        </tr>
+                        <tr>
+                            <th>Prix Maximum</th>
+                            {% if  services_detail.prix != 0 %}
+                                
+                            <td>{{ services_detail.prix }}</td> 
+
+                            {% else %}
+                                <td>Prix personnalisé</td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <th>Date_creation</th>
+                            <td>{{ services_detail.dateCreation ? services_detail.dateCreation|date('d-m-Y') : '' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {# div pour gérer l'affichage des deux BOUTONS UPDATE & DELETE #}
             <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
+
+                {# BOUTON pour MODIFIER le SERVICE #}
                 <a class="btn btn-success" href="{{ path('app_admin_services_detail_edit', {'id': services_detail.id}) }}">Modifier</a>
+                
+                {# BOUTON pour SUPPRIMER le SERVICE #}
                 {{ include('admin_services_detail/_delete_form.html.twig') }}
             </div>
         </div>

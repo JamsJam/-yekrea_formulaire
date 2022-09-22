@@ -5,33 +5,41 @@
 {# PAGE POUR AFFICHER LE SERVICE SELECTIONNER #}
 
 {% block body %}
-    <h1 class="title">Service</h1>
-
-    {# BOUTON pour RETOURNER sur la PAGE INDEX #}
-    <a class="btn btn-primary Mt-4 mb-4" href="{{ path('app_services_index') }}">Retour</a>
 
     <div class="containerPages">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <th>Nom</th>
-                    
-                </tr>
-                <tr>
-                    <td>{{ service.id }}</td>
-                    <td>{{ service.nom }}</td>
-                </tr>
-            </tbody>
-        </table>
 
-        {# div pour gérer l'affichage des deux BOUTONS UPDATE & DELETE #}
-        <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
-            {# BOUTON pour SUPPRIMER le SERVICE #}
-            {{ include('services/_delete_form.html.twig') }}
+        <div class="pages">
+        
+            <h1 class="title">Service</h1>
 
-            {# BOUTON pour MODIFIER le SERVICE #}
-            <a class="btn btn-success" href="{{ path('app_services_edit', {'id': service.id}) }}">Modifier</a>
+            {# BOUTON pour RETOURNER sur la PAGE INDEX #}
+            <a class="btn btn-primary Mt-4 mb-4" href="{{ path('app_services_index') }}">Retour</a>
+
+            <div class="table-responsive-sm">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            
+                        </tr>
+                        <tr>
+                            <td>{{ service.id }}</td>
+                            <td>{{ service.nom }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {# div pour gérer l'affichage des deux BOUTONS UPDATE & DELETE #}
+                <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
+                    {# BOUTON pour SUPPRIMER le SERVICE #}
+                    {{ include('services/_delete_form.html.twig') }}
+
+                    {# BOUTON pour MODIFIER le SERVICE #}
+                    <a class="btn btn-success" href="{{ path('app_services_edit', {'id': service.id}) }}">Modifier</a>
+                </div>
+                
+            </div>
         </div>
     </div>
 

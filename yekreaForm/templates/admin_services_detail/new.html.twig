@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ServicesDetail{% endblock %}
+{% block title %}Nouveau ServicesDetail{% endblock %}
 
+{# PAGE POUR CREER UN NOUVEAU SERVICE DETAIL #}
 {% block body %}
-<div class="containerPages">
-    <h1 class="title">Ajouter une Nouvelle Proposition</h1>
 
-    <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_admin_services_detail_index') }}">Retour</a>
-    {{ include('admin_services_detail/_form.html.twig') }}
+<div class="containerPages">
+
+    <div class="pages">
+
+        <h1 class="title">Ajouter une Nouvelle Proposition</h1>
+
+        {# BOUTON pour RETOURNER sur la PAGE INDEX #}
+        <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_admin_services_detail_index') }}">Retour</a>
+        
+        {{ include('admin_services_detail/_form.html.twig') }}
+
+    </div>
 
 </div>
 {% endblock %}
