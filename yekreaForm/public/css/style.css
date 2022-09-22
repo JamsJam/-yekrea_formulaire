@@ -297,8 +297,45 @@ img[alt="logo yekrea"]{
     color: #FFF;
 }
 
+/* ****************************************************** TABLEAU */
+
 .tableau{
     border: white !important;
+}
+
+/* en-tête des tableaux */
+th{
+    background-color: #D9D9D9 !important;
+    border-left: 3px solid white !important;
+}
+td{
+    padding: 10px !important;
+}
+
+/* menu déroulant */
+
+/* enlève la flèche du bouton dropdown */
+.dropdown-toggle::after {
+    display: none !important;
+}
+.dropdown-toggle:active {
+    border: 1px solid white!important;
+}
+
+.dropdown-toggle:hover {
+    border: 1px solid white !important;
+    
+}
+
+.dropdown-item{
+    text-align: center;
+    background-color: #E5191E;
+    color: white;
+    
+}
+.dropdown-item:hover{
+    background-color: #D9D9D9;
+    color: #000;
 }
 
 /* ****************************************************** DashBoard */

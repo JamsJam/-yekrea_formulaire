@@ -4,19 +4,25 @@
 
 {% block body %}
 
+{# INDEX DES COMMANDES #}
+
     <div class="containerPages">
     
         <div class="pages">
 
             <h1 class="title">Commandes</h1>
 
-            <a class="btn btn-success mb-4" href="{{ path('app_command_new') }}">
-                Créer une nouvelle commande
-            </a>
+
+            {# Bouton pour créer une nouvelle commande
+
+                <a class="btn btn-success mb-4" href="{{ path('app_command_new') }}">
+                    Créer une nouvelle commande
+                </a> 
+            #}
 
             <div class="table-responsive-sm">
                 <table class="table mb-5 tableau">
-                    <thead>
+                    <thead >
                         <tr>
                             {# <th>Id</th> #}
                             <th>Ref</th>
@@ -25,7 +31,7 @@
                             <th>Services détails</th>
                             <th>Créé le</th>
                             <th>Validée le</th>
-                            <th></th>
+                            <th>2</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,22 +41,21 @@
                             {# référence de la commande #}
                             <td>{{ command.nbCommande }}</td>
                             
-
+                            {# société #}
                             {% if command.client %}
-                                <td>{{command.client.societe}}</td> 
+                                <td>{{command.client.societe|capitalize}}</td> 
                             {% endif %}
 
                             {% if command.servicesdetail %}
+
+                                    {# nom du service #}
                                     <td>
                                         {% for item in command.servicesdetail %}
                                                 {{item.services.nom}} <br>
                                         {% endfor %}   
                                     </td>
-                                    <td>
-                                        {% for item in command.servicesdetail %}
-                                                {{item.services.nom}} <br>
-                                        {% endfor %}    
-                                    </td>
+
+                                    {# nom du service détails #}
 
                                     <td>
                                         {% for item in command.servicesdetail %}
@@ -76,19 +81,39 @@
                                 <td colspan='3'>NC </td>
                                 
                             {% endif %}
+
                             {# date de création de la commande #}
                             <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
 
                             {# date de validation de la commande #}
                             <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('d/m/Y') : 'en attente' }}</td>
                             </td>
+
+                            {# Menu déroulant pour VOIR / MODIFIER /SUPPRIMER #}
                             <td>
-                                <a class="btn btn-warning text-light" href="{{ path('app_command_show', {'id': command.id}) }}">Voir</a>
+                                <div class="dropdown-center">
+
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {# 
+                                            Icones bootstrap "..." 
+                                            width & height : pour changer la taille
+                                            fill : pour changer la couleur ( couleur bootstap / couleur hexadecimal / couleur écrite ex: "red")
+                                        #}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                        </svg>
+                                    </button>
+
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{ path('app_command_show', {'id': command.id}) }}">Voir</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_command_delete', {'id': command.id}) }}">Supprimer</a></li>
+                                    </ul>
+                                </div>
                             </td>
-                            <td>
-                                <a class="btn btn-primary" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
-                            </td>
+
                         </tr>
+                            
                     {% else %}
                         <tr>
                             <td colspan="6">no records found</td>
