@@ -10,25 +10,22 @@
 
             <h1 class="title">Commandes</h1>
 
-            <a class="btn btn-success mb-4" href="{{ path('app_command_new') }}">
+            {# <a class="btn btn-success mb-4" href="{{ path('app_command_new') }}">
                 Créer une nouvelle commande
-            </a>
+            </a> #}
 
             <div class="table-responsive-sm">
-                <table class="table">
+                <table class="table mb-5 tableau">
                     <thead>
                         <tr>
 
-                            <th>Numéro de commande</th>
-                            <th>Date de création </th>
+                            <th>Ref</th>
                             <th>Service</th>
                             <th>Détail</th>
                             <th>Prix</th>
-                            <th>Date de validation</th>
-                            <th>Devis</th>
-                            {% if is_granted('ROLE_ADMIN') %}
-                            <th>Details</th>
-                            {% endif %}
+                            <th>Créé le</th>
+                            <th>Validé le</th>
+                            <th style="background-color:transparent !important; "></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,19 +36,19 @@
                                 <tr>
 
                                     <td>{{ command.nbCommande }}</td>
-                                    <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
+                                    
                                     
                                     {% if command.servicesdetail %}
                                             <td>
                                                 {% for item in command.servicesdetail %}
-                                                        {{item.services.nom}} <br>
-                                                {% endfor %}    
+                                                        {{item.nom}} <br>
+                                                {% endfor %} 
                                             </td>
 
                                             <td>
                                                 {% for item in command.servicesdetail %}
-                                                        {{item.nom}} <br>
-                                                {% endfor %} 
+                                                        {{item.services.nom}} <br>
+                                                {% endfor %}    
                                             </td>
 
                                             <td>
@@ -72,19 +69,38 @@
                                         <td colspan='3'>NC </td>
                                         
                                     {% endif %}
-                                    <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('d/m/Y') : 'en attente' }}</td>
+                                    <td>{{ command.createDate ? command.createDate|date('d/m/Y') : '' }}</td>
+                                    <td>{{ command.validationDate ? command.validationDate|date('d/m/Y') : 'en attente' }}</td>
                                     </td>
-                                    <td>
-                                        {% if command.devis %}
-                                            <a class="btn btn-warning text-light" href="{{ path('app_devis_pdf_render', {'id':  command.devis.id}) }}">Voir le devis</a>
+                                    <td class="col-1" >
+                                        <div class="dropdown-center"  >
+
+                                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                {# 
+                                                    Icones bootstrap "..." 
+                                                    width & height : pour changer la taille
+                                                    fill : pour changer la couleur ( couleur bootstap / couleur hexadecimal / couleur écrite ex: "red")
+                                                #}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                                </svg>
+                                            </button>
+
+                                            <ul class="dropdown-menu">
+                                                {# VOIR le service detail sélectionner (:/admin_services_detail/show.html.twig) #}
+                                                {% if command.devis %}
+                                                    <li><a class="dropdown-item" href="{{ path('app_devis_pdf_render', {'id':  command.devis.id}) }}">Voir le devis</a></li>
+                                                    
+                                                    {% if is_granted('ROLE_ADMIN') %}
+                                                    
+                                                    {# MODIFIER le service detail sélectionner (:/admin_services_detail/edit.html.twig) #}
+                                                    <li><a class="dropdown-item" href="{ path('app_devis_show', {'id': command.devis.id}) }}">Voir plus</a></li>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </ul>
+                                        </div>
                                     </td>
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        
-                                        <td>
-                                            <a class="btn btn-primary" href="{{ path('app_devis_show', {'id': command.devis.id}) }}">Voir plus</a>
-                                        </td>
-                                    {% endif %}
-                                        {% endif %}
+
                                 </tr>
                             {% endif %}
                         {% else %}

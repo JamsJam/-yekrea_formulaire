@@ -1,5 +1,5 @@
 {# Suppression d'un devis #}
 <form method="post" action="{{ path('app_devis_delete', {'id': devis.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ devis.id) }}">
-    <button class="btn bouton mb-4 mx-4 " style="background-color:#FFF !important; border: 1px solid #E5191E !important; color:#E5191E !important;">Supprimer</button>
+    <button class="btn bouton bouton-supp">Supprimer</button>
 </form>

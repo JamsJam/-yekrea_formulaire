@@ -449,7 +449,7 @@ td{
 }
 
 
-/* ********************************************************** RESPONSIVE */
+/* ***************************************************************************** RESPONSIVE */
 
 @media screen and (max-width: 800px){
 
@@ -484,7 +484,7 @@ td{
         width: 300px;
     }
 
-    /****** div =>  logo YEKREA & SLOGAN de la page de CONNEXION */
+    /* div =>  logo YEKREA & SLOGAN de la page de CONNEXION */
 
     .containerLogIn_block--logo{
 
@@ -589,8 +589,8 @@ td{
     /* ******************************************************  LANDING */
 
     .landingbloc--a{
-        width: 30vw;
-        height: 30vw;
+        width: 25vw;
+        height: 25vw;
 
         font-size: 0.7em;
 
@@ -599,9 +599,9 @@ td{
     .landingContainer{
         grid-template-columns: repeat(auto-fill, 100px);
         grid-gap: 30px;
+        padding-left: 20px;
     }
 }
-
 
 
 /* ******************************************************  dashborad*/
