@@ -61,15 +61,39 @@ ul li{
     color:#E5191E !important; 
 }
 
-/* INPUT TEXTE / EMAIL / PASSWORD */
+/* INPUT TEXTE / EMAIL / PASSWORD / TEL / SELECT */ 
 
-input[type=text], input[type=email], input[type=password], input[type=tel], input[type=select]{
+input[type=text], 
+input[type=email], 
+input[type=password], 
+input[type=tel], 
+input[type=select] {
 
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2); 
     border:none;
     width: 300px;
     margin-bottom: 20px;
 
+}
+input[type=search]{
+
+    box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.2); 
+    background-color: #F0F0F0;
+    border:none;
+    width: 300px;
+    margin-bottom: 20px;
+    border-radius: 0 !important;
+
+}
+#search{
+
+    box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0.2); 
+    background-color: #F0F0F0;
+    border:none;
+    width: 40px;
+    margin-bottom: 20px;
+    border-radius: 0 !important;
+    left: -10px;
 }
 
 /* *******************************************      LOG IN */
