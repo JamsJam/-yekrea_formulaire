@@ -8,12 +8,11 @@
     <div class="containerPages">
 
         <div class="pages">
-    
-            <h1 class="title">Ajouter un nouveau service</h1>
 
             {# BOUTON pour RETOURNER sur la PAGE INDEX #}
-            <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_services_index') }}">Retour</a>
-            
+            <a class="btn bouton" href="{{ path('app_services_index') }}">Retour</a>
+    
+            <h1 class="title">Ajouter un nouveau service</h1>
             
             {{ include('services/_form.html.twig') }}
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier les services{% endblock %}
+{% block title %}Modifier le service{% endblock %}
 
 {# PAGE pour MODIFIER les SERVICES #}
 
@@ -9,12 +9,12 @@
     <div class="containerPages">
 
         <div class="pages">
+
             
-            <h1 class="title">Modifier les services</h1>
-
             {# BOUTON pour RETOURNER sur la PAGE INDEX #}
-            <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_services_index') }}">Retour</a>
+            <a class="btn bouton" href="{{ path('app_services_index') }}">Retour</a>
 
+            <h1 class="title">Modifier les services</h1>
         
             {# FORMULAIRE pour MODIFER le SERVICE #}
             {{ include('services/_form.html.twig', {'button_label': 'Modifier'}) }}

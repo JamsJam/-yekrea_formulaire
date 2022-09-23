@@ -9,22 +9,22 @@
     <div class="containerPages">
 
         <div class="pages">
+
+            {# BOUTON pour RETOURNER sur la PAGE INDEX #}
+            <a class="btn bouton" href="{{ path('app_services_index') }}">Retour</a>
         
             <h1 class="title">Service</h1>
 
-            {# BOUTON pour RETOURNER sur la PAGE INDEX #}
-            <a class="btn btn-primary Mt-4 mb-4" href="{{ path('app_services_index') }}">Retour</a>
-
             <div class="table-responsive-sm">
-                <table class="table">
+                <table class="table mb-5 tableau">
                     <tbody>
                         <tr>
-                            <th>Id</th>
+                            {# <th>Id</th> #}
                             <th>Nom</th>
                             
                         </tr>
                         <tr>
-                            <td>{{ service.id }}</td>
+                            {# <td>{{ service.id }}</td> #}
                             <td>{{ service.nom }}</td>
                         </tr>
                     </tbody>
@@ -36,7 +36,7 @@
                     {{ include('services/_delete_form.html.twig') }}
 
                     {# BOUTON pour MODIFIER le SERVICE #}
-                    <a class="btn btn-success" href="{{ path('app_services_edit', {'id': service.id}) }}">Modifier</a>
+                    <a class="btn bouton" href="{{ path('app_services_edit', {'id': service.id}) }}">Modifier</a>
                 </div>
                 
             </div>

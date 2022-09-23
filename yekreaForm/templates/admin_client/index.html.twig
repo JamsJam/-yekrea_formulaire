@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}} Dashbord Client {% endblock %}
+{% block title %}{{parent()}} Index Client {% endblock %}
 {% block nav %}{{parent()}}{% endblock %}
     
 
@@ -12,28 +12,27 @@
             <h1 class="title">Client</h1>
 
             {# BOUTON ajouter un nouveau client #}
-            <a class="btn btn-success" href="{{ path('app_admin_client_new') }}">Ajouter un nouveau client</a>
+            {# <a class="btn btn-success" href="{{ path('app_admin_client_new') }}">Ajouter un nouveau client</a> #}
 
             <div class="table-responsive-sm">
 
-                <table class="table">
+                <table class="table mb-5 tableau">
                     <thead>
                         <tr>
-                            <th>Client</th>
                             <th>Société</th>
+                            <th>Client</th>
                             <th>Email</th>
                             <th>Téléphone</th>
                             <th>Réseaux</th>
-                            <th>Voir</th>
-                            <th>Modifier</th>
+                            <th style="background-color:transparent !important; "></th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for client in clients %}
 
                         <tr>
+                            <td>{{ client.societe|upper }}</td>
                             <td>{{client.user.nom|upper}} {{client.user.prenom|capitalize}}</td>
-                            <td>{{ client.societe }}</td>
                                 <td>
                                     {% if client.user %}
                                         {{client.user.email}}
@@ -43,11 +42,31 @@
                                 </td>
                             <td>{{ client.telephone }}</td>
                             <td>{{ client.Reseaux }}</td>
-                            <td>
-                                <a class="btn btn-warning text-light" href="{{ path('app_admin_client_show', {'id': client.id}) }}">Voir</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" href="{{ path('app_admin_client_edit', {'id': client.id}) }}">Modifier</a>
+                            <td class="col-1" >
+                                <div class="dropdown-center"  >
+
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {# 
+                                            Icones bootstrap "..." 
+                                            width & height : pour changer la taille
+                                            fill : pour changer la couleur ( couleur bootstap / couleur hexadecimal / couleur écrite ex: "red")
+                                        #}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                        </svg>
+                                    </button>
+
+                                    <ul class="dropdown-menu">
+                                        {# VOIR le client sélectionner (:admin_client/show.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_client_show', {'id': client.id}) }}">Voir</a></li>
+
+                                        {# MODIFIER le client sélectionner (:admin_client/edit.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_client_edit', {'id': client.id}) }}">Modifier</a></li>
+
+                                        {# SUPPRIMER le client sélectionner (:admin_client/_delete_form.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_client_delete', {'id': client.id}) }}">Supprimer</a></li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     {% else %}

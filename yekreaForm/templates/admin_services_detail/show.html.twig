@@ -9,38 +9,33 @@
     <div class="containerPages">
         <div class="pages">
 
+            {# BOUTON pour RETOURNER sur la PAGE INDEX #}
+            <a class="btn bouton" href="{{ path('app_admin_services_detail_index') }}">Retour</a>
+
             <h1 class="title">Détail du service</h1>
 
-            {# BOUTON pour RETOURNER sur la PAGE INDEX #}
-            <a class="btn btn-primary t-4 mb-4" href="{{ path('app_admin_services_detail_index') }}">Retour</a>
-
             <div class="table-responsive-sm">
-                <table class="table">
+                <table class="table mb-4 tableau">
+                    <thead>
+                        {# <th>Id</th> #}
+                        <th>Nom</th>
+                        <th>Prix Minimum</th>
+                        <th>Prix Maximum</th>
+                        <th>Date_creation</th>
+                    </thead>
                     <tbody>
                         <tr>
-                            <th>Id</th>
-                            <td>{{ services_detail.id }}</td>
-                        </tr>
-                        <tr>
-                            <th>Nom</th>
-                            <td>{{ services_detail.nom }}</td>
-                        </tr>
-                        <tr>
-                            <th>Prix Minimum</th>
+                            {# <td>{{ services_detail.id }}</td> #}                   
+                            <td>{{ services_detail.nom }}</td>                            
                             <td>{{ services_detail.prixMin }}</td>
-                        </tr>
-                        <tr>
-                            <th>Prix Maximum</th>
+                            
                             {% if  services_detail.prix != 0 %}
                                 
-                            <td>{{ services_detail.prix }}</td> 
+                                <td>{{ services_detail.prix }}</td> 
 
-                            {% else %}
-                                <td>Prix personnalisé</td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <th>Date_creation</th>
+                                {% else %}
+                                    <td>Prix personnalisé</td>
+                                {% endif %}
                             <td>{{ services_detail.dateCreation ? services_detail.dateCreation|date('d-m-Y') : '' }}</td>
                         </tr>
                     </tbody>
@@ -51,7 +46,7 @@
             <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
 
                 {# BOUTON pour MODIFIER le SERVICE #}
-                <a class="btn btn-success" href="{{ path('app_admin_services_detail_edit', {'id': services_detail.id}) }}">Modifier</a>
+                <a class="btn bouton" href="{{ path('app_admin_services_detail_edit', {'id': services_detail.id}) }}">Modifier</a>
                 
                 {# BOUTON pour SUPPRIMER le SERVICE #}
                 {{ include('admin_services_detail/_delete_form.html.twig') }}

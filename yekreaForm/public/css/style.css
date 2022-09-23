@@ -268,7 +268,6 @@ img[alt="logo yekrea"]{
 
 /* container du LANDING */
 .landingContainer{
-    border: 1px solid red;
     padding: 30px 30px 30px 50px;
 
     display: grid;

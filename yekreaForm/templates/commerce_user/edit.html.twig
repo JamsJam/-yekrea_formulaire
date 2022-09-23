@@ -8,11 +8,11 @@
     <div class="containerPages">
 
         <div class="pages">
-        
-            <h1 class="title">Modifier l'utilisateur</h1>
 
             {# BOUTON pour RETOURNER sur la PAGE INDEX #}
-            <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_user_index') }}">Retour</a>
+            <a class="btn bouton" href="{{ path('app_user_index') }}">Retour</a>
+        
+            <h1 class="title">Modifier l'utilisateur</h1>
 
             {# FORMULAIRE pour MODIFER l'UTILISATEUR #}
             {{ include('commerce_user/_form.html.twig', {'button_label': 'Modifier'}) }}

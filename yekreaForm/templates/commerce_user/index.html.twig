@@ -32,10 +32,16 @@
                     {% for user in users %}
                         <tr>
                             {# <td>{{ user.id }}</td> #}
+
+                            {# nom de l'utilisateur en majuscule #}
                             <td>{{ user.nom|upper }}</td>
+
+                            {# prénom de l'utilisateur 1ère lettre en majuscule #}
                             <td>{{ user.prenom|capitalize }}</td>
-                            <td>{{ user.email }}</td>    
-                            <td>
+
+                            {# mail de l'utilisateur #}
+                            <td class="col-3">{{ user.email }}</td>    
+                            <td >
                                 {% if user.roleInt == 1 %}
                                     {# Administrateur #}
                                 {% else %}
@@ -51,6 +57,8 @@
                                 {% endif %}
                                 
                             </td>
+
+                            {# menu déroulant VOIR / MODIFIER / SUPPRIMER #}
                             <td class="col-1" >
                                 <div class="dropdown-center"  >
 
