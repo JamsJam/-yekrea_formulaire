@@ -30,7 +30,7 @@ class DashboardController extends AbstractController
 
         //recuperation des Donnée necessaires
         $AllService = $serviceRepository->findAll();
-        $commandeValidee = $commandRepository->findBy([ 'isValidated' => true]); 
+        $commandeValidee = $commandRepository->findBy(['isValidated' => true]); 
         $users = $userRepository->findAll();
 
         // ***********************************Recuperation des 4 dernieres commandes
@@ -62,11 +62,11 @@ class DashboardController extends AbstractController
                 // Si pour chaque user le nombre de commande existe...
                 if($nombreDeCommande)
                 {
+                    //initialisation
+                    $sommePrixFinal = 0;
                     // alor pour chaque commandes
                     foreach( $userCommandeValide as $commande)
                     {
-                        //initialisation
-                        $sommePrixFinal = 0;
                         //si un devis pour cette commande existe (securité car validation de la commande deja verifié  )
                         if($commande->getDevis())
                         {
