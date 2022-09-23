@@ -34,7 +34,7 @@ html{
 ul li{
     text-decoration: none !important;
 }
-
+/* ************************************** BOUTONS */
 /* BOUTON valider */
 
 .bouton{
@@ -55,6 +55,11 @@ ul li{
     margin: 0 40%;
 }
 
+.bouton--supp{
+    background-color:#FFF !important; 
+    border: 1px solid #E5191E !important; 
+    color:#E5191E !important; 
+}
 
 /* INPUT TEXTE / EMAIL / PASSWORD */
 
@@ -134,7 +139,7 @@ img[alt="logo yekrea"]{
     width: 250px;
 
     background-color: #E5191E;
-    border-radius: 30px;
+    border-radius: 0 40px 0 0 ;
 }
 
 /* logo YEKREA NAV */
@@ -240,11 +245,11 @@ img[alt="logo yekrea"]{
 }
 
 .link:hover{
-    background-color: #fff;
+    /* background-color: #fff; */
     color: #000;
 }
 .link:active{
-    background-color: #000;
+    /* background-color: #000; */
     color: #FFF;
 }
 
@@ -310,6 +315,7 @@ th{
 }
 td{
     padding: 10px !important;
+    
 }
 
 /* menu déroulant */

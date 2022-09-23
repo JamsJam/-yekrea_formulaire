@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Historique des commandes{% endblock %}
+{% block title %}Index commandes{% endblock %}
 
 {% block body %}
 
@@ -20,8 +20,16 @@
                 </a> 
             #}
 
+            {# 
+                CLASS BOOTSTRAP
+                table-responsive-sm : rend le tableau responsive en fonction de la taille de l'écran (sm)
+                mb : margin-bottom
+            #}
+
             <div class="table-responsive-sm">
                 <table class="table mb-5 tableau">
+
+
                     <thead >
                         <tr>
                             {# <th>Id</th> #}
@@ -31,10 +39,12 @@
                             <th>Services détails</th>
                             <th>Créé le</th>
                             <th>Validée le</th>
-                            <th>2</th>
+                            <th style="background-color:transparent !important; "></th>
                         </tr>
                     </thead>
                     <tbody>
+
+                    {# BOUCLE pour afficher les données récupérer via la table commande #}
                     {% for command in commands %}
                         <tr>
 
@@ -89,9 +99,13 @@
                             <td>{{ command.validationDate ? 'Validé le :' ~ command.validationDate|date('d/m/Y') : 'en attente' }}</td>
                             </td>
 
-                            {# Menu déroulant pour VOIR / MODIFIER /SUPPRIMER #}
-                            <td>
-                                <div class="dropdown-center">
+                            {# 
+                                Menu déroulant pour VOIR / MODIFIER /SUPPRIMER 
+                                col: taille de la colonne
+                                dropdown-center : centre le dropdown
+                            #}
+                            <td class="col-1" >
+                                <div class="dropdown-center"  >
 
                                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         {# 
@@ -99,14 +113,17 @@
                                             width & height : pour changer la taille
                                             fill : pour changer la couleur ( couleur bootstap / couleur hexadecimal / couleur écrite ex: "red")
                                         #}
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
                                             <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                                         </svg>
                                     </button>
 
                                     <ul class="dropdown-menu">
+                                        {# VOIR la commande sélectionner (:/commande/show.html.twig) #}
                                         <li><a class="dropdown-item" href="{{ path('app_command_show', {'id': command.id}) }}">Voir</a></li>
+                                        {# MODIFIER la commande sélectionner (:/commande/edit.html.twig) #}
                                         <li><a class="dropdown-item" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a></li>
+                                        {# SUPPRIMER la commande sélectionner (:/commande/_delete_form.html.twig) #}
                                         <li><a class="dropdown-item" href="{{ path('app_command_delete', {'id': command.id}) }}">Supprimer</a></li>
                                     </ul>
                                 </div>

@@ -7,32 +7,33 @@
     
         <div class="pages">
             <h1 class="title">Utilisateurs</h1>
+            
 
+            {# BOUTON pour créer un nouvel utillisateur
             <a class="btn btn-success mt-4 mb-4" href="{{ path('app_user_new') }}">
                 Créer un nouvel utilisateur
-            </a>
+            </a> #}
             
             <div class="table-responsive-sm">
 
-                <table class="table mb-5">
+                <table class="table mb-5 tableau">
                     <thead>
                         <tr>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prénom</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Rôle</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                            <th>Rôle</th>
                             {# <th>Password</th> #}
                             
-                            <th scope="col">Voir</th>
-                            <th scope="col">Modifier</th>
+                            <th style="background-color:transparent !important; "></th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for user in users %}
                         <tr>
                             {# <td>{{ user.id }}</td> #}
-                            <td>{{ user.nom }}</td>
-                            <td>{{ user.prenom }}</td>
+                            <td>{{ user.nom|upper }}</td>
+                            <td>{{ user.prenom|capitalize }}</td>
                             <td>{{ user.email }}</td>    
                             <td>
                                 {% if user.roleInt == 1 %}
@@ -50,15 +51,33 @@
                                 {% endif %}
                                 
                             </td>
-                            
-                            {# <td>{{ user.password }}</td> #}
-                            <td>
-                                <a class="btn btn-warning text-light" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary text-light" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                            <td class="col-1" >
+                                <div class="dropdown-center"  >
 
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {# 
+                                            Icones bootstrap "..." 
+                                            width & height : pour changer la taille
+                                            fill : pour changer la couleur ( couleur bootstap / couleur hexadecimal / couleur écrite ex: "red")
+                                        #}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                        </svg>
+                                    </button>
+
+                                    <ul class="dropdown-menu">
+                                        {# VOIR le materiel sélectionner (:/materiel/show.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a></li>
+
+                                        {# MODIFIER le materiel sélectionner (:/materiel/edit.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a></li>
+
+                                        {# SUPPRIMER le materiel sélectionner (:/materiel/_delete_form.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_user_delete', {'id': user.id}) }}">Supprimer</a></li>
+                                    </ul>
+                                </div>
                             </td>
+                            {# <td>{{ user.password }}</td> #}
                         </tr>
                     {% else %}
                         <tr>

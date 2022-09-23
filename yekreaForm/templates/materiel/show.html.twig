@@ -12,32 +12,49 @@
 
             <h1 class="title">Matériel</h1>
 
-            {# BOUTON pour RETOURNER sur la PAGE INDEX #}
+            {# BOUTON pour RETOURNER sur la PAGE INDEX
             <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_materiel_index') }}">Retour</a>
-
+            #}
             <div class="table-responsive-sm">
 
-                <table class="table">
+                <table class="table mb-5 tableau">
                     <tbody>
                         <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prix</th>
-                            <th scope="col">Modifier</th>
-                            <th scope="col">Supprimer</th>
+                            {# <th>Id</th> #}
+                            <th class="col-4">Nom</th>
+                            <th class="col-4">Prix</th>
+                            <th style="background-color:transparent !important; "></th>
                             
                         </tr>
                         <tr>
-                            <td>{{ materiel.id }}</td>
+                            {# ID materiel
+                            <td>{{ materiel.id }}</td> #}
                             <td>{{ materiel.nom }}</td>
-                            <td>{{ materiel.prix }}</td>
-                            <td>
-                                {# BOUTON pour MODIFIER le MATERIEL #}
-                                <a  class="btn btn-warning" href="{{ path('app_materiel_edit', {'id': materiel.id}) }}">Modfier</a>
+                            <td>{{ materiel.prix }}€</td>
+
+                            <td class="col-1" >
+                                <div class="dropdown-center"  >
+
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {# 
+                                            Icones bootstrap "..." 
+                                            width & height : pour changer la taille
+                                            fill : pour changer la couleur ( couleur bootstap / couleur hexadecimal / couleur écrite ex: "red")
+                                        #}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                        </svg>
+                                    </button>
+
+                                    <ul class="dropdown-menu">
+                                    
+                                        {# MODIFIER le materiel sélectionner (:/materiel/edit.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_materiel_edit', {'id': materiel.id}) }}">Modifier</a></li>
+                                        {# SUPPRIMER le materiel sélectionner (:/materiel/_delete_form.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_materiel_delete', {'id': materiel.id}) }}">Supprimer</a></li>
+                                    </ul>
+                                </div>
                             </td>
-                                
-                            {# BOUTON pour SUPPRIMER le SERVICE #}
-                            <td>{{ include('materiel/_delete_form.html.twig') }}</td>
                         </tr>
                     </tbody>
                 </table>

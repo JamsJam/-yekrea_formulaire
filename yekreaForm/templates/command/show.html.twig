@@ -5,98 +5,95 @@
 {% block body %}
 
     <div class="containerPages">
-
-        <h1 class="title">Commande</h1>
-
-        <a class="btn btn-primary mt-4 mb-4" href="{{ path('app_command_index') }}">Retour</a>
-
-        <table class="table">
-        <tbody>
-            <tr>
-                <th>Client</th>
-                <td>
-                    {% if command.client %}
-                        
-                        {% if command.client.user %}
-                            {{command.client.user.nom ~ ' ' ~ command.client.user.prenom}}
-                        {% endif %}
-                        
-                    {% endif %}
-                </td>
-            </tr>
-            <tr>
-                <th>Numéro de commande</th>
-                <td>{{ command.nbCommande }}</td>
-            </tr>
-            <tr>
-                <th>Services</th>
-                <td>
-                    {% if command.servicesDetail %}
-                        {% for serviceDetail in command.servicesDetail %}
-                                {{serviceDetail.services.nom}}<br>
-                        {% endfor %}
-                    {% else %}
-                        NR
-                    {% endif %}
-                </td>
-            </tr>
-            <tr>
-                <th>Services détails</th>
-                <td>
-                    {% if command.Servicesdetail %}
-                        {% for Servicedetail in command.Servicesdetail %}
-                            {{Servicedetail.nom}}<br>
-                        {% endfor %}
-                    {% else %}
-                        NR
-                    {% endif %}
-                </td>
-            </tr>
+        <div class="pages">
+            <a class="btn bouton" href="{{ path('app_command_index') }}">
+                Retour
+            </a>
+            <h1 class="title">Commande n°{{ command.nbCommande }}</h1>
+            <p>Commercial : {{ command.user ? command.user.nom|capitalize }}</p>
+            <div class="table-responsive-sm">
+                <table class="table mt-4 mb-5 tableau">
+                    <thead>
+                        <th>Ref</th>
+                        <th>Client</th>
+                        <th>Services</th>
+                        <th>Services détails</th>
+                        <th>Matériel</th>
+                        <th>Crée le</th>
+                        <th>Validée le</th>
+                        <th>Commercial</th>
+                    </thead>
+                    <tbody>
                         <tr>
-                <th>materiel</th>
-                <td>
+                            {# Num de commande #}
+                            <td>{{ command.nbCommande }}</td>
+                            
+                            {# Client #}
+                            <td>
+                                {% if command.client %}
+                                    {% if command.client %}
+                                        {{command.client.societe|upper}}
+                                    {% endif %}
+                                    
+                                {% endif %}
+                            </td>
 
-                    {% for materiel in command.materiel %}
-                        {{materiel.nom}}
-                    {% else %}
-                        NR  
-                
-                    {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <th>Date de création</th>
-                <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            
-            <tr>
-                <th>Date de validation</th>
-                <td>{{ command.validationDate ? command.validationDate|date('Y-m-d') : '' }}</td>
-            </tr>
+                            {# Services #}
+                            <td>
+                                {% if command.servicesDetail %}
+                                    {% for serviceDetail in command.servicesDetail %}
+                                            {{serviceDetail.services.nom}}<br>
+                                    {% endfor %}
+                                {% else %}
+                                    NR
+                                {% endif %}
+                            </td>
+                            {# détails du services #}
+                            <td>
+                                {% if command.Servicesdetail %}
+                                    {% for Servicedetail in command.Servicesdetail %}
+                                        {{Servicedetail.nom}}<br>
+                                    {% endfor %}
+                                {% else %}
+                                    NR
+                                {% endif %}
+                            </td>
+                            
+                            <td>
 
-            <tr>
-                <th>Prestataire</th>
-                <td>{{ command.user ? command.user.nom ~ ' ' ~ command.user.prenom : '' }} </td>
-            </tr>
+                                {% for materiel in command.materiel %}
+                                    {{materiel.nom}}
+                                {% else %}
+                                    NR  
+                            
+                                {% endfor %}
+                            </td>
+                            <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
+                            
+                            <td>{{ command.validationDate ? command.validationDate|date('Y-m-d') : '' }}</td>
+                    
+                            <td>{{ command.user ? command.user.nom|capitalize }} </td>
+                        </tr>
 
 
-        </tbody>
-        </table>
-        <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
-        {% if not command.validationDate %}
-            <a class="btn btn-info text-light" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
-        {% endif %}
-            {{ include('command/_delete_form.html.twig') }}
-
-
-
-            {% if is_granted('ROLE_ADMIN') %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="updateDelete" style="display:flex;flex-direction:row; justify-content:space-around;">
                 {% if not command.validationDate %}
-                    <a class="btn btn-success" href="{{ path('app_validate', {'id': command.id}) }}">Valider</a>
+                    <a class="btn bouton" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
                 {% endif %}
-            {% endif %}
-            
 
+                {{ include('command/_delete_form.html.twig') }}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    {% if not command.validationDate %}
+                        <a class="btn bouton" href="{{ path('app_validate', {'id': command.id}) }}">Valider</a>
+                    {% endif %}
+                {% endif %}
+                
+
+            </div>
         </div>
     </div>
     

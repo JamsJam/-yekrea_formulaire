@@ -3,7 +3,9 @@
         {% set serviceDetailCount = 0 %}
         {% set materielCount = 0 %}
 
-<h2 style="text-align:center">Devis n°{{devis.numDevis}}</h2>
+<div class="containerPages">
+    <div class="page">
+        <h2 class="title">Devis n°{{devis.numDevis}}</h2>
 {{ form_start(form) }}
 
 
@@ -20,7 +22,7 @@
 
         {# btn permettant d'ajouter une categorie et un service #}
         <div style="align-self: center; margin-right:30px; margin-left: -170px">
-            <a href="javascript:newItems()" class="btn btn-info" > ajouter un service</a>
+            <a href="javascript:newItems()" class="btn bouton" > ajouter un service</a>
         </div>
 
         {# input de Service #}
@@ -64,7 +66,7 @@
                 align-self: center; 
                 margin-right:30px; 
                 margin-left: -170px">
-            <a href="javascript:newMateriel()" class="btn btn-info" > Ajouter un Materiel </a>
+            <a href="javascript:newMateriel()" class="btn bouton" > Ajouter un Materiel </a>
         </div>
     
         <div id='devis__Form--materielContainer' style="
@@ -87,10 +89,7 @@
                     margin-left: 20px;">
             {{ form_row(form.prix_final) }}
         </div>
-    </div>
-
-        
-        
+    </div>    
 
     <div style="display:none">
         {# 
@@ -104,5 +103,8 @@
 
     
 
-    <button class="btn btn-success mt-3">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    <button class="btn bouton">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+
+    </div>
+</div>

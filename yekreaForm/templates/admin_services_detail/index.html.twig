@@ -7,26 +7,29 @@
         <div class="pages">
             <h1 class="title" >Propositions commerciales</h1>
 
-            <a class="btn btn-success mb-4" href="{{ path('app_admin_services_detail_new') }}">Ajouter une nouvelle proposition</a>
+            {# 
+                Bouton pour ajouter une nouvelle proposition
+                <a class="btn btn-success mb-4" href="{{ path('app_admin_services_detail_new') }}">Ajouter une nouvelle proposition</a> 
+            #}
             
             <div class="table-responsive-sm">
 
-                <table class="table">
+                <table class="table mb-5 tableau">
                     <thead>
                         <tr>
-                            <th scope="col">Id</th>
+                            {# <th scope="col">Id</th> #}
                             <th scope="col">Nom</th>
                             <th scope="col">Prix MIN</th>
                             <th scope="col">Prix MAX</th>
                             {# <th>Date_creation</th> #}
-                            <th scope="col">Voir</th>
-                            <th scope="col">Modifier</th>
+                            <th style="background-color:transparent !important; "></th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for services_detail in services_details %}
-                        <tr class="table-striped">
-                            <td>{{ services_detail.id }}</td>
+                        <tr>
+                            {# ID du services détails
+                            <td>{{ services_detail.id }}</td> #}
                             <td>{{ services_detail.nom }}</td>
                             {% if services_detail.prix != 0 %}
                                 <td>{{ services_detail.prixMin}}€</td>
@@ -36,13 +39,36 @@
                                 <td >A partir de {{ services_detail.prixMin}}€</td>
                                 <td > Client à contacter</td>
                             {% endif %}
-                            {# <td>{{ services_detail.dateCreation ? services_detail.dateCreation|date('d/m/Y') : '' }}</td> #}
-                            <td>
-                                <a class="btn btn-warning" href="{{ path('app_admin_services_detail_show', {'id': services_detail.id}) }}">Voir</a>
+                            {# date de création du service
+                            <td>{{ services_detail.dateCreation ? services_detail.dateCreation|date('d/m/Y') : '' }}</td> #}
+
+                            <td class="col-1" >
+                                <div class="dropdown-center"  >
+
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {# 
+                                            Icones bootstrap "..." 
+                                            width & height : pour changer la taille
+                                            fill : pour changer la couleur ( couleur bootstap / couleur hexadecimal / couleur écrite ex: "red")
+                                        #}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                        </svg>
+                                    </button>
+
+                                    <ul class="dropdown-menu">
+                                        {# VOIR le service detail sélectionner (:/admin_services_detail/show.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_services_detail_show', {'id': services_detail.id}) }}">Voir</a></li>
+                                        
+                                        {# MODIFIER le service detail sélectionner (:/admin_services_detail/edit.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_services_detail_edit', {'id': services_detail.id}) }}">Modifier</a></li>
+                                        
+                                        {# SUPPRIMER le service detail sélectionner (:/admin_services_detail/_delete_form.html.twig) #}
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_services_detail_delete', {'id': services_detail.id}) }}">Supprimer</a></li>
+                                    </ul>
+                                </div>
                             </td>
-                            <td>
-                                <a class="btn btn-primary" href="{{ path('app_admin_services_detail_edit', {'id': services_detail.id}) }}">Editer</a>
-                            </td>
+                            
                         </tr>
 
                     {% else %}

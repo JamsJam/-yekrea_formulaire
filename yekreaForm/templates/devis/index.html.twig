@@ -3,11 +3,7 @@
 {% block title %}Index devis{% endblock %}
 
 {% block stylesheets %}
-    <style>
-        th,td{
-            text-align:center;
-        }
-    </style>
+
 {% endblock %}
 
 {% block body %}
@@ -17,26 +13,27 @@
         <div class="pages">
             <h1 class="title" >Devis</h1>
 
-            {# BOUTON pour CREER un nouveau devis via l'acceptation d'une d'une commande #}
-            {# <a class="btn btn-success mb-4" href="{{ path('app_devis_new') }}">Créer un nouveau devis</a> #}
+            {# 
+                BOUTON pour CREER un nouveau devis via l'acceptation d'une d'une commande 
+                <a class="btn btn-success mb-4" href="{{ path('app_devis_new') }}">Créer un nouveau devis</a>
+            #}
 
             <div class="table-responsive-sm">
-                <table class="table table-striped" id="test">
+                <table class="table mb-5 tableau" id="test">
 
                     <thead>
-                        <tr class="table-success">
-                            <th>N°devis</th>
+                        <tr>
+                            <th>Ref</th>
                             <th>N°commande</th>
-                            <th>Commercial</th>
                             <th>Client</th>
-                            <th>Status</th>
+                            <th>Commercial</th>
+                            <th>Statut</th>
                             <th>Catégorie</th>
                             {# <th>Services</th> #}
                             {# <th>Prix Min</th>
                             <th>Prix</th> #}
-                            <th>Commande validée</th>
-                            <th>Voir</th>
-                            <th>Modifier</th>
+                            <th>Commande validée le</th>
+                            <th style="background-color:transparent !important; "></th>
                         </tr>
                     </thead>
 
@@ -52,16 +49,18 @@
 
                             {# N° de la commande #}
                             <td>{{ devi.command.nbCommande}} </td>
+                            
+                            {# Nom du Client #}
+                            <td>{{ devi.command.client.societe|upper}} </td>
 
                             {# Nom du commercial #}
                             <td>{{ devi.command.user.nom}} </td>
 
-                            {# Nom du Client #}
-                            <td>{{ devi.command.client.user.nom|upper}} {{ devi.command.client.user.prenom|capitalize}} </td>
+                            
 
 
 
-                            {# Status du devis #}
+                            {# Statut du devis #}
                             <td>
                                 {% if devi.status == "pending" %}
                                     En attente
@@ -150,14 +149,33 @@
                                     <td>Pas de donnée</td>
                                     
                                 {% endif %}
-                                <td>
-                                    {# BOUTON qui permet de VOIR le devis sélectionner (:/devis/show.html.twig) #}
-                                    <a class="btn btn-warning text-light" href="{{ path('app_devis_show', {'id': devi.id}) }}">Voir</a>
-                                </td>
-                                <td>
-                                    {# BOUTON qui permet de MODIFIER le devis sélectionner (:/devis/edit.html.twig) #}
-                                    <a class="btn btn-primary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a>
-                                </td>
+
+                                <td class="col-1" >
+                                    <div class="dropdown-center"  >
+
+                                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {# 
+                                                Icones bootstrap "..." 
+                                                width & height : pour changer la taille
+                                                fill : pour changer la couleur ( couleur bootstap / couleur hexadecimal / couleur écrite ex: "red")
+                                            #}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                            </svg>
+                                        </button>
+
+                                        <ul class="dropdown-menu">
+                                            {# VOIR le devis sélectionner (:/devis/show.html.twig) #}
+                                            <li><a class="dropdown-item" href="{{ path('app_devis_show', {'id': devi.id}) }}">Voir</a></li>
+
+                                            {# MODIFIER le devis sélectionner (:/devis/edit.html.twig) #}
+                                            <li><a class="dropdown-item" href="{{ path('app_devis_edit', {'id': devi.id}) }}">Modifier</a></li>
+
+                                            {# SUPPRIMER le devis sélectionner (:/devis/edit.html.twig) #}
+                                            <li><a class="dropdown-item" href="{{ path('app_devis_delete', {'id': devi.id}) }}">Supprimer</a></li>
+                                        </ul>
+                                    </div>
+                                
                             </tr>
 
                     {% else %}
