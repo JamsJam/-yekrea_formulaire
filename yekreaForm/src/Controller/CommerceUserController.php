@@ -86,21 +86,26 @@ class CommerceUserController extends AbstractController
                 break;
                 
             };
+            $userRoleInt = $user->getRoleInt();
                     
                     
                     
                     
             // enfin on envois notre objet en base de donner
-            $userId = $user->getId();
             
-            //Si role different d'admin, redirection vers vers le formulaire client
-            if (in_array("ROLE_COMMERCIAL", $userRoles) or in_array("ROLE_ADMIN", $userRoles) ){
+            //Si role different d'admin ou commercial,
+            //redirection vers vers le formulaire client. 
+            //On ajoute alor l'ID de notre nouvel utilisateur en requete GET
+            if ($userRoleInt == 2  or $userRoleInt == 1 ){
                 $userRepository->add($user, true);
                 
                 return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
             }else{
             
                 $userRepository->add($user, true);
+                
+
+                $userId = $user->getId();
                 
 
                 return $this->redirectToRoute('app_admin_client_new', ['id'=> $userId], Response::HTTP_SEE_OTHER);
