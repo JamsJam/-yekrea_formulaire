@@ -67,13 +67,13 @@ input[type=text],
 input[type=email], 
 input[type=password], 
 input[type=tel], 
-input[type=select] {
+select {
 
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2); 
     border:none;
-    width: 300px;
+    width: 300px !important;
     margin-bottom: 20px;
-
+    appearance: auto!important;
 }
 input[type=search]{
 

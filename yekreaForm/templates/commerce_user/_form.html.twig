@@ -11,8 +11,11 @@
 
             {# mot de passe mis en place dans le controller #}
         {# {{form_row(form.password)}} #}
+        {% if app.user.roleInt == 1 %}
+            
+            {{form_row(form.roles)}}
 
-        {{form_row(form.roles)}}
+        {% endif %}
     
         <button class="btn bouton center mt-4">{{ button_label|default('Valider') }}</button>
         
