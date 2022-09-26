@@ -75,14 +75,19 @@ input[type=select] {
     margin-bottom: 20px;
 
 }
+
 input[type=search]{
+    width: 300px;
 
     box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.2); 
     background-color: #F0F0F0;
-    border:none;
-    width: 300px;
+
     margin-bottom: 20px;
+
+    border:none;
     border-radius: 0 !important;
+
+    float: right;
 
 }
 #search{
@@ -95,6 +100,8 @@ input[type=search]{
     border-radius: 0 !important;
     left: -10px;
 }
+
+
 
 /* *******************************************      LOG IN */
 
