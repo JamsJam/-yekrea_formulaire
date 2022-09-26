@@ -34,8 +34,9 @@ html{
 ul li{
     text-decoration: none !important;
 }
-/* ************************************** BOUTONS */
-/* BOUTON valider */
+/* ________________________________ BOUTONS */
+
+/* BOUTON rouge */
 
 .bouton{
     padding: 10px;
@@ -50,17 +51,18 @@ ul li{
     
 }
 
-/* bouton valider centrer des formulaires */
+/* bouton centrer des formulaires */
 .center{
     margin: 0 40%;
 }
-
+/* bouton supprimer */
 .bouton--supp{
     background-color:#FFF !important; 
     border: 1px solid #E5191E !important; 
     color:#E5191E !important; 
 }
 
+/* _________________________________INPUT  */
 /* INPUT TEXTE / EMAIL / PASSWORD / TEL / SELECT */ 
 
 input[type=text], 
@@ -75,7 +77,7 @@ input[type=select] {
     margin-bottom: 20px;
 
 }
-
+/*____________________________ barre de recherche */
 input[type=search]{
     width: 300px;
 
@@ -127,7 +129,7 @@ input[type=search]{
     
 }
 
-/************* div =>  formulaire de connexion */
+/* div =>  formulaire de connexion */
 
 .containerLogIn_block--form{
 
@@ -338,6 +340,9 @@ img[alt="logo yekrea"]{
     border: white !important;
 }
 
+.table-responsive-sm{
+    overflow: auto;
+}
 /* en-tête des tableaux */
 th{
     background-color: #D9D9D9 !important;
@@ -348,7 +353,7 @@ td{
     
 }
 
-/* menu déroulant */
+/* __________________________menu déroulant */
 
 /* enlève la flèche du bouton dropdown */
 .dropdown-toggle::after {
@@ -527,6 +532,8 @@ td{
 #dashboard__section3{
     padding-bottom: 60px;
 }
+
+
 /* ****************************************************** SERVICES */
 
 
@@ -554,7 +561,6 @@ td{
     .pages{
         padding: 20px;
     }
-
     /**********************************************  LOGIN */
 
     .containerLogIn{
