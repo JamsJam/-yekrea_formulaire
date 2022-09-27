@@ -69,13 +69,13 @@ input[type=text],
 input[type=email], 
 input[type=password], 
 input[type=tel], 
-input[type=select] {
+select {
 
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2); 
     border:none;
-    width: 300px;
+    width: 300px !important;
     margin-bottom: 20px;
-
+    appearance: auto!important;
 }
 /*____________________________ barre de recherche */
 input[type=search]{
@@ -378,6 +378,26 @@ td{
     background-color: #D9D9D9;
     color: #000;
 }
+
+/* ****************************************************** Form Client */
+.client__formReseau--fieldContainer{
+    display:flex;
+    flex-direction:column;
+}
+
+.client__formReseau--fieldSet{
+    display:flex;
+    align-items:end;
+}
+
+.client__formReseau--choice {
+    margin: 0 4px 5px 4px;
+    display:flex;
+    flex-direction:column;
+}
+
+
+
 
 /* ****************************************************** DashBoard : statistique */
 #dashboard__section1,

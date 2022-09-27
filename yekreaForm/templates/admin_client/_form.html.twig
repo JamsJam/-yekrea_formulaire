@@ -9,10 +9,103 @@
         {{form_row(form.societe)}}
         
         {{form_row(form.telephone)}}
+    
 
-        {{form_row(form.Reseaux)}}
+        <div id="client__formReseau">
+
+
+            <div class="client__formReseau--fieldContainer">
+
+                <fieldset class="client__formReseau--fieldSet">
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="facebook">Facebook</label>
+                        <input type="radio" name="Reseau" id="facebook" value='Facebook'>
+                    </div>
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="Twitter">Twitter</label>
+                        <input type="radio" name="Reseau" id="Twitter" value='Twitter'>
+                    </div>
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="Instagram">Instagram</label>
+                        <input type="radio" name="Reseau" id="Instagram" value="Instagram">
+                    </div>
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="TikTok">TikTok</label>
+                        <input type="radio" name="Reseau" id="TikTok" value="TikTok" >
+                    </div>
+                    
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="Linkedin">Linkedin</label>
+                        <input type="radio" name="Reseau" id="Linkedin" value="Linkedin" >
+                    </div>
+                    
+                </fieldset>
+                <div class ="client__form--tag">
+                    
+                    <input type="text" name="" id="newReseau" placeholder="Indiquez votre tag">
+                </div>
+
+            </div>
+            <div class="client__formReseau--fieldContainer">
+
+                <fieldset class="client__formReseau--fieldSet">
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="facebook">Facebook</label>
+                        <input type="radio" name="Reseau1" id="facebook" value='Facebook'>
+                    </div>
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="Twitter">Twitter</label>
+                        <input type="radio" name="Reseau1" id="Twitter" value='Twitter'>
+                    </div>
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="Instagram">Instagram</label>
+                        <input type="radio" name="Reseau1" id="Instagram" value="Instagram">
+                    </div>
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="TikTok">TikTok</label>
+                        <input type="radio" name="Reseau1" id="TikTok" value="TikTok" >
+                    </div>
+                    
+
+                    <div class="client__formReseau--choice choice">
+                        <label name="client__Form" for="Linkedin">Linkedin</label>
+                        <input type="radio" name="Reseau1" id="Linkedin" value="Linkedin" >
+                    </div>
+                    
+                </fieldset>
+                <div class ="client__form--tag">
+                    
+                    <input type="text" name="" id="newReseau" placeholder="Indiquez votre tag">
+                </div>
+
+            </div>
+
+            
+            
+            
+            <div id="client__formReseau--newReseau">
+                
+            </div>
+
+            <div >
+                {{form_row(form.Reseaux)}}
+            </div>
+
+            <a href="#" class="btn btn-secondary" id='client__formReseau--addReseaux'>
+                Ajouter un réseau
+            </a>
+        </div>
         
-        <button class="btn bouton center mt-4 mb-4">{{ button_label|default('Valider') }}</button>
+        <button class="btn bouton  mt-4 mb-4">{{ button_label|default('Valider') }}</button>
     
 
     

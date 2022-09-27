@@ -81,7 +81,7 @@ class CommerceUserController extends AbstractController
                 $user->setRoleInt(2);
                 break;
         
-            case "ROLE_USER":
+            default:
                 $user->setRoleInt(3);
                 break;
                 
