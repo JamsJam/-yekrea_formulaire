@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Command;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Command>
@@ -37,6 +38,38 @@ class CommandRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findCommandByRef(int $query)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * FROM command p
+            WHERE p.nb_commande = :query 
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['query' => $query]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function findCommandByName(string $query)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+            SELECT * FROM command p
+            JOIN client c
+            ON client_id 
+            WHERE c.societe = :query
+            ';
+        
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['query' => $query]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
     }
 
 //    /**
