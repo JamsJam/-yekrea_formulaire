@@ -1,8 +1,12 @@
 {{ form_start(form) }}
 
         {% if  not app.request.query.get("id")  %}
-        
+
+            <div style="display:flex; flex-direction: column; align-items: start" >
+            <label for="client_search_User"> Utilisateur</label>
+            <input type="text" name="" id="client_search_User" class="form-control" placeholder="Rechercher un utilisateur">
             {{form_row(form.user)}}
+            </div>
 
         {% endif %}
 

@@ -43,62 +43,50 @@
 {% endblock %}
 {% block javascripts %}
     <script>
-
+        // ******* choiceReseau()
         let checkbox = document.querySelectorAll('.box');
         let arrayBox = [];
         let textReseau = []
+
+        // ******* searchUser()
+        let userForm = document.querySelector('#client_user')
+        let searchUserForm = document.querySelector('#client_search_User')
+        let options = document.querySelectorAll('#client_user>option')
+        let searchValue
+        let optionArray = []
+        let resultArray = []
+        let allClient 
+
+
+
 
 // pour chaque checkbox
         checkbox.forEach(element => {
             
             //si la checkbox est coché ou decoché
-            element.addEventListener('change',()=>{
-                // pour chaque checkbox :
-                checkbox.forEach(box => {
-                    
-                    let inputText = box.nextElementSibling
-                    // si le la checkbox est coché ,
-                    if(box.checked)
-                    {
-                        inputText.removeAttribute('disabled')
-                        inputText.removeAttribute('style')
-                        
-                        // je mets un evenement sur l'element suivent (input:text)
-                        inputText.addEventListener('input',()=>{
-                            textReseau = []
-                            // pour chaque checkbox,
-                            checkbox.forEach(element => {
-                                arrayBox = []
-                                //si la box est check
-                                if(element.checked){
-                                    //je recupere l'id de la checkbox
-                                    let id = element.getAttribute('id')
-                                    //je recupere la valeur de l'input:text
-                                    let values = element.nextElementSibling.value
-                                    // Condition sur la valeur de l'input pour recuperer, au cas ou, un input vide
-                                    if(values){
-                                
-                                        arrayBox = [id +':'+ values]
-                                        textReseau.push(arrayBox)
-                                        console.log(textReseau)
-                                    
-                                    }
-
-                                }
-                                // remplissage de l'input qui sera envoyer en bdd par l'ensemble des valeur des input donc la checkbox est coché
-                                document.querySelector('#client_Reseaux').value = textReseau.join(' ,')
-                            });
-                        })
-                    }
-                })
-                        console.log(textReseau.join(' ,'))
-            });
+            //fonction choiceReseau()-> script.js
+            element.addEventListener('change',choiceReseaux);
         })
         
+
+
+
+
+
         
+        searchUserForm.addEventListener('input',(e)=>{
+            searchValue = e.target.value
+            // j'initialise le tableau des resultats
+            resultArray = []
+            // Requette API(fetch) + supression et integration des option du selectu user
+            // fonction dans script.js
+            fetchClient()
+            //mise a jour des differentes option dans la variable option
+            options = document.querySelectorAll('#client_user>option')
+            })
 
 
 
-    </script>
+</script>
 {% endblock %}
 
