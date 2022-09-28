@@ -381,14 +381,16 @@ td{
 }
 
 .client__formReseau--fieldSet{
-    display:flex;
-    align-items:end;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
 .client__formReseau--choice {
-    margin: 0 4px 5px 4px;
-    display:flex;
-    flex-direction:column;
+    margin: 5px 4px 5px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 
