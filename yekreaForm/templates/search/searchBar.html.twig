@@ -1,8 +1,21 @@
+{% extends 'base.html.twig' %}
 
-        {# {{ form_row(form.query) }} #}
-{{ form_start(form) }}
-        {{ form_widget(form) }}
-        {# <button class="btn bouton center mt-4">{{ button_label|default('Valider') }}</button> #}
-{{ form_end(form) }}
+{% block title %}Hello SearchController!{% endblock %}
 
+{% block body %}
 
+    <div class="containerPages">
+        <div class="pages">
+
+            <h2 class="title">Rechercher une commande</h2>
+
+            <div>
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

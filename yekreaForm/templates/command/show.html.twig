@@ -17,7 +17,7 @@
                         <th>Ref</th>
                         <th>Client</th>
                         <th>Services</th>
-                        <th>Services détails</th>
+                        <th>Description</th>
                         <th>Matériel</th>
                         <th>Crée le</th>
                         <th>Validée le</th>
@@ -47,9 +47,8 @@
                                 {% else %}
                                     NR
                                 {% endif %}
-                            </td>
+                            <br>
                             {# détails du services #}
-                            <td>
                                 {% if command.Servicesdetail %}
                                     {% for Servicedetail in command.Servicesdetail %}
                                         {{Servicedetail.nom}}<br>
@@ -58,7 +57,7 @@
                                     NR
                                 {% endif %}
                             </td>
-                            
+                            <td>{{ command.description }}</td>
                             <td>
 
                                 {% for materiel in command.materiel %}

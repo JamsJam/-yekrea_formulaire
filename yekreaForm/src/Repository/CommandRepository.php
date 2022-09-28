@@ -64,7 +64,9 @@ class CommandRepository extends ServiceEntityRepository
             ON client_id 
             WHERE c.societe = :query
             ';
-        
+        // LIKE "%:query%"
+        // $sql->setParameter('query', '%' . $query . '%');
+
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery(['query' => $query]);
 

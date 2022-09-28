@@ -31,13 +31,14 @@ class SearchController extends AbstractController
             ->add('query', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Client ou ref'
+                    'class' => 'search',
+                    'placeholder' => 'Client ou ref',
+
                 ]
             ])
             ->add('recherche', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn bouton',
                 ]
             ])
             ->getForm();
