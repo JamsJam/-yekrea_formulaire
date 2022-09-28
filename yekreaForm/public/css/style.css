@@ -165,14 +165,18 @@ img[alt="logo yekrea"]{
 .sidebar{
 
     position:fixed;
-
+    
     top:0;
     height: 100vh;
     width: 250px;
 
     background-color: #E5191E;
     border-radius: 0 40px 0 0 ;
+    z-index:1;
+    transition: left 0.5s ease;
+    
 }
+
 
 /* logo YEKREA NAV */
 
@@ -190,6 +194,23 @@ img[alt="logo yekrea"]{
     justify-content: center;
     align-items: center;
     
+}
+.close{
+    position: absolute;
+    top: 0;
+    right: 30px;
+    font-size: 36px;
+    transition: left 0.5s ease;
+    color: #000;
+}
+.pagesLogo{
+    visibility: hidden;
+    transition-delay: 0s;              
+    transition-duration: 0.5s;           
+    transition-property: opacity; 
+}
+a .close:hover{
+    text-transform: rotate(90deg)!important;
 }
 
 /* div =>  TABLEAU DE BORD */
@@ -257,6 +278,7 @@ img[alt="logo yekrea"]{
     
     font-weight: bold;
     font-size: 18px;
+    transition: 0.3s;
 
 }
 

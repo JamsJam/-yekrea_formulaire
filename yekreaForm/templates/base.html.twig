@@ -34,9 +34,18 @@
 
 
                 {# NAVIGATION #}
-                <div class="nav--container">
-
-                    <nav class="sidebar">
+                <div class="burger" style="display: flex; justify-content:center; margin-top: 0px;">
+                    <button id="openBtn" style="position:absolute;left: 10px; border:none!important; background-color:transparent;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#E5191E" class="bi bi-list" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </button>
+                    <div class="imgNav pagesLogo" style="margin-top: 0px; padding:0!important;">
+                            <img src="/images/logoYekreaSmall.jpg" alt="Logo yekrea" class="logoYekreaNav" id="logo"style="width:150px;">
+                    </div>
+                </div>
+                <div class="nav--container sidenav">
+                    <nav id="mySidenav" class="sidebar">
 
                         <header>
 
@@ -47,7 +56,8 @@
                             </div>
 
                         </header>
-                        
+                        <a id="closeBtn" href="#" class="close btnClose" style="text-decoration:none;">&times;</a>
+
                         {# liste liens Navigation #}
                         <div class="menu">
                             <ul>
@@ -88,8 +98,9 @@
                     </nav>   
                     
                 </div> 
-
+                
                 {# bonjour USER #}
+                
                 <div class="welcome--container">
                     <p>
                         bonjour
@@ -123,7 +134,7 @@
 
                 {# container de toutes les pages #}
                 {% block body %}
-                
+                    
                 {% endblock %}
             {# </div> #}
     
@@ -134,7 +145,28 @@
         
     <script type="text/javascript" src="{{ asset("js/script.js") }}"></script>
     
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+        <script>
+            var nav = document.getElementById("mySidenav");
+            var logo = document.getElementById("logo");
+
+            document.getElementById("openBtn").addEventListener("click", function() {
+            nav.style.left='0';
+            logo.style.visibility='hidden';
+
+            
+            });
+
+            document.getElementById("closeBtn").addEventListener("click", function() {
+    
+            nav.style.left='-250px';
+            logo.style.visibility='visible';
+            
+            });
+
+    
+        </script>
+    {% endblock %}
 
 </body>
 </html>
