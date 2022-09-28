@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Client;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,20 @@ class ClientRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findClient(string $query)
+    {
+        // $conn = $this->getEntityManager()->getConnection();
+        $qb = $this->createQueryBuilder('c');
+        $qb ->select('c.id','c.societe');
+            // ->where($qb->expr()->like('c.societe', $qb->expr()->literal("'%' :query '%'")));
+            // ->setParameters('query');
+
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
     }
 
 //    /**

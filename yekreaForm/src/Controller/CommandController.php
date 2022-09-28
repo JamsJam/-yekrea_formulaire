@@ -4,16 +4,20 @@ namespace App\Controller;
 
 use App\Entity\Command;
 use App\Form\CommandType;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Entity;
 use App\Repository\ClientRepository;
 use App\Repository\CommandRepository;
-use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * @Route("/command")
@@ -148,4 +152,23 @@ class CommandController extends AbstractController
         return $this->redirectToRoute('app_command_index', [], Response::HTTP_SEE_OTHER);
     }
 
+        /**
+     * @Route("/api/fetch/client", name="app_json_command_client")
+     */
+    public function ClientJson(SerializerInterface $serializer, ClientRepository $clientRipo): JsonResponse
+    {
+        
+        $client = $clientRipo->findClient('p');
+        
+        
+        
+        $jsonContent = $serializer
+                                ->serialize(
+                                        $client,
+                                        'json'
+                                            );
+        
+
+        return new JsonResponse($jsonContent, JsonResponse::HTTP_OK, [], true) ;        
+    }
 }

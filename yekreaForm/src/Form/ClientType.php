@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Client;
+use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -27,7 +28,13 @@ class ClientType extends AbstractType
                 ->add('user',EntityType::class,[
                     
                     'class' => user::class,
-                    'choice_label' => 'email'
+                    'query_builder' => function (UserRepository $ur) {
+                        return $ur->createQueryBuilder('u')
+                        ->where('u.RoleInt = 3')
+                        ->orderBy('u.id', 'DESC');
+                    },
+                    'choice_label' => 'nom',
+                    'label' => false
                 ]);
         }
         $builder

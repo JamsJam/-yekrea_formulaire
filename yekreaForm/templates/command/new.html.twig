@@ -26,3 +26,66 @@
 
     
 {% endblock %}
+{% block javascripts %}
+    <script>
+    let clientForm = document.querySelector('#command_client')
+    let searchClient = document.querySelector('#command_searchClient')
+    let options = document.querySelectorAll('#command_client>option')
+    let allClient
+    let optionArray = []
+    let resultArray= []
+
+
+        async function fetchCommandClient(){
+            const response = await fetch("http://localhost:8000/command/api/fetch/client",{method: 'GET'})
+            if (!response.ok)
+            //en cas d'erreur prendant la requette Ajax
+            {
+                const message = `Il y a eu une erreur: ${response.status}`;
+                console.log(message);
+            }
+            else
+            {
+                allClient =  await response.json();
+                options.forEach(option => {
+                    console.log(option)
+                    option.remove()
+                })
+                allClient.forEach(option => {
+                    optionArray = []
+                    // indexOf() retourne l'index dans une chaine de caractere de l'element donné en argument. 
+                    // Si l'element est absent de la chaine de caractère, indexOf() retourne -1
+                    if (option['societe'].toLowerCase().indexOf(searchValue.toLowerCase()) != -1){
+                        // console.log('true')
+                        let optionValue = option['id']
+                        let optionHTML = option['societe']
+                        optionArray = [optionValue, optionHTML]
+                        resultArray.push(optionArray)
+                        
+                    }
+                });
+            };
+            if (resultArray.length > 0) {
+                resultArray.forEach(element => {
+                    let newOption = document.createElement('option')
+                    newOption.setAttribute('value', element[0])
+                    newOption.textContent = element[1]
+                    clientForm.appendChild(newOption)
+                });
+            } else {
+                let newOption = document.createElement('option')
+                    newOption.textContent = 'Aucun resultat'
+                    clientForm.appendChild(newOption)
+            }
+        }
+
+        searchClient.addEventListener('input',(e)=>{
+            searchValue = e.target.value;
+            resultArray = []
+            fetchCommandClient()
+            options = document.querySelectorAll('#command_client>option')
+
+        })
+    
+    </script>
+{% endblock %}

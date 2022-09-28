@@ -56,6 +56,21 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->add($user, true);
     }
 
+    public function findClient(int $query)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+        SELECT u.id,u.nom
+        FROM user u 
+        WHERE u.role_int = :query;
+            ';
+        
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['query' => $query]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

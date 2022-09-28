@@ -10,6 +10,8 @@ use App\Repository\ClientRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -112,5 +114,22 @@ class AdminClientController extends AbstractController
         return $this->redirectToRoute('app_admin_client_index', [], Response::HTTP_SEE_OTHER);
     }
 
+        /**
+     * @Route("/api/fetch/client", name="app_json_client")
+     */
+    public function ClientJson(SerializerInterface $serializer, UserRepository $userRipo): JsonResponse
+    {
+        $client = $userRipo-> findClient(3);
+        
+        
+        $jsonContent = $serializer
+                                ->serialize(
+                                        $client,
+                                        'json'
+                                            );
+        
+
+        return new JsonResponse($jsonContent, JsonResponse::HTTP_OK, [], true) ;        
+    }
 
 }

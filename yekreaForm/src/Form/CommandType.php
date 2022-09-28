@@ -26,43 +26,23 @@ class CommandType extends AbstractType
             $builder
             ->add('client',EntityType::class, [
                 'class' => Client::class,
-                'choice_label'=> 'societe'
+                'choice_label'=> 'societe',
+                'label' => false
             ]);
         }
         $builder
-        // ->add('createDate') // in controller
-            // ->add('nbCommande') //nb unique + id commande
-            
-            //             'choice_label'=> 'nom',
-            // ->add('user',EntityType::class, [
-            //             'class' => User::class,
-            //             'attr' => [
-            //                 'disabled' => true,
-                            
-            //             ]
-            //         ])
+
 
             ->add('servicesDetail',EntityType::class,[
                 'class' => ServicesDetail::class,
                 'choice_label' => 'nom',
                 'required' => false,
-                'multiple' => true
+                'multiple' => true,
+                'expanded' => true
                 
-            ])
-            // ->add('validationDate', DateTimeType::class, [ // a rentrer plus tard
-                //     'widget' => 'single_text' ,
-                //     'required' => false
+            ]);
                 
-                // this is actually the default format for single_text
-                // 'format' => 'yyyy-MM-dd',
-                // ])
-
-            ->add('description',TextareaType::class,[
-                "label"=> 'Description',
-            ])
-            ;
-            
-            }
+    }
                 
     public function configureOptions(OptionsResolver $resolver): void
     {
