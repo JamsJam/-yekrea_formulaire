@@ -278,7 +278,6 @@ a .close:hover{
     
     font-weight: bold;
     font-size: 18px;
-    transition: 0.3s;
 
 }
 
@@ -652,7 +651,12 @@ td{
         align-items: center;
 
         position: sticky;
+        top:0;
     
+    }
+    .burger{
+        position: absolute;
+        top: -100px !important;
     }
     /* "ul" (liste) de la nav */
     .menu{
@@ -706,6 +710,12 @@ td{
         position: absolute;
         top: 10px;
         font-size: 12px;
+    }
+    .btnClose{
+        transition: all;
+    }
+    .btnClose:active{
+        transform: rotate(160deg)!important;
     }
 
     /* texte bonjour USER */

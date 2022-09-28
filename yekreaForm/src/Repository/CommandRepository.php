@@ -64,8 +64,11 @@ class CommandRepository extends ServiceEntityRepository
             JOIN client c
             ON c.id = p.client_id
             WHERE c.societe 
-            LIKE '%':query'%'";
+            LIKE '%' :query '%'";
             
+        // LIKE "%:query%"
+        // $sql->setParameter('query');
+
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery(['query' => $query]);
 

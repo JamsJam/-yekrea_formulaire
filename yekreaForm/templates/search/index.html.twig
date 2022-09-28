@@ -7,7 +7,7 @@
 {# Pages de traitement et d'affichage d'une recherche de commande #}
 <div class="containerPages">
 
-        <div class="pages">
+        <div class="pages mb-5">
             <h2 class="title">Résultat(s)</h2>
             
                 {% if app.request.method == 'POST' %}
@@ -16,14 +16,16 @@
                             <h4>Aucun résultat pour votre recherche.</h4>
                         {% else %}
                             {% if not commandName| length == 0 %}
-                                <h3 class="mt-3">Vos résulats de recherche :</h3>
+                                <h3 class="mt-3">Vos résultats de recherche :</h3>
                                 {% for commands in commandName %}
                                     <div class="mt-3 p-3 bg-light border rounded">
                                         <a href="{{ path('app_command_show', {'id': commands.id})}}">
-                                                <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ commands.societe }}</h6>
-                                                <div class="text-dark small p-1 rounded">
-                                                </div>
+                                            <h6 class="text-dark"> {{ commands.societe|upper }}</h6>
                                         </a>
+                                        <div class="text-dark small p-1 rounded">
+                                            <p>N° de commande : {{ commands.nb_commande }} | Crée le : {{ commands.create_date|date('d/m/Y')}}</p>
+                                        </div>
+                                
                                     </div>
                                 {% endfor %}
                             {% endif %} 
@@ -32,10 +34,13 @@
                                 {% for command in commandRef %}
                                     <div class="mt-3 p-3 bg-light border rounded">
                                         <a href="{{ path('app_command_show', {'id': command.id})}}">
-                                                <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ command.nb_commande }}</h6>
-                                                <div class="text-dark small p-1 rounded">
-                                                </div>
+                                            <h6 class="text-dark"> {{ command.nb_commande }}
+                                            </h6>
                                         </a>
+                                        <div class="text-dark small p-1 rounded">
+                                            <p>Société : {{ command.societe|upper}} | Crée le : {{ command.create_date|date('d/m/Y')}}</p>
+                                        </div>
+                                        
                                     </div>
                                 {% endfor %}
                             {% endif %}
