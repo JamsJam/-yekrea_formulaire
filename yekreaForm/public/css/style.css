@@ -69,16 +69,17 @@ input[type=text],
 input[type=email], 
 input[type=password], 
 input[type=tel], 
+textarea,
 select {
 
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2); 
-    border:none;
+    border:none !important;
     width: 300px !important;
     margin-bottom: 20px;
     appearance: auto!important;
 }
 /*____________________________ barre de recherche */
-input[type=search]{
+.search{
     width: 300px;
 
     box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.2); 
@@ -89,10 +90,8 @@ input[type=search]{
     border:none;
     border-radius: 0 !important;
 
-    float: right;
-
 }
-#search{
+.searchButton{
 
     box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0.2); 
     background-color: #F0F0F0;
@@ -100,7 +99,7 @@ input[type=search]{
     width: 40px;
     margin-bottom: 20px;
     border-radius: 0 !important;
-    left: -10px;
+    
 }
 
 

@@ -4,13 +4,11 @@
 
 {% block body %}
 
-
+{# Pages de traitement et d'affichage d'une recherche de commande #}
 <div class="containerPages">
 
         <div class="pages">
-            <h2 class="title">Résultat</h2>
-            {# barre de recherche #}
-            
+            <h2 class="title">Résultat(s)</h2>
             
                 {% if app.request.method == 'POST' %}
                     <div>
@@ -30,7 +28,7 @@
                                 {% endfor %}
                             {% endif %} 
                             {% if not commandRef| length == 0 %}
-                                <h3 class="mt-3">Vos résulats de recherche :</h3>
+                                <h3 class="mt-3">Vos résultats de recherche :</h3>
                                 {% for command in commandRef %}
                                     <div class="mt-3 p-3 bg-light border rounded">
                                         <a href="{{ path('app_command_show', {'id': command.id})}}">

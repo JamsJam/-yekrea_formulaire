@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CommandType extends AbstractType
 {
@@ -39,9 +40,9 @@ class CommandType extends AbstractType
                 'multiple' => true,
                 'expanded' => true
                 
-            ])
-                ;
-            }
+            ]);
+                
+    }
                 
     public function configureOptions(OptionsResolver $resolver): void
     {
