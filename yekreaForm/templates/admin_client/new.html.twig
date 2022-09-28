@@ -43,62 +43,62 @@
 {% endblock %}
 {% block javascripts %}
     <script>
-        let allReseau 
-        let allTag
-        let clientReseauArray
-    //1 recuperer tout les reseau
 
-        // Cette evenement s'active quand l'element(ici le body) s'active, par un click ou l'appuie d'une touche.
-        //Son role est de recharger la liste d'element contenu dans Service_details pour que mes nouveau elements soient pris en compte
-        // document.body.addEventListener('DOMActivate', () => {})
+        let checkbox = document.querySelectorAll('.box');
+        let arrayBox = [];
+        let textReseau = []
 
-        document.querySelectorAll('.choice>input').forEach(radio => {
-            radio.addEventListener('change', e => {
-                allReseau = []
-                let reseau 
-                document.querySelectorAll('.choice>input').forEach(element => {
+// pour chaque checkbox
+        checkbox.forEach(element => {
+            
+            //si la checkbox est coché ou decoché
+            element.addEventListener('change',()=>{
+                // pour chaque checkbox :
+                checkbox.forEach(box => {
                     
-                    if(element.checked ){
+                    let inputText = box.nextElementSibling
+                    // si le la checkbox est coché ,
+                    if(box.checked)
+                    {
+                        inputText.removeAttribute('disabled')
+                        inputText.removeAttribute('style')
+                        
+                        // je mets un evenement sur l'element suivent (input:text)
+                        inputText.addEventListener('input',()=>{
+                            textReseau = []
+                            // pour chaque checkbox,
+                            checkbox.forEach(element => {
+                                arrayBox = []
+                                //si la box est check
+                                if(element.checked){
+                                    //je recupere l'id de la checkbox
+                                    let id = element.getAttribute('id')
+                                    //je recupere la valeur de l'input:text
+                                    let values = element.nextElementSibling.value
+                                    // Condition sur la valeur de l'input pour recuperer, au cas ou, un input vide
+                                    if(values){
+                                
+                                        arrayBox = [id +':'+ values]
+                                        textReseau.push(arrayBox)
+                                        console.log(textReseau)
+                                    
+                                    }
 
-                        reseau = element.value
-                        allReseau.push(reseau)
+                                }
+                                // remplissage de l'input qui sera envoyer en bdd par l'ensemble des valeur des input donc la checkbox est coché
+                                document.querySelector('#client_Reseaux').value = textReseau.join(' ,')
+                            });
+                        })
                     }
-                    
-                    
                 })
-            console.log(allReseau)
-        clientReseauArray = []
-        for (let index = 0; index < allReseau.length; index++) {
-
-            let inputClientReseau = [allReseau[index] ? allReseau[index] : ''  +' : '+ allTag[index] ? allTag[index] : '']
-            clientReseauArray.push(inputClientReseau)
-
-        }
-            document.querySelector('#client_Reseaux').value = clientReseauArray.join(' ,')
+                        console.log(textReseau.join(' ,'))
             });
-            })
-        ;
-    //2 recuperer tout les tag
-                    
-        document.querySelectorAll('.client__form--tag>input').forEach(tagInput => {
-            tagInput.addEventListener('input', e => {
-                allTag = []
-                let tag 
-                document.querySelectorAll('.client__form--tag>input').forEach(element => {
-                    tag = element.value
-                    allTag.push(tag)
-                    console.log(allTag)
-                            clientReseauArray = []
-        for (let index = 0; index < allTag.length; index++) {
+        })
+        
+        
 
-            let inputClientReseau = [allReseau[index] ? allReseau[index] : ''  +' : '+ allTag[index] ? allTag[index] : '']
-            clientReseauArray.push(inputClientReseau)
 
-        }
-            });
-            document.querySelector('#client_Reseaux').value = clientReseauArray.join(' ,')
-        }
-            )});
- 
+
     </script>
 {% endblock %}
+

@@ -17,92 +17,48 @@
             <div class="client__formReseau--fieldContainer">
 
                 <fieldset class="client__formReseau--fieldSet">
-
-                    <div class="client__formReseau--choice choice">
+                    
+                    <div class="client__formReseau--choice ">
                         <label name="client__Form" for="facebook">Facebook</label>
-                        <input type="radio" name="Reseau" id="facebook" value='Facebook'>
+                        <input type="checkbox" name="Reseau" class="box" id="facebook" value='Facebook'>
+                        <input type="text" name="Reseau" class="box" disabled="true" style="display:none" id="facebook">
                     </div>
 
-                    <div class="client__formReseau--choice choice">
+                    <div class="client__formReseau--choice ">
                         <label name="client__Form" for="Twitter">Twitter</label>
-                        <input type="radio" name="Reseau" id="Twitter" value='Twitter'>
+                        <input type="checkbox" name="Reseau" class="box" id="Twitter" value='Twitter'>
+                        <input type="text" name="Reseau" class="box" disabled="true" style="display:none" id="Twitter">
                     </div>
 
-                    <div class="client__formReseau--choice choice">
+                    <div class="client__formReseau--choice ">
                         <label name="client__Form" for="Instagram">Instagram</label>
-                        <input type="radio" name="Reseau" id="Instagram" value="Instagram">
+                        <input type="checkbox" name="Reseau" class="box" id="Instagram" value="Instagram">
+                        <input type="text" name="Reseau" class="box" disabled="true" style="display:none" id="Instagram">
                     </div>
 
-                    <div class="client__formReseau--choice choice">
+                    <div class="client__formReseau--choice ">
                         <label name="client__Form" for="TikTok">TikTok</label>
-                        <input type="radio" name="Reseau" id="TikTok" value="TikTok" >
+                        <input type="checkbox" name="Reseau" class="box" id="TikTok" value="TikTok" >
+                        <input type="text" name="Reseau" class="box" disabled="true" style="display:none" id="TikTok" >
                     </div>
                     
 
-                    <div class="client__formReseau--choice choice">
+                    <div class="client__formReseau--choice ">
                         <label name="client__Form" for="Linkedin">Linkedin</label>
-                        <input type="radio" name="Reseau" id="Linkedin" value="Linkedin" >
+                        <input type="checkbox" name="Reseau" class="box" id="Linkedin" value="Linkedin" >
+                        <input type="text" name="Reseau" class="box" disabled="true" style="display:none" id="Linkedin" >
                     </div>
                     
                 </fieldset>
-                <div class ="client__form--tag">
-                    
-                    <input type="text" name="" id="newReseau" placeholder="Indiquez votre tag">
-                </div>
 
-            </div>
-            <div class="client__formReseau--fieldContainer">
-
-                <fieldset class="client__formReseau--fieldSet">
-
-                    <div class="client__formReseau--choice choice">
-                        <label name="client__Form" for="facebook">Facebook</label>
-                        <input type="radio" name="Reseau1" id="facebook" value='Facebook'>
-                    </div>
-
-                    <div class="client__formReseau--choice choice">
-                        <label name="client__Form" for="Twitter">Twitter</label>
-                        <input type="radio" name="Reseau1" id="Twitter" value='Twitter'>
-                    </div>
-
-                    <div class="client__formReseau--choice choice">
-                        <label name="client__Form" for="Instagram">Instagram</label>
-                        <input type="radio" name="Reseau1" id="Instagram" value="Instagram">
-                    </div>
-
-                    <div class="client__formReseau--choice choice">
-                        <label name="client__Form" for="TikTok">TikTok</label>
-                        <input type="radio" name="Reseau1" id="TikTok" value="TikTok" >
-                    </div>
-                    
-
-                    <div class="client__formReseau--choice choice">
-                        <label name="client__Form" for="Linkedin">Linkedin</label>
-                        <input type="radio" name="Reseau1" id="Linkedin" value="Linkedin" >
-                    </div>
-                    
-                </fieldset>
-                <div class ="client__form--tag">
-                    
-                    <input type="text" name="" id="newReseau" placeholder="Indiquez votre tag">
                 </div>
 
             </div>
 
-            
-            
-            
-            <div id="client__formReseau--newReseau">
-                
-            </div>
-
-            <div >
+            <div style="display:none">
                 {{form_row(form.Reseaux)}}
             </div>
 
-            <a href="#" class="btn btn-secondary" id='client__formReseau--addReseaux'>
-                Ajouter un réseau
-            </a>
         </div>
         
         <button class="btn bouton  mt-4 mb-4">{{ button_label|default('Valider') }}</button>
