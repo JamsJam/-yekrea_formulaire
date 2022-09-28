@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SearchController!{% endblock %}
+
+{% block body %}
+
+
+<div class="containerPages">
+
+        <div class="pages">
+            <h2 class="title">Résultat</h2>
+            {# barre de recherche #}
+            
+            
+                {% if app.request.method == 'POST' %}
+                    <div>
+                        {% if commandName| length == 0 and commandRef| length == 0 %}
+                            <h4>Aucun résultat pour votre recherche.</h4>
+                        {% else %}
+                            {% if not commandName| length == 0 %}
+                                <h3 class="mt-3">Vos résulats de recherche :</h3>
+                                {% for commands in commandName %}
+                                    <div class="mt-3 p-3 bg-light border rounded">
+                                        <a href="{{ path('app_command_show', {'id': commands.id})}}">
+                                                <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ commands.societe }}</h6>
+                                                <div class="text-dark small p-1 rounded">
+                                                </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            {% endif %} 
+                            {% if not commandRef| length == 0 %}
+                                <h3 class="mt-3">Vos résulats de recherche :</h3>
+                                {% for command in commandRef %}
+                                    <div class="mt-3 p-3 bg-light border rounded">
+                                        <a href="{{ path('app_command_show', {'id': command.id})}}">
+                                                <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ command.nb_commande }}</h6>
+                                                <div class="text-dark small p-1 rounded">
+                                                </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+        </div>
+</div>
+{% endblock %}
