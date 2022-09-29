@@ -45,7 +45,7 @@ class ClientRepository extends ServiceEntityRepository
         // $conn = $this->getEntityManager()->getConnection();
         $qb = $this->createQueryBuilder('c');
         $qb ->select('c.id','c.societe');
-            // ->where($qb->expr()->like('c.societe', $qb->expr()->literal(:query)));
+            
             // ->setParameters('query', '%'. $query .'%');
 
 

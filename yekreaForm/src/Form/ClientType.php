@@ -26,8 +26,16 @@ class ClientType extends AbstractType
         if(!isset($_GET['id'])){
             $builder
                 ->add('user',EntityType::class,[
-                    
                     'class' => user::class,
+                    // Mauvaise requette, la bonne requette serai : 
+                    /**
+                     *  SELECT u.*
+                            FROM user u 
+                            LEFT JOIN client c 
+                            ON u.id = c.user_id 
+                            WHERE u.role_int = :query 
+                            AND ISNULL(c.user_id);
+                     */
                     'query_builder' => function (UserRepository $ur) {
                         return $ur->createQueryBuilder('u')
                         ->where('u.RoleInt = 3')

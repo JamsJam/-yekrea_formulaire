@@ -20,7 +20,7 @@ class DevisController extends AbstractController
     /**
      * @Route("/devis/", name="app_devis_index", methods={"GET"})
      */
-    public function index(DevisRepository $devisRepository, CommandRepository $commandRepository, Request $request): Response
+    public function index(DevisRepository $devisRepository, Request $request): Response
     {
         if($request->query->get('comId') ){
             $devis = $devisRepository->findDevis($request->query->get('comId'));
