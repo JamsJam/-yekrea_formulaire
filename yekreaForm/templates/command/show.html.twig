@@ -12,24 +12,24 @@
             <h1 class="title">Commande n°{{ command.nbCommande }}</h1>
             <p>Commercial : {{ command.user ? command.user.nom|capitalize }}</p>
             <div class="table-responsive-sm">
-                <table class="table mt-4 mb-5 tableau">
-                    <thead>
-                        <th>Ref</th>
-                        <th>Client</th>
-                        <th>Services</th>
-                        <th>Description</th>
-                        <th>Matériel</th>
-                        <th>Crée le</th>
-                        <th>Validée le</th>
-                        <th>Commercial</th>
+                <table class="table mt-4 mb-5 tableau tableResponsive">
+                    <thead class="theadResp">
+                        <th class="thResp">Ref</th>
+                        <th class="thResp">Client</th>
+                        <th class="thResp">Services</th>
+                        <th class="thResp">Description</th>
+                        <th class="thResp">Matériel</th>
+                        <th class="thResp">Crée le</th>
+                        <th class="thResp">Validée le</th>
+                        <th class="thResp">Commercial</th>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody class="tbodyResp">
+                        <tr class="trResp">
                             {# Num de commande #}
-                            <td>{{ command.nbCommande }}</td>
+                            <td data-label="Ref" class="tdResp">{{ command.nbCommande }}</td>
                             
                             {# Client #}
-                            <td>
+                            <td data-label="Client" class="tdResp">
                                 {% if command.client %}
                                     {% if command.client %}
                                         {{command.client.societe|upper}}
@@ -39,7 +39,7 @@
                             </td>
 
                             {# Services #}
-                            <td>
+                            <td data-label="Services" class="tdResp">
                                 {% if command.servicesDetail %}
                                     {% for serviceDetail in command.servicesDetail %}
                                             {{serviceDetail.services.nom}}<br>
@@ -57,8 +57,15 @@
                                     NR
                                 {% endif %}
                             </td>
-                            <td>{{ command.description }}</td>
-                            <td>
+                            <td data-label="Description" class="tdResp">
+                            {% if command.description %}
+                                {% else %}
+                                    NR
+                            {% endif %}
+                            
+                            </td>
+
+                            <td data-label="Matériel" class="tdResp">
 
                                 {% for materiel in command.materiel %}
                                     {{materiel.nom}}
@@ -67,11 +74,17 @@
                             
                                 {% endfor %}
                             </td>
-                            <td>{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
+                            <td data-label="Crée le" class="tdResp">{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
                             
-                            <td>{{ command.validationDate ? command.validationDate|date('Y-m-d') : '' }}</td>
+                            <td data-label="Validée le" class="tdResp">
+                            {% if command.validationDate ? command.validationDate|date('Y-m-d') : ''  %}
+                                {% else %}
+                                    NR
+                            {% endif %}
                     
-                            <td>{{ command.user ? command.user.nom|capitalize }} </td>
+                            </td>
+                    
+                            <td data-label="Commercial" class="tdResp">{{ command.user ? command.user.nom|capitalize }} </td>
                         </tr>
 
 
