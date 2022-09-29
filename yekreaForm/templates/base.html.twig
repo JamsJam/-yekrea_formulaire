@@ -77,15 +77,19 @@
                                 <li class="nav-link ">
                                     <a class="link" href="{{ path('app_devis_index') }}">Devis</a>
                                 </li>
-
-                                {# STATISTIQUE #}
-                                <li class="nav-link ">
-                                    <a class="link" href="">Statistique</a>
-                                </li>
+                                
+                                {# Route vers les statistiques global reservé a l'admin #}
+                                {% if app.user.RoleInt == 1 %}
+                                    
+                                    {# STATISTIQUE #}
+                                    <li class="nav-link ">
+                                        <a class="link" href="{{ path('app_dashboard') }}">Statistique</a>
+                                    </li>
+                                {% endif %}
 
                                 {# MON COMPTE #}
                                 <li class="nav-link">
-                                    <a class="link" href=""> Mon compte </a>
+                                    <a class="link" href="{{ path('app_dashboard',{'id' : app.user.id }) }}"> Mon compte </a>
                                 </li>
 
                                 {# USER #}

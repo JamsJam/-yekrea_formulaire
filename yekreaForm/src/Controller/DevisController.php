@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Devis;
 use App\Form\DevisType;
-use App\Repository\DevisRepository;
 use App\Service\PdfService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\DevisRepository;
+use App\Repository\CommandRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("")
@@ -17,39 +18,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class DevisController extends AbstractController
 {
     /**
-     * @Route("/admin/devis/", name="app_devis_index", methods={"GET"})
+     * @Route("/devis/", name="app_devis_index", methods={"GET"})
      */
-    public function index(DevisRepository $devisRepository): Response
+    public function index(DevisRepository $devisRepository, CommandRepository $commandRepository, Request $request): Response
     {
-
+        if($request->query->get('comId') ){
+            $devis = $devisRepository->findDevis($request->query->get('comId'));
+        }
+        else{
+            $devis = $devisRepository->findBy([],['id' => 'DESC']);
+        }
 
         return $this->render('devis/index.html.twig', [
             //rangement dans du plus recent au plus ancient
-            'devis' => $devisRepository->findBy([],['id' => 'DESC']),
+            'devis' => $devis,
         ]);
     }
 
-    //Route inutile car l'ajout de devis se fait par le ValidateController
-        // /**
-        //  * @Route("/new", name="app_devis_new", methods={"GET", "POST"})
-        //  */
-        // public function new(Request $request, DevisRepository $devisRepository): Response
-        // {
-                //     $devi = new Devis();
-                //     $form = $this->createForm(DevisType::class, $devi);
-                //     $form->handleRequest($request);
 
-                //     if ($form->isSubmitted() && $form->isValid()) {
-                //         $devisRepository->add($devi, true);
-
-                //         return $this->redirectToRoute('app_devis_index', [], Response::HTTP_SEE_OTHER);
-                //     }
-
-                //     return $this->renderForm('devis/new.html.twig', [
-                //         'devi' => $devi,
-                //         'form' => $form,
-                //     ]);
-    // }
 
     /**
      * @Route("admin/devis/devis/{id}", name="app_devis_show", methods={"GET"})
@@ -135,7 +121,7 @@ class DevisController extends AbstractController
      */
     public function generatePdfDevis(Devis $devis , PdfService $pdf)
     {
-        $html = $this-> render('devis/toPdf.html.twig',['devis' => $devis]);
+        $html = $this-> renderview('devis/toPdf.html.twig',['devis' => $devis]);
         $pdf-> showPdfFile($html);
         }
 

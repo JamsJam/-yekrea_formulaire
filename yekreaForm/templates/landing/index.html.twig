@@ -32,18 +32,21 @@
                     </div>
                 </a>
                 
-                
-                <a href="{{ path('app_devis_index') }}" class="landingbloc--a">
+
+                {# Si admin, Acces a la liste de tout les devis, sinon acces a la liste des devis emis par le user #}
+                {% if app.user.RoleInt == 1 %}
+                        
+                    <a href="{{ path('app_devis_index') }}" class="landingbloc--a">
+                {% else %}
+                            
+                    <a href="{{ path('app_devis_index', {'comId': app.user.id}) }}" class="landingbloc--a">
+                {% endif %}
                     <div class="landingBloc">
                         <p>Liste de devis</p>
                     </div>
                 </a>
                 
-                <a href="" class="landingbloc--a">
-                    <div class="landingBloc">
-                        <p>Statistiques</p>
-                    </div>
-                </a>
+
                 
                 <a href="{{path("app_admin_client_index")}}" class="landingbloc--a">
                     <div class="landingBloc">
@@ -52,6 +55,12 @@
                 </a>
 
                 {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ path('app_dashboard') }}" class="landingbloc--a">
+                        <div class="landingBloc">
+                            <p>Statistiques</p>
+                        </div>
+                    </a>
+
                     <a href="{{ path('app_user_new') }}" class="landingbloc--a">
                         <div class="landingBloc">
                             <p>Nouveau commercial</p>

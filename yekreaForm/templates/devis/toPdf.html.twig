@@ -51,12 +51,13 @@
                 }
 
                 thead{
-                    background-color: antiquewhite;
+                    background-color: #E5191E;
                 }
 
                 th
                 {
                     font-size:1.5rem;
+                    color: white
 
                 }
 
@@ -93,6 +94,7 @@
         <h5 >Client : {{ devis.command.client.user.nom|upper}} {{ devis.command.client.user.prenom|capitalize}}</h5>
 
         <div >
+        {# <img width="200px" src="{{ asset('images/logoYekreaSmall.jpg')}}" alt="Mon logo"> #}
             <table >
                 <thead >
                         <th >Description</th>

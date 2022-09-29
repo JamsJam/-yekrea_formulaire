@@ -39,6 +39,22 @@ class DevisRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * 
+     * Retourne tout les devis emis par le commercial correspondant a l'id $query
+     */
+    public function findDevis(int $query)
+    {
+        // $conn = $this->getEntityManager()->getConnection();
+        $qb = $this->createQueryBuilder('d');
+        $qb ->select(array('d','c'))
+            ->join('d.command', 'c', 'WITH', 'c.user = :query')
+            ->setParameter('query', $query);
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
+
+
 //    /**
 //     * @return Devis[] Returns an array of Devis objects
 //     */

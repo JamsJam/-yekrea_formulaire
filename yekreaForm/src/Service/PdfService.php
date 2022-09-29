@@ -20,9 +20,14 @@ class PdfService
         $pdfOptions->set('isHtml5ParserEnabled', true);
         $this->domPdf->setPaper('A4', 'landscape');
         // $pdfOptions->set('defaultPapersize', );
+
         // dd($pdfOptions);
         //associe l'option au pdf
+        // dd($pdfOptions);
         $this->domPdf->setOptions($pdfOptions);
+
+         
+        // $pdf = unserialize($type->getPdf());
         
 
     }
