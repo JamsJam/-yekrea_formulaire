@@ -135,7 +135,7 @@ class DevisController extends AbstractController
      */
     public function generatePdfDevis(Devis $devis , PdfService $pdf)
     {
-        $html = $this-> render('devis/toPdf.html.twig',['devis' => $devis]);
+        $html = $this-> renderview('devis/toPdf.html.twig',['devis' => $devis]);
         $pdf-> showPdfFile($html);
         }
 

@@ -42,7 +42,20 @@
                     {# BOUCLE pour afficher les données récupérer via la table commande #}
 
                     {% for devi in devis %}
-                        <tr>
+                        <tr
+                        {# Ajour de la couleur conditionnelle de la ligne en fonction du statut #}
+                        {% if devi.status == "accepted" %}
+                            class="table-success"
+                        {% else %}
+                            {% if devi.status == "aborted" %}
+                                class="table-danger"
+                            {% else %}
+                                {% if devi.status == "pending" %}
+                                    class="table-warning"
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                        >
                             {# n° du devis #}
                             <td>{{ devi.numDevis }}</td>
 
@@ -152,14 +165,15 @@
                                 <td class="col-1" >
                                     <div class="dropdown-center"  >
 
-                                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
                                             {# 
                                                 Icones bootstrap "..." 
                                                 width & height : pour changer la taille
                                                 fill : pour changer la couleur ( couleur bootstap / couleur hexadecimal / couleur écrite ex: "red")
                                             #}
                                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#D6D6D6" class="bi bi-three-dots" viewBox="0 0 16 16">
-                                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                                {# ombre legere sur le path pour faire resortir les points sur les couleurs  #}
+                                                <path style="filter: drop-shadow(0px 1px 0.7px #6d6d6d)" d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                                             </svg>
                                         </button>
 
