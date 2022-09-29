@@ -58,14 +58,16 @@ class CommandRepository extends ServiceEntityRepository
     public function findCommandByName(string $query)
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = '
+        // dd($query);
+        $sql = "
             SELECT * FROM command p
             JOIN client c
-            ON client_id 
-            WHERE c.societe = :query
-            ';
+            ON c.id = p.client_id
+            WHERE c.societe 
+            LIKE '%' :query '%'";
+            
         // LIKE "%:query%"
-        // $sql->setParameter('query', '%' . $query . '%');
+        // $sql->setParameter('query');
 
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery(['query' => $query]);

@@ -15,7 +15,7 @@ html{
     position: absolute;
     width: 100vh;
     top: 70px;
-    left: 300px;
+    left: 270px;
     width: 70%;
 
 }
@@ -61,6 +61,9 @@ ul li{
     border: 1px solid #E5191E !important; 
     color:#E5191E !important; 
 }
+
+
+
 
 /* _________________________________INPUT  */
 /* INPUT TEXTE / EMAIL / PASSWORD / TEL / SELECT */ 
@@ -165,14 +168,18 @@ img[alt="logo yekrea"]{
 .sidebar{
 
     position:fixed;
-
+    
     top:0;
     height: 100vh;
     width: 250px;
 
     background-color: #E5191E;
     border-radius: 0 40px 0 0 ;
+    z-index:1;
+    transition: left 0.5s ease;
+    
 }
+
 
 /* logo YEKREA NAV */
 
@@ -190,6 +197,33 @@ img[alt="logo yekrea"]{
     justify-content: center;
     align-items: center;
     
+}
+.close{
+    position: absolute;
+    top: 0;
+    right: 30px;
+    font-size: 36px;
+    transition: left 0.5s ease;
+    color: #000;
+}
+#logo{    
+    width: 150px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    top:-60px;
+    position: absolute;
+    right: 45%;
+
+    transition: top 0.9s ease;
+
+}
+#closeBtn:active{
+    transform: translateY(-100%);
+    transform: rotate3d( 1, 1, 1, 360deg);
+    transition: 1s;
 }
 
 /* div =>  TABLEAU DE BORD */
@@ -573,14 +607,14 @@ td{
     /* container du MAIN */
 
     .containerPages{
-        top: 170px;
+        top: 140px;
         left: 0;
 
         width: 100%;
     }
 
     .pages{
-        padding: 20px;
+        padding: 0 20px;
     }
     /**********************************************  LOGIN */
 
@@ -629,8 +663,17 @@ td{
         justify-content: center;
         align-items: center;
 
-        position: sticky;
+        position: relative;
+        top:0;
+        left: -800px;
     
+    }
+    .burger{
+        position: relative;
+    }
+    #logo{
+        top:0!important;
+        right:30%;
     }
     /* "ul" (liste) de la nav */
     .menu{
@@ -682,8 +725,20 @@ td{
 
     .welcome--container{
         position: absolute;
-        top: 10px;
+        top: 0px;
         font-size: 12px;
+        text-align: center;
+        
+    }
+    .welcome--container p{
+        width: 93px;
+        text-align: center;
+    }
+    .btnClose{
+        transition: all;
+    }
+    .btnClose:active{
+        transform: rotate(160deg)!important;
     }
 
     /* texte bonjour USER */
@@ -701,6 +756,11 @@ td{
     .welcome--container svg{
         width:  24px;
     }
+    /* bouton déconnexion */
+
+    .welcome--container p a svg{
+        color: #E5191E!important;
+    }
     /* ******************************************************  LANDING */
 
     .landingbloc--a{
@@ -713,8 +773,8 @@ td{
 
     .landingContainer{
         grid-template-columns: repeat(auto-fill, 100px);
-        grid-gap: 30px;
-        padding-left: 20px;
+        grid-gap: 40px;
+        padding-left: 56px;
     }
 }
 
