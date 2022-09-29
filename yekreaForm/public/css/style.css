@@ -607,7 +607,7 @@ td{
     /* container du MAIN */
 
     .containerPages{
-        top: 150px;
+        top: 140px;
         left: 0;
 
         width: 100%;
@@ -673,7 +673,7 @@ td{
     }
     #logo{
         top:0!important;
-        right:35%;
+        right:30%;
     }
     /* "ul" (liste) de la nav */
     .menu{
@@ -725,8 +725,14 @@ td{
 
     .welcome--container{
         position: absolute;
-        top: 10px;
+        top: 0px;
         font-size: 12px;
+        text-align: center;
+        
+    }
+    .welcome--container p{
+        width: 93px;
+        text-align: center;
     }
     .btnClose{
         transition: all;
@@ -752,7 +758,7 @@ td{
     }
     /* bouton déconnexion */
 
-    .out{
+    .welcome--container p a svg{
         color: #E5191E!important;
     }
     /* ******************************************************  LANDING */
@@ -767,8 +773,8 @@ td{
 
     .landingContainer{
         grid-template-columns: repeat(auto-fill, 100px);
-        grid-gap: 30px;
-        padding-left: 20px;
+        grid-gap: 40px;
+        padding-left: 56px;
     }
 }
 
