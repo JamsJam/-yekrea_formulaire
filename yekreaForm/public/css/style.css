@@ -22,6 +22,7 @@ html{
 
 .pages{
     position:relative;
+    margin-bottom: 20px;
 }
 
 /* titre */
@@ -431,9 +432,6 @@ td{
     align-items: flex-start;
 }
 
-
-
-
 /* ****************************************************** DashBoard : statistique */
 #dashboard__section1,
 #dashboard__section2,
@@ -773,12 +771,47 @@ td{
 
     .landingContainer{
         grid-template-columns: repeat(auto-fill, 100px);
-        grid-gap: 40px;
-        padding-left: 56px;
+        grid-gap: 50px;
+        padding-left: 70px;
+    }
+    /************************************************************ tableau commande show */
+
+    .tableReponsive , 
+    .theadResp ,  
+    .thResp ,
+    .tbodyResp ,
+    .trResp,
+    .tdResp{
+        display: block;
+        width: 100%;
+    }
+
+    .theadResp{
+        display: none;
+    }
+    .tbodyResp , .trResp, .tdResp{
+        text-align: right;
+        position: relative;
+        
+    }
+    .tdResp:before{
+        content : attr(data-label);
+        position : absolute ;
+        left : 0 ;
+        width : 30% ;
+        font-weight: bold;
+        text-align : left ;
+        background-color: #D9D9D9;
+        padding: 10px;
+    }
+    
+}
+@media screen and (min-width:800px) and (max-width:1000px) {
+    .landingContainer{
+        grid-template-columns: repeat(auto-fill, 200px);
+        padding-left: 60px;
     }
 }
-
-
 /* ******************************************************  dashborad*/
 @media screen and (max-width:465px) {
         #section1__grid{
@@ -793,5 +826,12 @@ td{
         justify-content: space-around;
         flex-wrap: wrap;
         margin: 10px 0
+    }
+
+    /* landing */
+    .landingContainer{
+        grid-template-columns: repeat(auto-fill, 100px);
+        grid-gap: 20px;
+        padding-left: 55px;
     }
 }
