@@ -34,14 +34,14 @@
 
 
                 {# NAVIGATION #}
-                <div class="burger" style="display: flex; justify-content:center; margin-top: 0px;">
+                <div class="burger" style="display: flex; justify-content:center;">
                     <button id="openBtn" style="position:absolute;left: 10px; border:none!important; background-color:transparent;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#E5191E" class="bi bi-list" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                         </svg>
                     </button>
-                    <div class="imgNav pagesLogo" style="margin-top: 0px; padding:0!important;">
-                            <img src="/images/logoYekreaSmall.jpg" alt="Logo yekrea" class="logoYekreaNav" id="logo"style="width:150px;">
+                    <div class="pagesLogo">
+                            <img src="/images/logoYekreaSmall.jpg" alt="Logo yekrea"  id="logo">
                     </div>
                 </div>
                 <div class="nav--container sidenav">
@@ -111,13 +111,13 @@
                             </span>
 
                             {# lien déconnexion #}
-                            <a style="text-decoration:none; color:#000;" href="{{ path('app_logout')}}">
+                            <a class="out" style="text-decoration:none; color:#000;" href="{{ path('app_logout')}}">
 
                                 {# 
                                     Icon bootstrap déconnexion 
                                     width et height => modifie la taille
                                 #}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" class="bi bi-box-arrow-in-left " viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
                                     <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
                                 </svg>
@@ -147,22 +147,38 @@
     
     {% block javascripts %}
         <script>
+
             var nav = document.getElementById("mySidenav");
             var logo = document.getElementById("logo");
 
             document.getElementById("openBtn").addEventListener("click", function() {
             nav.style.left='0';
-            logo.style.visibility='hidden';
-
-            
+            logo.style.top='-60px';
             });
 
             document.getElementById("closeBtn").addEventListener("click", function() {
     
             nav.style.left='-250px';
-            logo.style.visibility='visible';
-            
+            logo.style.top='0';
             });
+
+            if(window.matchMedia("(max-width:800px)").matches){
+
+                document.getElementById("openBtn").addEventListener("click", function() {
+                nav.style.left='0';
+                logo.style.top='40px';
+                });
+
+                document.getElementById("closeBtn").addEventListener("click", function() {
+        
+                nav.style.left='-800px';
+                logo.style.top='0';
+                });
+            }
+    
+            
+            
+            
 
     
         </script>
