@@ -114,12 +114,13 @@ class AdminClientController extends AbstractController
         return $this->redirectToRoute('app_admin_client_index', [], Response::HTTP_SEE_OTHER);
     }
 
-        /**
+    /**
      * @Route("/api/fetch/client", name="app_json_client")
      */
     public function ClientJson(SerializerInterface $serializer, UserRepository $userRipo): JsonResponse
     {
-        $client = $userRipo-> findClient(3);
+
+        $client = $userRipo-> findClient();
         
         
         $jsonContent = $serializer
