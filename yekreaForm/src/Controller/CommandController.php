@@ -97,8 +97,11 @@ class CommandController extends AbstractController
             
 
             $commandRepository->add($command, true);
-            
+
+            $this->addFlash("success", ""); 
             return $this->redirectToRoute('app_command_index', [], Response::HTTP_SEE_OTHER);
+
+
         }
 
         return $this->renderForm('command/new.html.twig', [

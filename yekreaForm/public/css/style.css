@@ -784,6 +784,7 @@ td{
     .tdResp{
         display: block;
         width: 100%;
+        min-height: 50px;
     }
 
     .theadResp{

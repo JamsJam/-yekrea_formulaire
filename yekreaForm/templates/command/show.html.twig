@@ -57,13 +57,7 @@
                                     NR
                                 {% endif %}
                             </td>
-                            <td data-label="Description" class="tdResp">
-                            {% if command.description %}
-                                {% else %}
-                                    NR
-                            {% endif %}
-                            
-                            </td>
+                            <td data-label="Description" class="tdResp">{{command.description }}</td>
 
                             <td data-label="Matériel" class="tdResp">
 
@@ -77,11 +71,7 @@
                             <td data-label="Crée le" class="tdResp">{{ command.createDate ? command.createDate|date('Y-m-d') : '' }}</td>
                             
                             <td data-label="Validée le" class="tdResp">
-                            {% if command.validationDate ? command.validationDate|date('Y-m-d') : ''  %}
-                                {% else %}
-                                    NR
-                            {% endif %}
-                    
+                            {{command.validationDate ? command.validationDate|date('Y-m-d') : '' }}
                             </td>
                     
                             <td data-label="Commercial" class="tdResp">{{ command.user ? command.user.nom|capitalize }} </td>
