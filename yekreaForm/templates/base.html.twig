@@ -151,33 +151,36 @@
     
     {% block javascripts %}
         <script>
+            window.onload = function(){
 
-            var nav = document.getElementById("mySidenav");
-            var logo = document.getElementById("logo");
+                var nav = document.getElementById("mySidenav");
+                var logo = document.getElementById("logo");
 
-            document.getElementById("openBtn").addEventListener("click", function() {
-            nav.style.left='0';
-            logo.style.top='-60px';
-            });
+                if(window.matchMedia("(max-width:800px)").matches){
 
-            document.getElementById("closeBtn").addEventListener("click", function() {
-    
-            nav.style.left='-250px';
-            logo.style.top='0';
-            });
+                    document.getElementById("openBtn").addEventListener("click", function() {
+                    nav.style.left='0';
+                    logo.style.top='-60px';
+                    });
 
-            if(window.matchMedia("(max-width:800px)").matches){
+                    document.getElementById("closeBtn").addEventListener("click", function() {
+            
+                    nav.style.left='-1000px';
+                    logo.style.top='0';
+                    });
+                    
+                }else{
+                    document.getElementById("openBtn").addEventListener("click", function() {
+                    nav.style.left='0';
+                    logo.style.top='-60px';
+                    });
 
-                document.getElementById("openBtn").addEventListener("click", function() {
-                nav.style.left='0';
-                logo.style.top='40px';
-                });
-
-                document.getElementById("closeBtn").addEventListener("click", function() {
-        
-                nav.style.left='-800px';
-                logo.style.top='0';
-                });
+                    document.getElementById("closeBtn").addEventListener("click", function() {
+            
+                    nav.style.left='-250px';
+                    logo.style.top='0';
+                    });
+                }
             }
     
             
