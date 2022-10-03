@@ -28,6 +28,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      *  @Assert\NotBlank
+     *  @Assert\Regex(
+     *     pattern="/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/",
+     *     match=true,
+     *     message="Veuillez entrer un e-mail valide"
+     * )
      */
     private $email;
 
@@ -44,14 +49,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * *@Assert\NotBlank
+     *  @ORM\Column(type="string", length=255)
+     *  @Assert\NotBlank
+     *  @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Le nom ne peux contenir de nombre")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
      *  @Assert\NotBlank
+    *  @Assert\Regex(
+    *     pattern="/\d/",
+    *     match=false,
+    *     message="Le Prenom ne peux contenir de nombre")
      */
     private $prenom;
 
