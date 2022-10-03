@@ -38,7 +38,7 @@ class ServicesDetail
 
     /**
      * @ORM\Column(type="datetime_immutable")
-     * @Assert\NotBlank
+     * 
      */
     private $date_creation;
 
