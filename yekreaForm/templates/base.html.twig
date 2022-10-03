@@ -66,7 +66,9 @@
                                     <a href="{{ path('app_landing') }}">Tableau de bord</a>
                                 </li>
 
-                                {# Notification #}
+                                {# 
+                                    iNotification
+
                                 {% if is_granted("ROLE_ADMIN") %}
                                     <li class="nav-link">
                                         <a class="link" href="{{ path('app_notification') }}">
@@ -75,6 +77,7 @@
                                     </li>
                                 {% endif %}
 
+                                #}
                                 {# COMMANDE #}
                                 <li class="nav-link">
                                     <a class="link" href="{{ path('app_command_index') }}">
