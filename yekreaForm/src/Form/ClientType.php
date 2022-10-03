@@ -6,11 +6,13 @@ use App\Entity\User;
 use App\Entity\Client;
 use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
@@ -50,7 +52,7 @@ class ClientType extends AbstractType
                 'required' => false,
                 "label"=> 'Société'
             ])
-            ->add('telephone',TelType::class,[
+            ->add('telephone',IntegerType::class,[
                 'required' => false,
                 "label"=> 'Téléphone'
             ])

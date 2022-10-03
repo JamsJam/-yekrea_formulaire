@@ -66,6 +66,15 @@
                                     <a href="{{ path('app_landing') }}">Tableau de bord</a>
                                 </li>
 
+                                {# Notification #}
+                                {% if is_granted("ROLE_ADMIN") %}
+                                    <li class="nav-link">
+                                        <a class="link" href="{{ path('app_notification') }}">
+                                        Notification
+                                        </a>
+                                    </li>
+                                {% endif %}
+
                                 {# COMMANDE #}
                                 <li class="nav-link">
                                     <a class="link" href="{{ path('app_command_index') }}">
@@ -106,6 +115,7 @@
                 {# bonjour USER #}
                 
                 <div class="welcome--container">
+                        
                     <p>
                         bonjour
 
@@ -128,6 +138,7 @@
 
                             </a>
                     </p> 
+                    
                 </div> 
 
 
@@ -156,6 +167,8 @@
                 var nav = document.getElementById("mySidenav");
                 var logo = document.getElementById("logo");
 
+                
+
                 if(window.matchMedia("(max-width:800px)").matches){
 
                     document.getElementById("openBtn").addEventListener("click", function() {
@@ -180,6 +193,12 @@
                     nav.style.left='-250px';
                     logo.style.top='0';
                     });
+                }
+
+                let myVar = setInterval(myTimer, 1000);
+                function myTimer() {
+                    const d = new Date();
+                    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
                 }
             }
     

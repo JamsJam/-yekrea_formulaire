@@ -98,9 +98,13 @@ class CommandController extends AbstractController
 
             $commandRepository->add($command, true);
 
-            $this->addFlash("success", ""); 
-            return $this->redirectToRoute('app_command_index', [], Response::HTTP_SEE_OTHER);
+            // dd($command);
 
+            $this->addFlash("success", 'Une nouvelle commande a été ajoutée par '.$command->getUser()->getNom() .'.'); 
+
+            return $this->redirectToRoute('app_command_index', [], Response::HTTP_SEE_OTHER);
+            
+            // return $this->redirectToRoute('app_notification', [], Response::HTTP_SEE_OTHER);
 
         }
 

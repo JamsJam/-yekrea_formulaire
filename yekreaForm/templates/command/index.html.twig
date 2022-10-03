@@ -19,21 +19,24 @@
                     Créer une nouvelle commande
             </a> 
             
-            {% if is_granted("ROLE_ADMIN") %}
-                {% for notification in app.flashes('success') %}
-                    <div class="alert text-center alert-dismissible fade show" style="float:right; border:1px solid #E5191E;" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E5191E;" class="bi bi-bell-fill" viewBox="0 0 16 16">
-                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-                    </svg>{{notification}} 
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ><span aria-hidden="true">&times;</span></button></div>
-                {% endfor %}
-            {% endif %}
             {# 
                 CLASS BOOTSTRAP
                 table-responsive-sm : rend le tableau responsive en fonction de la taille de l'écran (sm)
                 mb : margin-bottom
             #}
-
+            {% for command in commands %}
+                {% if is_granted("ROLE_ADMIN") %}
+                    {% for notification in app.flashes('success') %}
+                        <div id="notif" class="alert text-center alert-dismissible fade show" style="color:#E5191E;border: 1px solid #E5191E; background-color:rgb(229,25,30, 0.1);">
+                            {{notification}} 
+                            <a href="{{ path('app_command_show', {'id': command.id}) }}" style="color:#E5191E">Voir</a>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="width:3px">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
             <div class="table-responsive-sm">
                 <table class="table mb-5 tableau">
 

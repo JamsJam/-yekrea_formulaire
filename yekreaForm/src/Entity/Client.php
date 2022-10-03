@@ -30,9 +30,10 @@ class Client
     /**
      * @ORM\Column(type="integer")
      * @Assert\Length(min=9,
-     *          minMessage="This value is too short. It should have 10 numbers or more")
+     *          minMessage="Cette valeur est trop courte. Il devrait avoir 10 chiffres ou plus")
      * @Assert\NotBlank
-     * 
+     * @Assert\Type(type="integer", 
+     *               message="Veuillez entrer des chiffres")
      */
     private $telephone;
 
