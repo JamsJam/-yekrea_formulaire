@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Service\Mail;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
@@ -29,7 +32,7 @@ class CommerceUserController extends AbstractController
     /**
      * @Route("/commerce/user/new", name="app_user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, MailerInterface $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -37,8 +40,22 @@ class CommerceUserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+        // Permet d'envoyer un mail. la classe Mail est definis par App/Service/Mail
+        // send() prend 4 argument!
+            // $email = new Mail();
+            // $email->send(
+                        //     'mail_destinateur',
+                        //     '$nom_destinateur',
+                        //     '$objet',
+                        //     '$message'
+                        // );
+
+
+
             $userRoles = $form->getData()->getRoles();
             $userEmail = $form->getData()->getEmail();
+
+            
             
         // ************* Gestion du mot de passe en fonction des roles
 
@@ -85,7 +102,7 @@ class CommerceUserController extends AbstractController
                 $user->setRoleInt(3);
                 break;
                 
-            };
+        };
             $userRoleInt = $user->getRoleInt();
                     
                     
@@ -98,11 +115,14 @@ class CommerceUserController extends AbstractController
             //On ajoute alor l'ID de notre nouvel utilisateur en requete GET
             if ($userRoleInt == 2  or $userRoleInt == 1 ){
                 $userRepository->add($user, true);
+
+                
                 
                 return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
             }else{
             
-                $userRepository->add($user, true);
+                
+                
                 
 
                 $userId = $user->getId();
