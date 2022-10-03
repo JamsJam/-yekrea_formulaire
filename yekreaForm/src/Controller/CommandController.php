@@ -78,7 +78,12 @@ class CommandController extends AbstractController
         // Permet d'envoyer un mail. la classe Mail est definis par App/Service/Mail
         // send() prend 4 argument!
             // $email = new Mail();
-            // $email->send('mail_destinateur','$nom_destinateur','$objet','$message');
+            // $email->send(
+                        //     'mail_destinateur',
+                        //     '$nom_destinateur',
+                        //     '$objet',
+                        //     '$message'
+                        // );
 
         $command = new Command();
         $form = $this->createForm(CommandType::class, $command);
