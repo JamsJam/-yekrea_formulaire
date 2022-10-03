@@ -17,19 +17,18 @@
         padding-left: 15px;
         height: 50px;
     }
-    th{
-        background-color: #d9d9d9;
-        border-right: white solid 3px;
-    }
+
 </style>
 
 {% endblock %}
 
 {% block body %}
-    {% if app.user.RoleInt == 1 %}
-        
+
     <div class="containerPages">
         <div class="pages">
+    {% if app.user.RoleInt == 1 %}
+        
+    
             {# Section Statistique general  #}
             <section  id="dashboard__section1">
                 <div id="section1__container">
@@ -199,7 +198,7 @@
                     <div class="dashboard__rankVendor">
                         <div class="dashboard__rankVendor--container">
                             <h3 class="dashboard__rankVendor--title">Classement des Commerciaux par recette</h3>
-                            <div class="table-responsive-sm">
+                            <div class=" table table-responsive-sm tableau">
                                 <table>
                                     <thead >
                                         <th>Rank</th>
@@ -242,7 +241,7 @@
                             <h3 class="dashboard__rankVendor--title">Classement des Catégories par recette</h3>
 
                             <div class="table-responsive-sm">
-                                <table>
+                                <table class=" table mb-5 tableau">
                                     <thead >
                                         <th>Rank</th>
                                         <th>Catégorie</th>
@@ -269,7 +268,7 @@
                         <div class="dashboard__rankVendor--container">
                             <h3 class="dashboard__rankVendor--title">Classement des Catégories par recette</h3>
                             <div class="table-responsive-sm">
-                                <table>
+                                <table class="table mb-5 tableau">
                                     <thead >
                                         <th>Rank</th>
                                         <th>Catégorie</th>
@@ -296,65 +295,65 @@
             </section>
         
     {% endif %}
-{% if   app.request.query.get("id")  %}
+    {% if   app.request.query.get("id")  %}
 
-    <section>
+        <section>
 
-        <h2>Statistique de vente individuel</h2>
-        <div>
-        <div class="table-responsive-sm">
-            <table>
-                <thead>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Nombre total de devis</td>
-                        <td>{{userStats.1}}</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre de devis accepter</td>
-                        <td>{{userStats.2}}</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre de devis en attente</td>
-                        <td>{{userStats.3}}</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre de devis annuler</td>
-                        <td>{{userStats.4}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+            <h2>Statistique de vente individuel</h2>
             <div>
             <div class="table-responsive-sm">
                 <table>
                     <thead>
-                        <th>n° Devis</th>
-                        <th>Client</th>
-                        <th>Status</th>
-                        <th>Prix Final</th>
+                        <th></th>
                     </thead>
                     <tbody>
-                    {% for userStat in userStats.0 %}
-                        
                         <tr>
-                            <td>{{userStat.devis.numDevis}}</td>
-                            <td>{{userStat.client.user.nom}} {{userStat.client.user.nom}}</td>
-                            <td>{{userStat.devis.status}}</td>
-                            <td>{{userStat.devis.prixFinal}}</td>
-                            <td><a href="">Voir detail</a></td>
+                            <td>Nombre total de devis</td>
+                            <td>{{userStats.1}}</td>
                         </tr>
-                    {% endfor %}
+                        <tr>
+                            <td>Nombre de devis accepter</td>
+                            <td>{{userStats.2}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de devis en attente</td>
+                            <td>{{userStats.3}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de devis annuler</td>
+                            <td>{{userStats.4}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
+
+                <div>
+                <div class="table-responsive-sm">
+                    <table>
+                        <thead>
+                            <th>n° Devis</th>
+                            <th>Client</th>
+                            <th>Status</th>
+                            <th>Prix Final</th>
+                        </thead>
+                        <tbody>
+                        {% for userStat in userStats.0 %}
+                            
+                            <tr>
+                                <td>{{userStat.devis.numDevis}}</td>
+                                <td>{{userStat.client.user.nom}} {{userStat.client.user.nom}}</td>
+                                <td>{{userStat.devis.status}}</td>
+                                <td>{{userStat.devis.prixFinal}}</td>
+                                <td><a href="">Voir detail</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                </div>
             </div>
-        </div>
-    </section>
-{% endif %}
+        </section>
+    {% endif %}
 
         </div>
     </div>
