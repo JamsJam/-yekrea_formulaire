@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Client;
 use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
