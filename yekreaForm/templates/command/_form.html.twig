@@ -1,6 +1,6 @@
 {{ form_start(form) }}
     
-    {% if  not app.request.query.get("client")  %}
+    
     <div>
     {% if  not app.request.query.get("client")  %}
         <div>
@@ -13,6 +13,5 @@
         {{form_row(form.servicesDetail)}}
         <button class="btn bouton center mt-4 mb-4">{{ button_label|default('Valider') }}</button>
     </div>
-    {% endif %}
     
 {{ form_end(form) }}

@@ -55,6 +55,11 @@ class ServicesDetail
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=true,
+     *     message="Veuillez entrer un prix valide")
      */
     private $prixMin;
 
