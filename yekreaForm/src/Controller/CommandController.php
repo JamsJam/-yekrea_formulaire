@@ -115,7 +115,7 @@ class CommandController extends AbstractController
 
             return $this->redirectToRoute('app_command_index', [], Response::HTTP_SEE_OTHER);
             
-            // return $this->redirectToRoute('app_notification', [], Response::HTTP_SEE_OTHER);
+            
 
         }
 

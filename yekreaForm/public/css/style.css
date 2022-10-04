@@ -521,12 +521,12 @@ td{
     padding: 17px;
     background: #EBEBEB;
     height: 60px;
-    font-size : 20px;
+    font-size : 18px;
     font-weight: 400;
     }
     .dashboard__lastCommand--prix>span{
         
-        font-weight: 900;
+        font-weight: 800;
 }
 
 .dashboard__lastCommand--status{
@@ -535,7 +535,14 @@ td{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px
 }
+.dashboard__lastCommand--status>p{
+    margin: 0;
+    text-align: center
+}
+
+
 
 .dashboard__lastCommand--btnValidation{
     height: 60px;
@@ -544,27 +551,94 @@ td{
     align-items: center
 }
 
-.dashboard__lastCommand--btnValidation button {
+.dashboard__lastCommand--btnValidation a {
     border-radius: 10px;
     width: 130px;
     height: 50px;
-    background: none
-    }
+    background: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
-.dashboard__lastCommand--btnValidation button:first-child {
-    background: #E5191E ;
-    color: white;
-    border: none
 }
 
-.dashboard__lastCommand--btnValidation button:nth-child(2) {
-    border: 1px black solid
+.dashboard__lastCommand--btnValidation a.dashboard__lastCommand--validation {
+    background: #E5191E ;
+    color: white;
+    border: none;
+    transition: 
+            border 0.2s ease-in-out,
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+}
+
+.dashboard__lastCommand--btnValidation a.dashboard__lastCommand--devis {
+    border: 1px black solid;
+    color: black;
+    transition: 
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+}
+
+.dashboard__lastCommand--btnValidation a.dashboard__lastCommand--validation:hover {
+    background: white ;
+    color: #E5191E ;
+    border: 2px #E5191E solid;
+    transition: 
+            border 0.2s ease-in-out,
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+}
+.section1__voirPlus:hover,
+.section1__general--container a:hover,
+.dashboard__lastCommand--btnValidation a.dashboard__lastCommand--devis:hover {
+    background-color: #000;
+    color: #fff;
+    transition: 
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
 }
 
 #section1__voirCommande{
     margin: 20px 0;
     display: flex;
     justify-content: center;
+    
+    
+}
+#section1__voirCommande a{
+    
+    height: 50px;
+    width: 250px;
+    color: #E5191E;
+    border: 2px solid #E5191E;
+    border-radius: 10px;
+    background-color: #FFF;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 
+            border 0.2s ease-in-out,
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+    
+}
+#section1__voirCommande a:hover{
+    
+    
+    color:#FFF ;
+    border: 2px solid #fff;
+    background-color: #E5191E;
+    transition: 
+            border 0.2s ease-in-out,
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+    
+    
 }
 
 
@@ -593,6 +667,9 @@ td{
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: 
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
 
         
     }
@@ -626,6 +703,20 @@ td{
         display: flex;
         align-items: center;
         justify-content: center
+    }
+    /* initialisation paragraphe */
+    .section1__bestProduit--valeur>p,
+    .section1__bestProduit--vendeur>p,
+    .section1__bestVender--vendeur>p,
+    .section1__bestVender--valeur>p,
+    .section1__general--valeur>p{
+        margin: 0
+    }
+
+.section1__bestProduit--vendeur,
+.section1__bestVender--vendeur{
+        background-color: #EBEBEB;
+        font-weight: 500;
     }
 
     .section1__voirPlus{
@@ -679,9 +770,39 @@ td{
 .dashboard__rankVendor--tableItems:first-child{
     font-weight: 600;
 }
+.dashbord__rankVendor--voirPlus  a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 800;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 
+            color 0.2s ease-in-out,
+            transform 0.2s ease-in-out ;
+}
+.dashbord__rankVendor--voirPlus  a:hover{
+    
+    color: rgb(53, 52, 52);
+    transform: translateY(-3px);
+    transition: 
+            color 0.2s ease-in-out,
+            transform 0.2s ease-in-out ;
+            
+    
+}
 
 #dashboard__section3{
     padding-bottom: 60px;
+}
+
+#dashboard__individualStat--general{
+    margin: 30px 0;
+}
+#dashboard__individualStat--general table{
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 
