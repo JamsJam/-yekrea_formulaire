@@ -16,7 +16,7 @@ class Mail
     
     //Clef API compromise nouvel clef dans .env
     private $api_key = '3d4755f5c29f3ee64e1b8fc81327f75f';
-    private $api_key_secret = 'fc7a1bc2eec6b2967a1e9e0547ff0250';
+    private $api_key_secret = 'fa8c18e7017778da7b69752eb5c34939';
 
 
     public function send($to_email, $to_name, $subject, $content)
@@ -27,8 +27,8 @@ class Mail
                 [
                     // Expediteur
                     'From' => [
-                        'Email' => "alertes@yekrea.com",
-                        'Name' => "Alertes Yekrea"
+                        'Email' => "contact@yekrea.com",
+                        'Name' => "Contact Yekrea"
                     ],
                     // Destinataire
                     'To' => [

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\Mail;
 use App\Entity\Command;
 use App\Form\CommandType;
 use Doctrine\ORM\EntityManager;
@@ -75,15 +76,7 @@ class CommandController extends AbstractController
     public function new(Request $request, CommandRepository $commandRepository, ClientRepository $clientRepository): Response
     {
 
-        // Permet d'envoyer un mail. la classe Mail est definis par App/Service/Mail
-        // send() prend 4 argument!
-            // $email = new Mail();
-            // $email->send(
-                        //     'mail_destinateur',
-                        //     '$nom_destinateur',
-                        //     '$objet',
-                        //     '$message'
-                        // );
+
 
         $command = new Command();
         $form = $this->createForm(CommandType::class, $command);
@@ -101,6 +94,10 @@ class CommandController extends AbstractController
             $command->setClient($clientId);
         }
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Permet d'envoyer un mail. la classe Mail est definis par App/Service/Mail
+        // send() prend 4 argument!
+        
             
 
 
@@ -112,6 +109,22 @@ class CommandController extends AbstractController
             // dd($command);
 
             $this->addFlash("success", 'Une nouvelle commande a été ajoutée par '.$command->getUser()->getNom() .'.'); 
+
+            //Email  push command
+            $email = new Mail();
+            $mail_destinateur = 'alerte@yekrea.com';
+            $nom_destinateur = 'Alerte Yekrea';
+            $objet = 'Nouvelle commande';
+            $message = 'Une nouvelle commande a été ajouté';
+            $email->send(
+                            $mail_destinateur,
+                            $nom_destinateur,
+                            $objet,
+                            $message
+                        );
+
+
+
 
             return $this->redirectToRoute('app_command_index', [], Response::HTTP_SEE_OTHER);
             

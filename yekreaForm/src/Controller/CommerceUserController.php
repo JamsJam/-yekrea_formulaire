@@ -42,13 +42,19 @@ class CommerceUserController extends AbstractController
 
         // Permet d'envoyer un mail. la classe Mail est definis par App/Service/Mail
         // send() prend 4 argument!
-            // $email = new Mail();
-            // $email->send(
-                        //     'mail_destinateur',
-                        //     '$nom_destinateur',
-                        //     '$objet',
-                        //     '$message'
-                        // );
+            //email push Client
+            $email = new Mail();
+            $mail_destinateur = 'alerte@yekrea.com';
+            $nom_destinateur = 'Alerte Yekrea';
+            $objet = 'Ajout d\'un nouveau client';
+            $message = 'Bonjour Administtrateur,
+                        Un nouveau client a été ajouté';
+            $email->send(
+                            $mail_destinateur,
+                            $nom_destinateur,
+                            $objet,
+                            $message
+                        );
 
 
 
@@ -115,17 +121,18 @@ class CommerceUserController extends AbstractController
             //On ajoute alor l'ID de notre nouvel utilisateur en requete GET
             if ($userRoleInt == 2  or $userRoleInt == 1 ){
                 $userRepository->add($user, true);
-
+                
                 
                 
                 return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
             }else{
-            
                 
                 
+                $userRepository->add($user, true);
                 
-
+                
                 $userId = $user->getId();
+                
                 
 
                 return $this->redirectToRoute('app_admin_client_new', ['id'=> $userId], Response::HTTP_SEE_OTHER);

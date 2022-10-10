@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\Mail;
 use App\Entity\Devis;
 use DateTimeImmutable;
 use App\Entity\Command;
@@ -103,6 +104,8 @@ class ValidateController extends AbstractController
         $devis->setStatus($status);
         $devis->setClientDecisionDate(new DateTimeImmutable("now"));
         $devisRepository->add($devis, true);
+
+        
         
         return $this->redirectToRoute('app_devis_show',["id"=>$devis->getId()], Response::HTTP_SEE_OTHER);
     }
