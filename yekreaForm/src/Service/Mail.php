@@ -1,10 +1,10 @@
 <?php
 
-use Mailjet\Client;
-use Mailjet\Resources;
 
 NameSpace App\Service;
 
+use Mailjet\Client;
+use Mailjet\Resources;
 
 
 
