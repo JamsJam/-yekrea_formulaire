@@ -30,6 +30,9 @@ class DashboardController extends AbstractController
         $resultatCountService =[];
         $resultatPrixService =[];
         $tablePrixService =[];
+        $venderTableResult = [];
+        $serviceTableResult = [];
+
 
         //recuperation des Donnée necessaires
         $AllService = $serviceRepository->findAll();
@@ -38,7 +41,7 @@ class DashboardController extends AbstractController
 
         // ***********************************Recuperation des 4 dernieres commandes
 
-        $lastCommandes = $commandRepository->findby([],['id'=> 'DESC'], 4);
+        $lastCommandes = $commandRepository->findby([],['id'=> 'DESC'], 3);
 
 
         //pour chaque User...
@@ -102,6 +105,18 @@ class DashboardController extends AbstractController
                 }
             }
         }
+        // A partir des tableau precedent, je place dans un seul tableau les nom prenom, id, recette et nombre de commande des commerciaux
+        foreach ($resultatVendeurRentable as $rentable) {
+            $oneArray = [];
+            foreach ($resultatMeilleurVendeur as $vendeur) {
+                if($rentable[1] == $vendeur[1] ){
+                    $oneArray = [$rentable[0], $rentable[1], $rentable[2], $vendeur[2]];
+                    array_push($venderTableResult, $oneArray);
+                }
+            }
+        }
+
+
         // Trie dans le tableau "$resultatMeilleurVendeur" pour obtenir un classement des vendeur nombre de commande passée
         $columnVente = array_column($resultatMeilleurVendeur, 2);
         array_multisort($columnVente, SORT_DESC, $resultatMeilleurVendeur);
@@ -110,7 +125,12 @@ class DashboardController extends AbstractController
         $columnPrix = array_column($resultatVendeurRentable, 2);
         array_multisort($columnPrix, SORT_DESC, $resultatVendeurRentable);
         
-        // dd($resultatVendeurRentable);
+
+        // Trie dans le tableau "$resultatVendeurRentable" pour obtenir un classement des vendeur par rentabilité
+        $columnVendeur = array_column($venderTableResult, 2);
+        array_multisort($columnVendeur, SORT_DESC, $venderTableResult);
+        
+        
 
         // ******************************************************** Recuperation de la categorie la plus populaire
 
@@ -120,7 +140,7 @@ class DashboardController extends AbstractController
             // si le client  à accepté le devis rataché a cette commande...
             if($commande->getDevis()->getStatus() == "accepted")
             {
-                //et pour chaque serviceDetails dans cette commandes...
+                // pour chaque serviceDetails dans cette commandes...
                 foreach ($commande->getServicesDetail() as  $sd) //$sd = serviceDetail
                 {
                     //je recupere la categorie de service detail...
@@ -169,12 +189,21 @@ class DashboardController extends AbstractController
             array_push($resultatPrixService, $tablePrixService);
 
 
-
-
-
-
-
         }
+
+        // A partir des tableau precedent, je place dans un seul tableau les nom prenom, id, recette et nombre de commande des commerciaux
+        foreach ($resultatPrixService as $rentable) {
+            $oneArrayService = [];
+            foreach ($resultatCountService as $demande) {
+                if($rentable[0] == $demande[0] ){
+                    $oneArrayService = [$rentable[0], $rentable[1], $demande[1]];
+                    array_push($serviceTableResult, $oneArrayService);
+                }
+            }
+        }
+        
+
+
         // dd($resultatPrixService);
         // Trie dans le tableau "$resultatVendeurRentable" pour obtenir un classement des categories par popularité
         $columCountService= array_column($resultatCountService, 1);
@@ -184,6 +213,10 @@ class DashboardController extends AbstractController
         // Trie dans le tableau "$resultatVendeurRentable" pour obtenir un classement des categories par popularité
         $columPrixService= array_column($resultatPrixService, 1);
         array_multisort($columPrixService, SORT_DESC, $resultatPrixService);
+
+        // Trie dans le tableau "$resultatVendeurRentable" pour obtenir un classement des categories par popularité
+        $columService= array_column($serviceTableResult, 1);
+        array_multisort($columService, SORT_DESC, $serviceTableResult);
 
         // Recuperation des statistiques individuelle
         if($request->query->get('id') ){
@@ -228,10 +261,15 @@ class DashboardController extends AbstractController
             "devisAccepted"     =>  count($devisRepository->findby(['status' => 'accepted'])),
             "devisAborted"      =>  count($devisRepository->findby(['status' => 'aborted'])),
             "devisPending"      =>  count($devisRepository->findby(['status' => 'pending'])),
-            // ****************************************recuperation du classement vendeur meilleur vender
+
+            // ****************************************recuperation du classement des vendeur
+            'classementVendeur' => $venderTableResult,
+            // ****************************************recuperation du classement vendeur meilleur vendeur
             'classementVendeurVente'   => $resultatMeilleurVendeur,
             // ****************************************recuperation du classement vendeur le plus rentable
             'classementVendeurPrix'    => $resultatVendeurRentable,
+            // ****************************************recuperation du classement des Categories
+            'classementCategorie' => $serviceTableResult,
             // ****************************************recuperation du classementde la categorie la plus populaire*
             'classementCategoriePopulaire' => $resultatCountService,
             // ****************************************recuperation du classementde la categorie la plus rentable*

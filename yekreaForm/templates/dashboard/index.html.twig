@@ -3,6 +3,7 @@
 {% block title %}Hello DashboardController!{% endblock %}
 {% block stylesheets %}
 <style>
+    
     /* .nav--container,
     .sidebar
     {
@@ -26,336 +27,425 @@
 
     <div class="containerPages">
         <div class="pages">
-    {% if app.user.RoleInt == 1 %}
-        
-    
-            {# Section Statistique general  #}
-            <section  id="dashboard__section1">
-                <div id="section1__container">
-                    <h2 class="section1__titleSection">Vue d'ensemble</h2>
-                    <div id="section1__gridContainer">
-                        <div id="section1__grid">
-                            {% for commande in lastCommandes %}
-
-                                <div class="section1__lastCommande">
-                                    <div class="section1__lastCommande--identiteContainer">
-                                        <h3 class="section1__lastCommande--cardTitle">Commande n°{{commande.nbCommande}}</h3>
-                                        <div class="section1__lastCommande--client">{{commande.client.user.nom}} de {{commande.client.societe|capitalize}}</div>
-                                        <div class="section1__lastCommande--vendeur">{{commande.user.nom}}</div>
-                                    </div>
-                                    <div class="section1__lastCommande--prix">
-                                    {% if commande.devis %}
-                                        {% if commande.devis.prixFinal %}
-                                            Prix final : {{commande.devis.prixFinal}}€
-                                    {% else %}
+            {% if app.user.RoleInt == 1 %}
+                
+            
+                    {# Section Statistique general  #}
+                    <section  id="dashboard__section1">
+                        <div id="section1__container">
+                            <h2 class="section1__titleSection">Vue d'ensemble</h2>
+                            <div id="dashboard__lastCommand--container">
+                                {% for commande in lastCommandes %}
+                                    <div class="dashboard__lastCommand">
                                         
-                                        {% if commande.servicesDetail %}
-                                            {# Variable qui stoquera les prix max et min #}
-                                            {% set prixMin = 0 %}
-                                            {% set prixMax = 0 %}
-                                            {# Boucle qui va additionner les prix min et max des differents services #}
-                                            {% for service in commande.servicesDetail %}
-                                            
-                                                {% set prixMin = prixMin + service.prixMin|default(0) %}
-                                                {% set prixMax = prixMax + service.prix|default(0) %}
-                                            {% endfor %}
-                                        {% endif %}
-                                        A partir de {{prixMin}}€
-                                        {# à {{prixMax}} #}
-                                        {% endif %}
+                                        {# n°de commande #}
+                                        <div class="dashboard__lastCommand--refCommand">
+                                            <p>Commande</p>
+                                            <p>{{commande.nbCommande}}</p>
+                                            {# Debut de la carte #}
+                                        </div>
 
+                                        {# Nom du client #}
+                                        <div class="dashboard__lastCommand--client">
+                                            {{commande.client.user.prenom}}
+                                        </div>
                                         
-                                    {% endif %}
-                                    </div>
-                                    <div class="section1__lastCommande--validation">
-                                {# Si la commande a été passé mais n'as pas encore été validé #}
-                                        {% if not commande.validationDate %}
-                                        
-                                                Non validé
-                                            </div>
-                                            <a class="section1__lastCommande--cardBtn" >Valider la commande</a>
-                                        {% else %}
-
-                                        {% if not commande.devis.prixFinal %}
-                                            {# Si la commande a été validé mais le prix final n'as pas encore été definis #}
-                                                En attente de prixFinal
-                                            </div>
-                                        <a class="section1__lastCommande--cardBtn">Definir le Prix Final</a>
-                                    {% else %}
-
-                                    {# Si le prix final a été definis mais que le client n'as pas encore validé #}
-                                                En attente de validation client
-                                            </div>
-                                            <div style="display:flex;flex-direction:column">
-                                                <a class="section1__lastCommande--cardBtn">
-                                                Validation client
-                                                </a>
-                                                <a class="section1__lastCommande--cardBtn">
+                                        {# Prix du devis #}
+                                        {% if commande.devis %}
+                                            {% if commande.devis.prixFinal %}
                                                 
-                                                Voir le devis
-                                                </a>
+                                            <div class="dashboard__lastCommand--prix">
+                                                <span>{{commande.devis.prixFinal}}</span>€ HT
+                                            
+                                            {% else %}
+                                            <div class="dashboard__lastCommand--prix" style="padding: 5px">
+                                                <span>En attente d'un prix definitif</span>
+                                            {% endif %}
+                                        {% else %}
+                                            <div class="dashboard__lastCommand--prix" style="padding: 5px">
+                                            <span>Veuillez valider la commande</span>
+                                        {% endif %}
+                                            
+                                        </div>
+
+                                        {# Status de la commande #}
+                                        {% if commande.devis %}
+
+                                            {% if commande.devis.status == "accepted" %}
+
+                                                <div class="dashboard__lastCommand--status " style="background-color: #19e52e;">
+                                                    <p> Devis accepté</p>
+                                                </div>
+
+                                            {% else %}
+                                                {% if commande.devis.status == "pending" %}
+
+                                                    <div class="dashboard__lastCommand--status " style="background-color: #fd7e00c7;">
+                                                        <p> En attente d'une validation client </p>
+                                                    </div>
+                                                {% else %}
+                                                    {% if commande.devis.status == "aborted" %}
+
+                                                    <div class="dashboard__lastCommand--status " style="background-color: #fd0000bf;">
+                                                        <p> Devis annulé </p>
+                                                    </div>
+
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+
+                                        {% else %}
+                                            
+                                            <div class="dashboard__lastCommand--status " style="background-color: #fd7e00c7;">
+                                                <p> Veuillez valider la commande </p>
                                             </div>
-                                    {% endif %}
-                                            
-                                            
-                                    {% endif %}
+                                        {% endif %}
+                                        
+                                        {# Bouton validation/ voir le devis #}
+                                        <div class="dashboard__lastCommand--btnValidation">
+                                        {% if commande.devis %}
+                                            {% if commande.devis.status == 'accepted' or commande.devis.status == 'aborted' %}
+                                                
+                                                <a href="{{ path('app_devis_pdf_render', {'id': commande.devis.id}) }}" class="dashboard__lastCommand--devis">Voir le devis</a>
 
+                                            {% else %} 
+                                                {# si status == pending #}
+                                                <a href="{{ path('app_devis_show', {'id': commande.devis.id}) }}" class="dashboard__lastCommand--validation ">Validation</a >
+                                                <a href="{{ path('app_devis_pdf_render', {'id': commande.devis.id}) }}" class="dashboard__lastCommand--devis">Voir le devis</a>
+                                            {% endif %}
+                                        {% else %}
+                                            
+                                            <a href="{{ path('app_validate', {'id': commande.id}) }}" class="dashboard__lastCommand--validation ">Validation</a >
+                                            <a href="{{ path('app_command_show', {'id': commande.id}) }}" class="dashboard__lastCommand--devis">Voir la commande</a>
+                                        {% endif %}
+                                        </div>
+                                            {# fin de la carte #}
+                                    </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+                            <div id="section1__voirCommande" >
+                                <a href="{{ path('app_devis_index')}}">
+                                    {# <button class="btn bouton bouton--supp"> #}
+                                        Voir toutes les commandes
+                                    {# </button> #}
+                                </a>
+                            </div>
+                            </div>
 
                             
+
+                            <div id="section1__bestContainer">
+                                <div class="section1__general--container">
+
+                                    <div>
+
+
+                                        <div class="section1__general--label">
+                                            <p>Nombre de devis validé</p>
+                                        </div>
+
+                                        <div class="section1__general--valeur">
+                                            <p>{{devisAccepted}}</p>
+                                        </div>
+                                            <a href="{{ path('app_devis_index', {'status': 'accepted'}) }}">Voir tout</a>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <div class="section1__general--label">
+                                            <p>Nombre de devis en attente</p>
+                                        </div>
+
+                                        <div class="section1__general--valeur">
+                                            <p>{{devisPending}}</p>
+                                        </div>
+                                            <a href="{{ path('app_devis_index', {'status': 'pending'}) }}">Voir tout</a>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <div class="section1__general--label">
+                                            <p>Nombre de devis refusé</p>
+                                        </div>
+
+                                        <div class="section1__general--valeur">
+                                            <p>{{devisAborted}}</p>
+                                        </div>
+                                            <a href="{{ path('app_devis_index', {'status': 'aborted'}) }}">Voir tout</a>
+
+                                    </div>
+                                    
+                                </div>
+
+                                {# meilleur vendeur #}
+                                <div class="section1__bestVendeur">
+
+                                    {# vendeur le plus rentable #}
+                                    <div>
+                                        <div class="section1__bestVender--item">
+                                            <p>Commercial le plus rentable :</p>
+                                        </div>
+                                        <div class="section1__bestVender--vendeur">
+                                            <p>{{classementVendeurPrix.0[0]}}</p> 
+                                        </div>
+                                        <div class="section1__bestVender--valeur">
+                                            <p>{{classementVendeurPrix.0[1]}} € d'apport</p>
+                                        </div>
+                                        <a href="#" onClick="javascript:getSection2();" class="section1__voirPlus">voir le classement</a>
+                                    </div>
+
+                                    {# vendeur le plus performant #}
+                                    <div>
+                                        <div class="section1__bestVender--item">
+                                            <p>Commercial le plus performant :</p>
+                                        </div>
+
+                                        <div class="section1__bestVender--vendeur">
+                                            <p>{{classementVendeurVente.0[0]}}</p>
+                                        </div>
+
+                                        <div class="section1__bestVender--valeur">
+                                            <p>  {{classementVendeurVente.0[2]}}  ventes</p>
+                                        </div>
+                                        <a href="#" onClick="javascript:getSection2();" class="section1__voirPlus">Voir le classement</a>
+                                    </div>
+
+                                </div>
+                                
+                                {# meilleur categorie #}
+                                <div class="section1__bestCategorie">
+
+                                    {# categorie la plus rentable #}
+                                    <div class="section1__bestCategorie--rentable">
+
+                                        <div class="section1__bestProduit--item">
+                                            <p>Categorie la plus rentable :</p>
+                                        </div>
+
+                                        <div class="section1__bestProduit--vendeur">
+                                            <p>{{classementCategorieRentable.0[0]}} </p>
+                                        </div>
+
+                                        <div class="section1__bestProduit--valeur">
+                                            <p>{{classementCategorieRentable.0[1]}} €</p>
+                                        </div>
+
+                                        <a href="#" onClick="javascript:getSection3();" class="section1__voirPlus">Voir le classement</a>
+                                    </div>
+
+                                    {# Categorie la plus demander #}
+                                    <div>
+                                        <div class="section1__bestProduit--item">
+                                            <p>Categorie la plus populaire :</p>
+                                        </div>
+
+                                        <div class="section1__bestProduit--vendeur">
+                                            <p>{{classementCategoriePopulaire.0[0]}}</p>
+                                        </div>
+
+                                        <div class="section1__bestProduit--valeur">
+                                            <p>{{classementCategoriePopulaire.0[1]}} demandes</p>
+                                        </div>
+
+                                        <a href="#" onClick="javascript:getSection3();" class="section1__voirPlus">Voir le classement</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-                        <div id="section1__voirCommande" ><a href="#"><button class="btn bouton bouton--supp">Voir toutes les commandes</button></a></div>
+                        {# <a href=""><button class="btn bouton" >retour</button></a> #}
+                    </section>
+
+                    {# Section Classement par Vendeur #}
+                    <section id="dashboard__section2">
+                        <h2>Classement par Vendeur</h2>
+                        <div id="container__section2">
+
+                            <div class="dashboard__rankVendor">
+                                <div class="dashboard__rankVendor--container">
+                                    <h3 class="dashboard__rankVendor--title">Classement des Commerciaux</h3>
+                                    <div class="table-responsive-sm">
+                                        <table class="table mt-4 mb-5 tableau">
+                                            <thead >
+                                                <th>Rank</th>
+                                                <th>Commercial</th>
+                                                <th>Prix</th>
+                                                <th>Nombre de commande</th>
+                                                <th>voir plus</th>
+                                            </thead>
+                                            <tbody>
+                                                {% set rank = 0 %}
+                                                {% for item in classementVendeur %}
+                                                {% set rank = rank + 1 %}
+
+                                                    <tr>
+                                                        <td style="{{rank == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdRank">{{rank}}</td>
+                                                        <td style="{{rank == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommercial">{{item[0]}}</td>
+                                                        <td style="{{rank == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommande">{{item[2]}}€</td>
+                                                        <td style="{{rank == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommande">{{item[3]}}</td>
+                                                        <td style="{{rank == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--voirPlus">
+                                                            <a href="{{ path("app_dashboard", {'id': item[1]}) }}">
+                                                                <span>. . .</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <a href="#" onClick="javascript:getSection1();"><button class="btn bouton">retour</button></a>
+                    </section>
+
+                    {# Section Classement par categorie #}
+                    <section id="dashboard__section3">
+                        <h2>Classement par Vendeur</h2>
+                        <div id="container__section3">
+                            {# Classement des Catégories par recette #}
+                            <div class="dashboard__rankVendor">
+                                <div class="dashboard__rankVendor--container">
+                                    <h3 class="dashboard__rankVendor--title">Classement des Catégories</h3>
+
+                                    <div class="table-responsive-sm">
+                                        <table class=" table mb-5 tableau">
+                                            <thead >
+                                                <th>Rank</th>
+                                                <th>Catégorie</th>
+                                                <th>Prix</th>
+                                                <th>Nombre de commande</th>
+                                            </thead>
+                                            <tbody>
+                                                {% set rank2 = 0 %}
+                                                {% for item in classementCategorie %}
+                                                {% set rank2 = rank2 + 1 %}
+
+                                                    <tr>
+                                                        <td style="{{rank2 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdRank">{{rank2}}</td>
+                                                        <td style="{{rank2 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommercial">{{item[0]}}</td>
+                                                        <td style="{{rank2 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommande">{{item[1]}}€</td>
+                                                        <td style="{{rank2 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommande">{{item[2]}}</td>
+                                                    </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                            <a href="javascript:getSection1();"><button class="btn bouton">retour</button></a>
+                    </section>
+                
+            {% endif %}
+            {% if   app.request.query.get("id")  %}
+
+                <section id='dashboard__section4'>
+
+                    <h2>Statistique de vente individuel</h2>
+                    <div>
+                    <div class="table-responsive-sm" id="dashboard__individualStat--general">
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Nombre total de devis</th>
+                                    <td>{{userStats.1}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nombre de devis accepter</th>
+                                    <td>{{userStats.2}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nombre de devis en attente</th>
+                                    <td>{{userStats.3}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nombre de devis annuler</th>
+                                    <td>{{userStats.4}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </div>
 
-                    
-
-                    <div id="section1__bestContainer">
-                        <div class="section1__general--container">
-                            <div>
-                                <p class="section1__general--label">Nombre de devis validée</p>
-                                <p class="section1__general--valeur">{{devisAccepted}}</p>
-                                <a href="#">Voir tout</a>
-                            </div>
-                            <div>
-                                <p class="section1__general--label">Nombre de devis en attente</p>
-                                <p class="section1__general--valeur">{{devisPending}}</p>
-                                <a href="#">Voir tout</a>
-                            </div>
-                            <div>
-                                <p class="section1__general--label">Nombre de devis annulée</p>
-                                <p class="section1__general--valeur">{{devisAborted}}</p>
-                                <a href="#">Voir tout</a>
-                            </div>
-                        </div>
-                        <div class="section1__bestVendeur">
-                            <div>
-                                <div class="section1__bestVender--item">Commerçant le plus rentable :</div>
-                                <div class="section1__bestVender--valeur">{{classementVendeurPrix.0[0]}} avec {{classementVendeurPrix.0[1]}} € d'apport</div>
-                                <a href="#" class="section1__voirPlus">voir le classement</a>
-                            </div>
-                            <div>
-                                <div class="section1__bestVender--item">Commerçant le plus performant :</div>
-                                <div class="section1__bestVender--valeur">{{classementVendeurVente.0[0]}} avec  {{classementVendeurVente.0[2]}}  ventes</div>
-                                <a href="#" class="section1__voirPlus">Voir le classement</a>
-                            </div>
-                        </div>
-                        <div class="section1__bestCategorie">
-                            <div class="section1__bestCategorie--rentable">
-                                <div class="section1__bestProduit--item">Categorie la plus rentable :</div>
-                                <div class="section1__bestProduit--valeur">{{classementCategorieRentable.0[0]}} avec {{classementCategorieRentable.0[1]}} €</div>
-                                <a href="#" class="section1__voirPlus">Voir le classement</a>
-                            </div>
-                            <div>
-                                <div class="section1__bestProduit--item">Categorie la plus populaire :</div>
-                                <div class="section1__bestProduit--valeur">{{classementCategoriePopulaire.0[0]}} avec {{classementCategoriePopulaire.0[1]}} demandes</div>
-                                <a href="#" class="section1__voirPlus">Voir le classement</a>
-                            </div>
-                        </div>
-                        <div class="section1__bestProduit"></div>
-                    </div>
-                </div>
-                <a href=""><button class="btn bouton" >retour</button></a>
-            </section>
-
-            {# Section Classement par Vendeur #}
-            <section id="dashboard__section2">
-                <h2>Classement par Vendeur</h2>
-                <div id="container__section2">
-
-                    <div class="dashboard__rankVendor">
-                        <div class="dashboard__rankVendor--container">
-                            <h3 class="dashboard__rankVendor--title">Classement des Commercials par nombre de commandes</h3>
-                            <div class="table-responsive-sm">
-                                <table class="table mt-4 mb-5 tableau">
-                                    <thead >
-                                        <th>Rank</th>
-                                        <th>Commercial</th>
-                                        <th>Nombre de commande</th>
-                                    </thead>
-                                    <tbody>
-                                        {% set rank = 0 %}
-                                        {% for item in classementVendeurVente %}
-                                        {% set rank = rank + 1 %}
-
-                                            <tr>
-                                                <td style="{{rank == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdRank">{{rank}}</td>
-                                                <td style="{{rank == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommercial">{{item[0]}}</td>
-                                                <td style="{{rank == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommande">{{item[2]}}</td>
-                                                <td style="{{rank == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--voirPlus">
-                                                    <a href="{{ path("app_dashboard", {'id': item[1]}) }}">
-                                                        Plus d'info
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dashboard__rankVendor">
-                        <div class="dashboard__rankVendor--container">
-                            <h3 class="dashboard__rankVendor--title">Classement des Commerciaux par recette</h3>
-                            <div class=" table table-responsive-sm tableau">
+                        <div>
+                            <div class="table-responsive-sm" id="dashboard__individualStat--details">
                                 <table>
-                                    <thead >
-                                        <th>Rank</th>
-                                        <th>Commercial</th>
-                                        <th>Recette</th>
+                                    <thead>
+                                        <th>n° Devis</th>
+                                        <th>Client</th>
+                                        <th>Status</th>
+                                        <th>Prix Final</th>
                                     </thead>
                                     <tbody>
-                                        {% set rank1 = 0 %}
-                                        {% for item in classementVendeurPrix %}
-                                            {% set rank1 = rank1 + 1 %}
-
-                                            <tr>
-                                                <td style="{{rank1 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdRank">{{rank1}}</td>
-                                                <td style="{{rank1 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommercial">{{item[0]}}</td>
-                                                <td style="{{rank1 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommande">{{item[2]}} €</td>
-                                                <td style="{{rank1 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--voirPlus">
-                                                    <a href="{{ path("app_dashboard", {'id': item[1]}) }}">
-                                                        Plus d'info
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <a href=""><button class="btn bouton">retour</button></a>
-            </section>
-
-            {# Section Classement par categorie #}
-            <section id="dashboard__section3">
-                <h2>Classement par Vendeur</h2>
-                <div id="container__section3">
-                    {# Classement des Catégories par recette #}
-                    <div class="dashboard__rankVendor">
-                        <div class="dashboard__rankVendor--container">
-                            <h3 class="dashboard__rankVendor--title">Classement des Catégories par recette</h3>
-
-                            <div class="table-responsive-sm">
-                                <table class=" table mb-5 tableau">
-                                    <thead >
-                                        <th>Rank</th>
-                                        <th>Catégorie</th>
-                                        <th>Nombre de commande</th>
-                                    </thead>
-                                    <tbody>
-                                        {% set rank2 = 0 %}
-                                        {% for item in classementCategoriePopulaire %}
-                                        {% set rank2 = rank2 + 1 %}
-
-                                            <tr>
-                                                <td style="{{rank2 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdRank">{{rank2}}</td>
-                                                <td style="{{rank2 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommercial">{{item[0]}}</td>
-                                                <td style="{{rank2 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommande">{{item[1]}}</td>
-                                            </tr>
+                                    {% for userStat in userStats.0 %}
+                                        
+                                        <tr>
+                                            <td>{{userStat.devis.numDevis}}</td>
+                                            <td>{{userStat.client.user.nom}} {{userStat.client.user.nom}}</td>
+                                            <td>{{userStat.devis.status}}</td>
+                                            <td>{{userStat.devis.prixFinal}}</td>
+                                        </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    {# Classement des Catégories par recette #}
-                    <div class="dashboard__rankVendor">
-                        <div class="dashboard__rankVendor--container">
-                            <h3 class="dashboard__rankVendor--title">Classement des Catégories par recette</h3>
-                            <div class="table-responsive-sm">
-                                <table class="table mb-5 tableau">
-                                    <thead >
-                                        <th>Rank</th>
-                                        <th>Catégorie</th>
-                                        <th>Recette</th>
-                                    </thead>
-                                    <tbody>
-                                        {% set rank3 = 0 %}
-                                        {% for item in classementCategorieRentable %}
-                                            {% set rank3 = rank3 + 1 %}
-
-                                            <tr>
-                                                <td style="{{rank3 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdRank">{{rank3}}</td>
-                                                <td style="{{rank3 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommercial">{{item[0]}}</td>
-                                                <td style="{{rank3 == 1 ? 'font-weight: 700;' : '' }}" class="dashbord__rankVendor--tdCommande">{{item[1]}} €</td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <a href=""><button class="btn bouton">retour</button></a>
-            </section>
-        
-    {% endif %}
-    {% if   app.request.query.get("id")  %}
-
-        <section>
-
-            <h2>Statistique de vente individuel</h2>
-            <div>
-            <div class="table-responsive-sm">
-                <table>
-                    <thead>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Nombre total de devis</td>
-                            <td>{{userStats.1}}</td>
-                        </tr>
-                        <tr>
-                            <td>Nombre de devis accepter</td>
-                            <td>{{userStats.2}}</td>
-                        </tr>
-                        <tr>
-                            <td>Nombre de devis en attente</td>
-                            <td>{{userStats.3}}</td>
-                        </tr>
-                        <tr>
-                            <td>Nombre de devis annuler</td>
-                            <td>{{userStats.4}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-                <div>
-                <div class="table-responsive-sm">
-                    <table>
-                        <thead>
-                            <th>n° Devis</th>
-                            <th>Client</th>
-                            <th>Status</th>
-                            <th>Prix Final</th>
-                        </thead>
-                        <tbody>
-                        {% for userStat in userStats.0 %}
-                            
-                            <tr>
-                                <td>{{userStat.devis.numDevis}}</td>
-                                <td>{{userStat.client.user.nom}} {{userStat.client.user.nom}}</td>
-                                <td>{{userStat.devis.status}}</td>
-                                <td>{{userStat.devis.prixFinal}}</td>
-                                <td><a href="">Voir detail</a></td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                </div>
-            </div>
-        </section>
-    {% endif %}
+                </section>
+            {% endif %}
 
         </div>
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    <script>
+
+        let section1 = document.querySelector('#dashboard__section1')
+        let section2 = document.querySelector('#dashboard__section2')
+        let section3 = document.querySelector('#dashboard__section3')
+        let section4 = document.querySelector('#dashboard__section4')
+
+        let getSection1 = () =>{
+            section1.style.display = 'block'
+            section2.style.display = 'none'
+            section3.style.display = 'none'
+            section4.style.display = 'none'
+        }
+        let getSection2 = () =>{
+            section1.style.display = 'none'
+            section2.style.display = 'block'
+            section3.style.display = 'none'
+            section4.style.display = 'none'
+        }
+        let getSection3 = () =>{
+            section1.style.display = 'none'
+            section2.style.display = 'none'
+            section3.style.display = 'block'
+            section4.style.display = 'none'
+        }
+        let getSection4 = () =>{
+            section1.style.display = 'none'
+            section2.style.display = 'none'
+            section3.style.display = 'none'
+            section4.style.display = 'block'
+        }
+
+        window.addEventListener('load', () => {
+            if(section4.style.display != 'none'){
+                getSection4()
+            }
+        })
+    
+    </script>
 {% endblock %}

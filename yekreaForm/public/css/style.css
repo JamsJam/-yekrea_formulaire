@@ -441,6 +441,12 @@ td{
     margin: 50px 0
 }
 
+
+#dashboard__section2,
+#dashboard__section3{
+    display:none
+}
+
 #container__section1,
 #container__section2,
 #container__section3
@@ -469,72 +475,255 @@ td{
     margin: 0 auto;
 }
 
-.section1__lastCommande{
-    /* min-height: 199px; */
-    /* border: 1px solid navy; */
+
+#dashboard__lastCommand--container{
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 300px;
-    min-width: 250px;
+    flex-wrap: wrap;
+    margin: 0 auto
+}
+
+.dashboard__lastCommand{
+    width: 270px;
+    margin: 15px
+    /* border: solid black 1px */
+}
+
+.dashboard__lastCommand--refCommand{
+    text-align: center;
+    height : 100px;
+    padding: 10px;
+    color: #fff;
+    background-color: #E5191E;
+    border-radius:  10px 10px 0 0;
+    font-size : 20px;
+    font-weight: 500
+}
+
+.dashboard__lastCommand--refCommand>p:first-child{
+    font-size : 30px;
+    font-weight: 800;
+    margin: 0
+}
+
+.dashboard__lastCommand--client{
+    text-align: center;
     padding: 15px;
-    border-radius: 30px;
-    box-shadow: 0px 0px 7px -2px rgb(46 46 46 / 62%);
+    background: #D9D9D9;
+    height: 60px;
+    font-size : 20px;
+    font-weight: 500 
 }
 
-.section1__lastCommande--cardTitle{
-    font-size: 1.4rem;
-    font-weight: 600 ;
+.dashboard__lastCommand--prix{
     text-align: center;
+    padding: 17px;
+    background: #EBEBEB;
+    height: 60px;
+    font-size : 18px;
+    font-weight: 400;
+    }
+    .dashboard__lastCommand--prix>span{
+        
+        font-weight: 800;
 }
 
-.section1__lastCommande--cardBtn{
-    font-size: 0.8rem;
+.dashboard__lastCommand--status{
+    border: 1px solid #00000050;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px
+}
+.dashboard__lastCommand--status>p{
+    margin: 0;
+    text-align: center
+}
+
+
+
+.dashboard__lastCommand--btnValidation{
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+}
+
+.dashboard__lastCommand--btnValidation a {
+    border-radius: 10px;
+    width: 130px;
+    height: 50px;
+    background: none;
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    border: #000 solide 1px;
-    background-color: #ad1216;
-    box-shadow: 0px 0px 7px -2px rgb(46 46 46 / 62%);
-    
+
+}
+
+.dashboard__lastCommand--btnValidation a.dashboard__lastCommand--validation {
+    background: #E5191E ;
+    color: white;
+    border: none;
+    transition: 
+            border 0.2s ease-in-out,
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+}
+
+.dashboard__lastCommand--btnValidation a.dashboard__lastCommand--devis {
+    border: 1px black solid;
+    color: black;
+    transition: 
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+}
+
+.dashboard__lastCommand--btnValidation a.dashboard__lastCommand--validation:hover {
+    background: white ;
+    color: #E5191E ;
+    border: 2px #E5191E solid;
+    transition: 
+            border 0.2s ease-in-out,
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+}
+.section1__voirPlus:hover,
+.section1__general--container a:hover,
+.dashboard__lastCommand--btnValidation a.dashboard__lastCommand--devis:hover {
+    background-color: #000;
+    color: #fff;
+    transition: 
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
 }
 
 #section1__voirCommande{
-    margin: 20px auto;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    
+    
+}
+#section1__voirCommande a{
+    
+    height: 50px;
+    width: 250px;
+    color: #E5191E;
+    border: 2px solid #E5191E;
+    border-radius: 10px;
+    background-color: #FFF;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 
+            border 0.2s ease-in-out,
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+    
+}
+#section1__voirCommande a:hover{
+    
+    
+    color:#FFF ;
+    border: 2px solid #fff;
+    background-color: #E5191E;
+    transition: 
+            border 0.2s ease-in-out,
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+    
+    
 }
 
-.section1__bestVendeur,
+
+
 .section1__bestCategorie,
-.section1__bestProduit,
-.section1__general--container
-{
-    display:flex;
-    justify-content: space-around;
-    margin: 10px 0
-}
+    .section1__bestVendeur,
+    .section1__general--container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 250px;
+        margin: 50px 0
 
-.section1__bestCategorie{
-    margin-right:44px
-}
+    }
 
-.section1__bestCategorie--rentable{
-    margin-left: 18px;
-}
+    .section1__voirPlus,
+    .section1__general--container a{
+        height : 50px;
+        width: 130px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        margin: 10px auto;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 
+            background 0.2s ease-in-out,
+            color 0.2s ease-in-out;
 
-.section1__bestProduit--item,
-.section1__bestVender--item,
-.section1__general--label
-{
-    font-weight: 700;
-}
+        
+    }
 
-.section1__bestProduit--valeur,
-.section1__bestVender--valeur,
-.section1__general--valeur
-{
-    text-align: center;
-}
+    .section1__bestProduit--item,
+    .section1__bestVender--item,
+    .section1__general--label{
+        height: 100px;
+        background-color: #E5191E;
+        border-radius: 10px 10px 0 0;
+        width: 250px;
+        padding: 20px;
+
+    }
+    .section1__bestProduit--item>p,
+    .section1__bestVender--item>p,
+    .section1__general--label>p{
+        font-size: 22px;
+        color: #fff;
+        text-align: center;
+        font-weight: 700
+
+    }
+    .section1__bestProduit--valeur,
+    .section1__bestProduit--vendeur,
+    .section1__bestVender--vendeur,
+    .section1__bestVender--valeur,
+    .section1__general--valeur{
+        height: 60px;
+        border: 1px solid #00000050;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    /* initialisation paragraphe */
+    .section1__bestProduit--valeur>p,
+    .section1__bestProduit--vendeur>p,
+    .section1__bestVender--vendeur>p,
+    .section1__bestVender--valeur>p,
+    .section1__general--valeur>p{
+        margin: 0
+    }
+
+.section1__bestProduit--vendeur,
+.section1__bestVender--vendeur{
+        background-color: #EBEBEB;
+        font-weight: 500;
+    }
+
+    .section1__voirPlus{
+        text-align: center
+    }
+
+
 
 #dashboard__section2>h2,
 #dashboard__section3>h2
@@ -555,7 +744,6 @@ td{
     display: flex;
     justify-content: start;
     flex-direction: column;
-    width: 29vw;
 }
 
 .dashboard__rankVendor--tableHeader{
@@ -582,9 +770,39 @@ td{
 .dashboard__rankVendor--tableItems:first-child{
     font-weight: 600;
 }
+.dashbord__rankVendor--voirPlus  a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 800;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 
+            color 0.2s ease-in-out,
+            transform 0.2s ease-in-out ;
+}
+.dashbord__rankVendor--voirPlus  a:hover{
+    
+    color: rgb(53, 52, 52);
+    transform: translateY(-3px);
+    transition: 
+            color 0.2s ease-in-out,
+            transform 0.2s ease-in-out ;
+            
+    
+}
 
 #dashboard__section3{
     padding-bottom: 60px;
+}
+
+#dashboard__individualStat--general{
+    margin: 30px 0;
+}
+#dashboard__individualStat--general table{
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 
@@ -815,6 +1033,21 @@ td{
     }
 }
 /* ******************************************************  dashborad*/
+
+@media screen and (max-width: 800px){
+    #dashboard__lastCommand--container{
+
+        flex-direction: column
+    }
+
+    .section1__bestCategorie,
+    .section1__bestVendeur,
+    .section1__general--container{
+            flex-direction: column
+        }
+        
+}
+
 @media screen and (max-width:465px) {
         #section1__grid{
             margin: 0;

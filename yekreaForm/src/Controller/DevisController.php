@@ -26,7 +26,14 @@ class DevisController extends AbstractController
             $devis = $devisRepository->findDevis($request->query->get('comId'));
         }
         else{
-            $devis = $devisRepository->findBy([],['id' => 'DESC']);
+            if (($request->query->get('status'))) {
+                $status = $request->query->get('status');
+                $devis = $devisRepository->findBy(['status' => $status],['id' => 'DESC']);
+            } else {
+                
+                $devis = $devisRepository->findBy([],['id' => 'DESC']);
+            }
+            
         }
 
         return $this->render('devis/index.html.twig', [
